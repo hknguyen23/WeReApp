@@ -1,8 +1,16 @@
+import React from 'react';
+import NavBar from '../navBar/navBar'
+
 function Home() {
   return (
-    <div>
-      Trang chủ
-    </div>
+    <>
+      <NavBar />
+      <div>
+        Trang chủ
+      </div>
+    </>
+
+
   );
 }
 
