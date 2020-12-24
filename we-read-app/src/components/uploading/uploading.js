@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Container,
   Box,
@@ -10,7 +10,6 @@ import {
   Grid,
   TextField,
   Typography,
-  FormControl,
   FormControlLabel,
   FormHelperText,
   Checkbox,
@@ -65,10 +64,52 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'left',
     width: '100%',
     marginBottom: '5px',
+    direction: "row",
+    justify: "flex-start",
+    alignItems: "flex-start",
+
   },
   formCheckBoxGridItem: {
     marginBottom: '-10px'
   },
+  FormHelperText: {
+    marginLeft: '14px',
+    marginTop: '4px',
+  },
+  imageBox: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
+    alignItems: 'flex-start',
+
+  },
+  image: {
+    height: '168px',
+    width: '168px',
+    paddingBottom: '10px'
+  },
+  imageButton: {
+    width: '117px',
+    height: '36px',
+    backgroundColor: '#2196F3',
+    marginRight: '10px',
+    textTransform: 'none',
+  },
+  deleteImageButton: {
+    minHeight: 0,
+    minWidth: 0,
+    textTransform: 'none',
+    "&:hover": {
+      backgroundColor: "#FFFFFF",
+      textDecoration: 'underline',
+    }
+  },
+  uploadButton: {
+    backgroundColor: '#2196F3',
+    color: '#FFFFFF',
+  }
+
+
 }));
 
 const ageGroup = [
@@ -104,44 +145,40 @@ const language = [
 const genre = [
   {
     value: 'action',
-    label: 'Action'
+    label: 'Hành động'
   },
   {
     value: 'comedy',
-    label: 'Comedy'
+    label: 'Hài hước'
   },
   {
-    value: 'a',
-    label: 'a'
+    value: 'horror',
+    label: 'Kinh dị'
   },
   {
-    value: 'a',
-    label: 'a'
+    value: 'stragedy',
+    label: 'Bi kịch'
   },
   {
-    value: 'a',
-    label: 'a'
+    value: 'romance',
+    label: 'Tình cảm'
   },
   {
-    value: 'a',
-    label: 'a'
+    value: 'history',
+    label: 'Lịch sử'
+  },
+];
+
+const tags = [
+  {
+    value: 'Male lead',
+    label: 'Nam chinh'
   },
   {
-    value: 'a',
-    label: 'a'
+    value: 'Female lead',
+    label: 'Nữ chính'
   },
-  {
-    value: 'a',
-    label: 'a'
-  },
-  {
-    value: 'a',
-    label: 'a'
-  },
-  {
-    value: 'a',
-    label: 'a'
-  },
+
 
 ];
 
@@ -153,20 +190,178 @@ function Uploading() {
     longDes: '',
     age: '',
     language: '',
-    genre: [],
-    tags: [],
-    picture: '',
-    titleChap: '',
+    genre: {},
+    tags: {},
+    titleChapter: '',
+    data: '',
+  });
+  const [errors, setErrors] = useState({
+    title: '',
+    shortDes: '',
+    longDes: '',
+    age: '',
+    language: '',
+    titleChapter: '',
     data: '',
   });
 
-  const handleChange = (event) => {
-    /*
+  const [selectedFile, setSelectedFile] = useState()
+  const [preview, setPreview] = useState()
+
+  // intial data
+  useEffect(() => {
+    var temp = {};
+    for (var i = 0; i < genre.length; i++) {
+      temp[genre[i].value] = false;
+    }
+    var temp2 = {};
+    for (var j = 0; j < tags.length; j++) {
+      temp2[tags[j].value] = false;
+    }
+
+    setValues({
+      ...values,
+      genre: temp,
+      tags: temp2
+    });
+  }, [])
+
+  // upload image 
+  useEffect(() => {
+    if (!selectedFile) {
+      setPreview(undefined);
+      return;
+    }
+
+    const objectUrl = URL.createObjectURL(selectedFile)
+    setPreview(objectUrl)
+
+    // free memory when ever this component is unmounted
+    return () => URL.revokeObjectURL(objectUrl)
+  }, [selectedFile])
+
+  const onSelectFile = e => {
+    if (!e.target.files || e.target.files.length === 0) {
+      setSelectedFile(undefined)
+      return;
+    }
+    setSelectedFile(e.target.files[0]);
+    e.target.value = '';
+  }
+
+  const onDeleteImage = (e) => {
+    setSelectedFile(undefined)
+    return;
+  }
+
+  // handle change of form
+  const handleChange = (event) => {                     // change textfield
     setValues({
       ...values,
       [event.target.name]: event.target.value
     });
-    */
+  };
+  const handleChangeEditorDes = (editorState) => {      // change long des editor 
+    setValues({
+      ...values,
+      longDes: editorState
+    });
+  };
+  const handleChangeEditorData = (editorState) => {   // change data editor 
+    setValues({
+      ...values,
+      data: editorState
+    });
+  };
+  const handleChangeGenre = (event) => {             // change genre checkbox 
+    setValues({
+      ...values,
+      genre: { ...values.genre, [event.target.name]: event.target.checked }
+    });
+  }
+  const handleChangeTags = (event) => {            // change tags checkbox 
+    setValues({
+      ...values,
+      tags: { ...values.tags, [event.target.name]: event.target.checked }
+    });
+
+  }
+
+  // validate for form
+  const handleValidate = (event) => {                 // validate textfield
+    if ((event.target.name === 'title' || event.target.name === 'titleChapter') && event.target.value === '') {
+      setErrors({
+        ...errors,
+        [event.target.name]: "* Không được để trống"
+      });
+    }
+    else {
+      setErrors({
+        ...errors,
+        [event.target.name]: ""
+      });
+    }
+  }
+  const handleValidateEditorDes = (e, editorState) => {   // validate editor
+    if (!editorState.getCurrentContent().hasText()) {
+      setErrors({
+        ...errors,
+        longDes: "* Không được để trống"
+      });
+    }
+    else {
+      setErrors({
+        ...errors,
+        longDes: ""
+      });
+    }
+  }
+
+  const handleValidateEditorData = (e, editorState) => {
+    if (!editorState.getCurrentContent().hasText()) {
+      setErrors({
+        ...errors,
+        data: "* Không được để trống"
+      });
+    }
+    else {
+      setErrors({
+        ...errors,
+        data: ""
+      });
+    }
+  }
+
+  var genreList = Object.entries(values.genre);                     // validate genre checkbox
+  const errorGenre = genreList.filter((v) => v[1] === true).length > 4;
+
+
+  // submit form
+  const onSubmit = (event) => {
+    var tempErrors = {...errors};;
+    if (values.title === '') {
+      tempErrors.title = "* Không được để trống";
+    }
+    if (values.titleChapter === '') {
+      tempErrors.titleChapter = "* Không được để trống";
+    }
+    if (values.longDes === '' || !values.longDes.getCurrentContent().hasText()) {
+      tempErrors.longDes = "* Không được để trống";
+    }
+    if (values.data === '' ||  !values.data.getCurrentContent().hasText()) {
+      tempErrors.data = "* Không được để trống";
+    }
+    setErrors(tempErrors);
+    
+    var errorList = Object.entries(tempErrors);
+    const hasError = errorList.filter((v) => v[1] !== '').length > 0;
+    if (hasError || errorGenre) {
+      console.log(tempErrors)
+    }
+    else {
+      console.log(values)
+
+    }
   };
 
   return (
@@ -191,11 +386,12 @@ function Uploading() {
               <Grid item xs={9}>
                 <TextField
                   size="small"
-                  error={false}
-                  helperText={true ? "daw" : ""}
+                  error={errors.title !== '' ? true : false}
+                  helperText={errors.title !== '' ? errors.title : ''}
                   fullWidth
                   name="title"
                   onChange={handleChange}
+                  onBlur={handleValidate}
                   required
                   value={values.firstName}
                   variant="outlined"
@@ -212,7 +408,7 @@ function Uploading() {
                 <TextField
                   size="small"
                   error={false}
-                  helperText={true ? "daw" : ""}
+                  helperText={false ? "daw" : ""}
                   fullWidth
                   name="shortDes"
                   onChange={handleChange}
@@ -230,12 +426,15 @@ function Uploading() {
               </Grid>
               <Grid item xs={9}>
                 <Editor
-                  name='longDes'
-                  onChange={handleChange}
                   toolbarClassName={classes.toolbarStyle}
                   editorClassName={classes.editorStyleDes}
                   wrapperClassName={classes.wrapperStyle}
+                  onEditorStateChange={handleChangeEditorDes}
+                  onBlur={handleValidateEditorDes}
                 />
+                <FormHelperText className={classes.FormHelperText} error>
+                  {errors.longDes !== '' ? errors.longDes : ''}
+                </FormHelperText>
               </Grid>
             </Grid>
           </CardContent>
@@ -254,7 +453,7 @@ function Uploading() {
                 <TextField
                   size="small"
                   fullWidth
-                  name="ageGroup"
+                  name="age"
                   onChange={handleChange}
                   required
                   select
@@ -312,20 +511,18 @@ function Uploading() {
                 </Container>
               </Grid>
               <Grid item xs={9}>
-                <FormControl required error={true} component="fieldset">
-                  <Grid container spacing={0} className={classes.formCheckBoxGrid}>
-                    {genre.map(genre => (
-                      <Grid item xs={3}>
-                        <FormControlLabel
-                          className={classes.formCheckBoxGridItem}
-                          control={<Checkbox onChange={handleChange} name={genre.value} />}
-                          label={genre.label}
-                        />
-                      </Grid>
-                    ))}
-                  </Grid>
-                  <FormHelperText> * Tối đa 4 thể loại </FormHelperText>
-                </FormControl>
+                <Grid container spacing={0} className={classes.formCheckBoxGrid}>
+                  {genre.map(genre => (
+                    <Grid item xs={3}>
+                      <FormControlLabel
+                        className={classes.formCheckBoxGridItem}
+                        control={<Checkbox onChange={handleChangeGenre} name={genre.value} />}
+                        label={genre.label}
+                      />
+                    </Grid>
+                  ))}
+                </Grid>
+                <FormHelperText className={classes.FormHelperText} error={errorGenre}> * Tối đa 4 thể loại </FormHelperText>
               </Grid>
 
               <Grid item xs={3}>
@@ -336,19 +533,19 @@ function Uploading() {
                 </Container>
               </Grid>
               <Grid item xs={9}>
-                <FormControl required error={true} component="fieldset">
-                  <Grid container spacing={0} className={classes.formCheckBoxGrid}>
-                    {genre.map(genre => (
-                      <Grid item xs={3}>
-                        <FormControlLabel
-                          className={classes.formCheckBoxGridItem}
-                          control={<Checkbox onChange={handleChange} name={genre.value} />}
-                          label={genre.label}
-                        />
-                      </Grid>
-                    ))}
-                  </Grid>
-                </FormControl>
+                <Grid container spacing={0} className={classes.formCheckBoxGrid}>
+                  {tags.map(tags => (
+                    <Grid item xs={3}>
+                      <FormControlLabel
+                        className={classes.formCheckBoxGridItem}
+                        control={<Checkbox onChange={handleChangeTags} name={tags.value} />}
+                        label={tags.label}
+                      />
+                    </Grid>
+                  ))}
+                </Grid>
+                <FormHelperText className={classes.FormHelperText}> </FormHelperText>
+
               </Grid>
 
             </Grid>
@@ -365,6 +562,18 @@ function Uploading() {
                 </Container>
               </Grid>
               <Grid item xs={9}>
+                <div className={classes.imageBox}>
+                  <img className={classes.image} src={preview} />
+                  <Box>
+                    <Button className={classes.imageButton} color="primary" variant="contained" component="label">
+                      Đăng ảnh
+                    <input type='file' hidden onChange={onSelectFile} />
+                    </Button>
+                    <Button className={classes.deleteImageButton} color="primary" size="small" onClick={onDeleteImage}>
+                      Xóa
+                    </Button>
+                  </Box>
+                </div>
               </Grid>
             </Grid>
           </CardContent>
@@ -382,11 +591,12 @@ function Uploading() {
               <Grid item xs={9}>
                 <TextField
                   size="small"
-                  error={false}
-                  helperText={true ? "daw" : ""}
+                  error={errors.titleChapter !== '' ? true : false}
+                  helperText={errors.titleChapter !== '' ? errors.titleChapter : ''}
                   fullWidth
-                  name="title"
+                  name="titleChapter"
                   onChange={handleChange}
+                  onBlur={handleValidate}
                   required
                   value={values.firstName}
                   variant="outlined"
@@ -404,14 +614,20 @@ function Uploading() {
                   toolbarClassName={classes.toolbarStyle}
                   editorClassName={classes.editorStyleChapter}
                   wrapperClassName={classes.wrapperStyle}
+                  onEditorStateChange={handleChangeEditorData}
+                  onBlur={handleValidateEditorData}
                 />
+                <FormHelperText className={classes.FormHelperText} error>
+                  {errors.data !== '' ? errors.data : ''}
+                </FormHelperText>
+
               </Grid>
             </Grid>
           </CardContent>
 
           <Divider />
           <Box display="flex" justifyContent="flex-end" p={2} >
-            <Button color="primary" variant="contained">
+            <Button className={classes.uploadButton} color='primary' variant="contained" onClick={onSubmit}>
               Đăng truyện
             </Button>
           </Box>
