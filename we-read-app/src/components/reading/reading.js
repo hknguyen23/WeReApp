@@ -17,6 +17,9 @@ import {
 } from '@material-ui/core';
 import MenuBookIcon from '@material-ui/icons/MenuBook';
 
+import ReadingPanel from './ReadingPanel';
+import InfoPanel from './InfoPanel';
+import Toolbar from './Toolbar';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -34,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
   },
   infoPanel: {
     display: 'flex',
-    flexDirection: 'row',
+    flexDirection: 'column',
     justifyContent: 'flex-start',
     padding: '16px 20px',
   },
@@ -68,12 +71,12 @@ const Reading = () => {
           titleTypographyProps={{ variant: 'h5', align: "left" }}
           title="Đọc truyện" />
         <CardContent className={classes.infoPanel}>
-          <img className={classes.image} src={null} />
-          <Box>
-
-          </Box>
+          <InfoPanel />
+          <Divider />
+          <Toolbar />
+          <Divider />
+          <ReadingPanel />
         </CardContent>
-        <Divider />
       </Card>
     </Container>
   );
