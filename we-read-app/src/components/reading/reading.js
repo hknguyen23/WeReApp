@@ -39,11 +39,11 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'flex-start',
-    padding: '16px 20px',
+    padding: '5px',
   },
   image: {
-    height: '220px',
-    width: '220px',
+    height: '230px',
+    width: '200px',
     paddingBottom: '10px'
   },
 
