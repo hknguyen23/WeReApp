@@ -2,12 +2,20 @@ import React, { useState } from 'react';
 import {
     Container,
     Grid,
-    makeStyles
+    makeStyles,
+    Button
 } from '@material-ui/core';
 import AnalystCard from "./AnalystCard";
+import FavoriteCard from "./FavoriteCard";
+import ManagementCard from "./ManagementCard";
+import SettingCard from "./SettingCard";
+import Infor from "./Infor";
 function Profile() {
   return (
       <Container maxWidth={false}>
+          <Grid>
+              <Infor />
+          </Grid>
           <Grid
               container
               spacing={3}
@@ -19,7 +27,9 @@ function Profile() {
                   xl={3}
                   xs={12}
               >
-                  <Budget />
+                  <Button size="large">
+                      <FavoriteCard />
+                  </Button>
               </Grid>
               <Grid
                   item
@@ -28,7 +38,9 @@ function Profile() {
                   xl={3}
                   xs={12}
               >
-                  <TotalCustomers />
+                  <Button size="large">
+                      <AnalystCard />
+                  </Button>
               </Grid>
               <Grid
                   item
@@ -37,7 +49,9 @@ function Profile() {
                   xl={3}
                   xs={12}
               >
-                  <TasksProgress />
+                  <Button size="large">
+                      <ManagementCard />
+                  </Button>
               </Grid>
               <Grid
                   item
@@ -46,36 +60,12 @@ function Profile() {
                   xl={3}
                   xs={12}
               >
-                  <TotalProfit />
-              </Grid>
-              <Grid
-                  item
-                  lg={8}
-                  md={12}
-                  xl={9}
-                  xs={12}
-              >
-                  <Sales />
-              </Grid>
-              <Grid
-                  item
-                  lg={4}
-                  md={6}
-                  xl={3}
-                  xs={12}
-              >
-                  <AnalystCard />
-              </Grid>
-              <Grid
-                  item
-                  lg={4}
-                  md={6}
-                  xl={3}
-                  xs={12}
-              >
-                  <AnalystCard />
+                  <Button size="large">
+                      <SettingCard />
+                  </Button>
               </Grid>
           </Grid>
+
       </Container>
   );
 }
