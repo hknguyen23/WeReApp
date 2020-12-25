@@ -21,6 +21,7 @@ import MenuBookIcon from '@material-ui/icons/MenuBook';
 const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: theme.palette.background.dark,
+    width: '90%',
     maxWidth: '940px',
     minHeight: '100%',
     borderRadius: '4',
@@ -31,18 +32,21 @@ const useStyles = makeStyles((theme) => ({
     color: '#FFFFFF',
     backgroundColor: '#0452BB'
   },
-  cardContent: {
+  infoPanel: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
     padding: '16px 20px',
   },
   image: {
-    height: '168px',
-    width: '168px',
+    height: '220px',
+    width: '220px',
     paddingBottom: '10px'
   },
 
 }));
 
-const Uploading = () => {
+const Reading = () => {
   const classes = useStyles();
   const [values, setValues] = useState({
     title: '',
@@ -63,12 +67,16 @@ const Uploading = () => {
           avatar={<MenuBookIcon style={{ fontSize: 30 }} />}
           titleTypographyProps={{ variant: 'h5', align: "left" }}
           title="Đọc truyện" />
-          <img className={classes.image} src={preview} />
+        <CardContent className={classes.infoPanel}>
+          <img className={classes.image} src={null} />
+          <Box>
 
+          </Box>
+        </CardContent>
         <Divider />
       </Card>
     </Container>
   );
 }
 
-export default Uploading;
+export default Reading;
