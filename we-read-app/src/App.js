@@ -1,5 +1,5 @@
 import './App.css';
-import Reading from './components/reading/Reading';
+import Reading from './components/reading/reading';
 
 function App() {
   return (

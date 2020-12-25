@@ -17,7 +17,8 @@ const useStyles = makeStyles((theme) => ({
   container: {
     display: 'inline-block',
     width: '100%',
-    marginTop: '24px'
+    marginTop: '15px',
+    marginBottom: '15px'
   },
   rightContainer: {
     float: "right",
@@ -68,7 +69,7 @@ const InfoPanel = () => {
 
           <div className={classes.rightContainer}>
             <div style={{ display: 'flex', alignItems: 'center' }}>
-              <Typography style={{ fontSize: '34px', marginRight: '24px' }}>{fiction.title}</Typography>
+              <Typography variant="h4" style={{ fontSize: '34px', marginRight: '24px' }}>{fiction.title}</Typography>
               <Button style={{ minWidth: '45px', height: '45px', color: 'white',
                 backgroundColor: '#27ae60', borderRadius: '8px', marginRight: '10px' }}
               >
