@@ -14,6 +14,8 @@ import {
     useTheme
 } from '@material-ui/core';
 import FavoriteIcon from '@material-ui/icons/Favorite';
+import { red } from '@material-ui/core/colors';
+
 
 const useStyles = makeStyles(() => ({
     root: {
@@ -51,22 +53,22 @@ const FavoriteCard = ({ className, ...rest }) => {
         <Card
             className={clsx(classes.root, className)}
             {...rest}
+            style={{ height: '400px', width: '300px', backgroundColor: "#e5e5e5"}}
         >
-            <CardHeader title="Favorite novel" />
-            <Divider />
+            <CardHeader title="DANH SÁCH YÊU THÍCH" />
             <CardContent>
                 <Box
-                    height={300}
                     position="relative"
                 >
-                    <FavoriteIcon style={{ fontSize: 40 }} />
+                    <FavoriteIcon style={{ fontSize: 100 , color: red[500]}} />
                 </Box>
                 <Box
                     display="flex"
                     justifyContent="center"
+                    align-itmes="center"
                     mt={2}
                 >
-                    <Typography>DANH SACH YEU THICH</Typography>
+                    <Typography>DANH SÁCH TRUYỆN</Typography>
                 </Box>
             </CardContent>
         </Card>

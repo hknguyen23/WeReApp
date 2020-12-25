@@ -51,22 +51,22 @@ const ManagementCard = ({ className, ...rest }) => {
         <Card
             className={clsx(classes.root, className)}
             {...rest}
+            style={{ height: '400px', width: '300px', backgroundColor: "#e5e5e5"}}
         >
-            <CardHeader title="Favorite novel" />
+            <CardHeader title="QUẢN LÝ TRUYỆN" />
             <Divider />
             <CardContent>
                 <Box
-                    height={300}
                     position="relative"
                 >
-                    <AppsIcon style={{ fontSize: 40 }} />
+                    <AppsIcon style={{ fontSize: 100 }} />
                 </Box>
                 <Box
                     display="flex"
                     justifyContent="center"
                     mt={2}
                 >
-                    <Typography>DANH SACH YEU THICH</Typography>
+                    <Typography>DANH SÁCH TRUYỆN</Typography>
                 </Box>
             </CardContent>
         </Card>

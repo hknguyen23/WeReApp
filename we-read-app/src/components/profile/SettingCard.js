@@ -13,7 +13,6 @@ import {
     makeStyles,
     useTheme
 } from '@material-ui/core';
-import FavoriteIcon from '@material-ui/icons/Favorite';
 
 const useStyles = makeStyles(() => ({
     root: {
@@ -51,22 +50,22 @@ const SettingCard = ({ className, ...rest }) => {
         <Card
             className={clsx(classes.root, className)}
             {...rest}
+            style={{ height: '400px', width: '300px', backgroundColor: "#e5e5e5"}}
         >
-            <CardHeader title="Favorite novel" />
+            <CardHeader title="CÀI ĐẶT" />
             <Divider />
             <CardContent>
                 <Box
-                    height={300}
                     position="relative"
                 >
-                    <SettingsIcon style={{ fontSize: 40 }} />
+                    <SettingsIcon style={{ fontSize: 100 }} />
                 </Box>
                 <Box
                     display="flex"
                     justifyContent="center"
                     mt={2}
                 >
-                    <Typography>DANH SACH YEU THICH</Typography>
+                    <Typography>CÀI ĐẶT</Typography>
                 </Box>
             </CardContent>
         </Card>

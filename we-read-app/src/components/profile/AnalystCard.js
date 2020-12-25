@@ -19,7 +19,7 @@ import TabletIcon from '@material-ui/icons/Tablet';
 
 const useStyles = makeStyles(() => ({
     root: {
-        height: '100%'
+        height: '100%',
     }
 }));
 
@@ -84,12 +84,12 @@ const AnalystCard = ({ className, ...rest }) => {
         <Card
             className={clsx(classes.root, className)}
             {...rest}
+            style={{ height: '400px', width: '300px', backgroundColor: "#e5e5e5"}}
         >
-            <CardHeader title="Traffic by Device" />
+            <CardHeader title="THỜI GIAN" />
             <Divider />
             <CardContent>
                 <Box
-                    height={300}
                     position="relative"
                 >
                     <Doughnut
@@ -122,7 +122,7 @@ const AnalystCard = ({ className, ...rest }) => {
                             </Typography>
                             <Typography
                                 style={{ color }}
-                                variant="h2"
+                                variant="h4"
                             >
                                 {value}
                                 %
