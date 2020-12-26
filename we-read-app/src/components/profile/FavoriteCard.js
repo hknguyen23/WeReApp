@@ -56,6 +56,7 @@ const FavoriteCard = ({ className, ...rest }) => {
             style={{ height: '400px', width: '300px', backgroundColor: "#e5e5e5"}}
         >
             <CardHeader title="DANH SÁCH YÊU THÍCH" />
+            <Divider />
             <CardContent>
                 <Box
                     position="relative"
