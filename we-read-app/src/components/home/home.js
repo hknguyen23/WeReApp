@@ -247,7 +247,7 @@ export default function Home() {
   ];
   const topMonth = [
     {
-      id: 1,
+      id: 16,
       name: "Pháp sư vô tâm",
       date: "21/01/2021",
       author: "Đỗ Thị Mai Chờ",
@@ -255,7 +255,7 @@ export default function Home() {
       rating: 5,
       img: "https://macthienyblog.files.wordpress.com/2015/08/phap-su-vo-tam3-macthienyblog.jpg?w=656",
     }, {
-      id: 2,
+      id: 17,
       name: "Bến thượng hải",
       date: "05/01/2021",
       author: "Lưu Liệm Tử",
@@ -263,7 +263,7 @@ export default function Home() {
       rating: 5,
       img: "https://i.pinimg.com/originals/0d/47/0e/0d470e179522f6d53c0a3cedfbc8eac9.png"
     }, {
-      id: 3,
+      id: 18,
       name: "Chân Hoàn truyện",
       date: "15/01/2021",
       author: "Lưu Liệm Tử",
@@ -271,7 +271,7 @@ export default function Home() {
       rating: 4.5,
       img: "https://sstruyen.com/assets/img/story/hau-cung-chan-hoan-truyen.jpg"
     }, {
-      id: 4,
+      id: 19,
       name: "Cung",
       date: "09/01/2021",
       author: "Vu Chính",
@@ -279,7 +279,7 @@ export default function Home() {
       rating: 4.0,
       img: "https://wikidich.com/photo/5ad973a4ef21ec7264c0fb91?o=1"
     }, {
-      id: 5,
+      id: 20,
       name: "Như Ý truyện",
       date: "14/01/2021",
       author: "Trịnh Hiểu Long",
@@ -290,7 +290,7 @@ export default function Home() {
   ];
   const topWeek = [
     {
-      id: 3,
+      id: 18,
       name: "Chân Hoàn truyện",
       date: "15/01/2021",
       author: "Lưu Liệm Tử",
@@ -298,7 +298,7 @@ export default function Home() {
       rating: 4.5,
       img: "https://sstruyen.com/assets/img/story/hau-cung-chan-hoan-truyen.jpg"
     }, {
-      id: 2,
+      id: 17,
       name: "Bến thượng hải",
       date: "10/01/2021",
       author: "Lưu Liệm Tử",
@@ -306,7 +306,7 @@ export default function Home() {
       rating: 5,
       img: "https://i.pinimg.com/originals/0d/47/0e/0d470e179522f6d53c0a3cedfbc8eac9.png"
     }, {
-      id: 5,
+      id: 20,
       name: "Như Ý truyện",
       date: "14/01/2021",
       author: "Trịnh Hiểu Long",
@@ -314,7 +314,7 @@ export default function Home() {
       rating: 4.0,
       img: "https://img.webtruyen.com/public/images/reviews_img/20191230/review-nhu-y-truyen-3.jpg"
     }, {
-      id: 4,
+      id: 19,
       name: "Cung",
       date: "16/01/2021",
       author: "Vu Chính",
@@ -322,7 +322,7 @@ export default function Home() {
       rating: 4.0,
       img: "https://wikidich.com/photo/5ad973a4ef21ec7264c0fb91?o=1"
     }, {
-      id: 1,
+      id: 16,
       name: "Pháp sư vô tâm",
       date: "13/01/2021",
       author: "Đỗ Thị Mai Chờ",
@@ -333,7 +333,7 @@ export default function Home() {
   ];
   const allTime = [
     {
-      id: 3,
+      id: 18,
       name: "Chân Hoàn truyện",
       date: "15/01/2021",
       author: "Lưu Liệm Tử",
@@ -341,7 +341,7 @@ export default function Home() {
       rating: 4.5,
       img: "https://sstruyen.com/assets/img/story/hau-cung-chan-hoan-truyen.jpg"
     }, {
-      id: 5,
+      id: 20,
       name: "Như Ý truyện",
       date: "14/01/2021",
       author: "Trịnh Hiểu Long",
@@ -349,7 +349,7 @@ export default function Home() {
       rating: 4.0,
       img: "https://img.webtruyen.com/public/images/reviews_img/20191230/review-nhu-y-truyen-3.jpg"
     }, {
-      id: 4,
+      id: 19,
       name: "Cung",
       date: "16/01/2021",
       author: "Vu Chính",
@@ -357,7 +357,7 @@ export default function Home() {
       rating: 4.0,
       img: "https://wikidich.com/photo/5ad973a4ef21ec7264c0fb91?o=1"
     }, {
-      id: 2,
+      id: 17,
       name: "Bến thượng hải",
       date: "10/01/2021",
       author: "Lưu Liệm Tử",
@@ -365,7 +365,7 @@ export default function Home() {
       rating: 5,
       img: "https://i.pinimg.com/originals/0d/47/0e/0d470e179522f6d53c0a3cedfbc8eac9.png"
     }, {
-      id: 1,
+      id: 16,
       name: "Pháp sư vô tâm",
       date: "13/01/2021",
       author: "Đỗ Thị Mai Chờ",
@@ -470,35 +470,38 @@ export default function Home() {
                     <Typography>Chưa có mẫu truyện thuộc thể loại này. Xin hãy quay lại sau.</Typography>
                     // mới nhất
                     :
-                    (
-                      sortStrategy === 0 ?
-                        displayedNovels.map((novel, index) => (
-                          <Grid item xs={12} sm={4} md={4} key={index}>
-                            <img src={imgURL[Math.floor(Math.random() * Math.floor(imgURL.length))]} width="100%" height="220px" style={{ borderRadius: '8px' }}></img>
-                            <div >
-                              <Typography title={novel.name} style={{
-                                width: "100%", display: 'inline-block',
-                                whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis'
-                              }}>
-                                <a href="/path" style={{ color: 'black' }}>{novel.name}</a>
-                              </Typography>
-                            </div>
-                          </Grid>
-                        ))
-                        :
-                        //nổi bật nhất
-                        displayedNovels.map((novel, index) => (
-                          <Grid item xs={12} sm={4} md={4} key={index}>
-                            <img src={imgURL[Math.floor(Math.random() * Math.floor(imgURL.length))]} width="100%" height="220px" style={{ borderRadius: '8px' }}></img>
-                            <div >
-                              <Typography style={{
-                                width: "100%", display: 'inline-block',
-                                whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis'
-                              }}><a href="/path" style={{ color: 'black' }}>{novel.name}</a></Typography>
-                            </div>
-                          </Grid>
-                        ))
-                    )
+                    // (
+                    //   sortStrategy === 0 ?
+                    displayedNovels.map((novel, index) => (
+                      <Grid item xs={12} sm={4} md={4} key={index}>
+                        <Link to={`/detail/${novel.id}`} style={{ textDecoration: "none", color: "white" }}>
+                          <img src={imgURL[index % imgURL.length]} width="100%" height="220px" style={{ borderRadius: '8px' }}></img>
+                        </Link>
+
+                        <div >
+                          <Typography title={novel.name} style={{
+                            width: "100%", display: 'inline-block',
+                            whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis'
+                          }}>
+                            <Link to={`/detail/${novel.id}`} style={{ color: 'black' }}>{novel.name}</Link>
+                          </Typography>
+                        </div>
+                      </Grid>
+                    ))
+                  // :
+                  // //nổi bật nhất
+                  // displayedNovels.map((novel, index) => (
+                  //   <Grid item xs={12} sm={4} md={4} key={index}>
+                  //     <img src={imgURL[Math.floor(Math.random() * Math.floor(imgURL.length))]} width="100%" height="220px" style={{ borderRadius: '8px' }}></img>
+                  //     <div >
+                  //       <Typography style={{
+                  //         width: "100%", display: 'inline-block',
+                  //         whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis'
+                  //       }}><a href="/path" style={{ color: 'black' }}>{novel.name}</a></Typography>
+                  //     </div>
+                  //   </Grid>
+                  // ))
+                  // )
                 }
               </Grid>
             </div>
@@ -532,11 +535,15 @@ export default function Home() {
                           }}
                           style={{ marginTop: "10px" }}
                         >
-                          <img src={novel.img} alt={"Novel avatar"} width="100%" height="130px" style={{ borderRadius: "8px" }} />
+                          <Link to={`/detail/${novel.id}`} >
+                            <img src={novel.img} alt={"Novel avatar"} width="100%" height="130px" style={{ borderRadius: "8px" }} />
+                          </Link>
                         </StyledBadge>
                       </div>
                       <div className={classes.floatRight}>
-                        <Typography style={{ fontSize: "25px", fontWeight: "bold", textAlign: "center" }}>{novel.name}</Typography>
+                        <Link to={`/detail/${novel.id}`} style={{ textDecoration: "none", color: "black" }}>
+                          <Typography style={{ fontSize: "25px", fontWeight: "bold", textAlign: "center" }}>{novel.name}</Typography>
+                        </Link>
                         <div title={novel.desc} style={{
                           textAlign: "justify",
                           overflow: "hidden",
@@ -544,7 +551,6 @@ export default function Home() {
                           lineHeight: "1.8em",
                           position: "relative",
                           maxWidth: "100%",
-
                           // "&&:before": {   unwork
                           //   content: '"..."',
                           //   position: "absolute",

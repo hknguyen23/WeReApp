@@ -1,5 +1,6 @@
 import React from 'react';
 import { fade, makeStyles } from '@material-ui/core/styles';
+import { NavLink, useHistory, Link } from 'react-router-dom';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
@@ -79,7 +80,7 @@ export default function NavBar() {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
-
+  const history = useHistory();
   const isMenuOpen = Boolean(anchorEl);
 
   const handleProfileMenuOpen = (event) => {
@@ -95,6 +96,15 @@ export default function NavBar() {
     handleMobileMenuClose();
   };
 
+  const handleToHome = () => {
+    history.push("/");
+  }
+
+  const handleToProfile = () => {
+    history.push("/Profile");
+
+  }
+
 
   return (
     <div className={classes.grow} >
@@ -106,12 +116,16 @@ export default function NavBar() {
             color="inherit"
             aria-label="open drawer"
             style={{ marginRight: '-5px' }}
+            onClick={handleToHome}
           >
             <LibraryBooksIcon fontSize="large" />
           </IconButton>
-          <Typography className={classes.title} variant="h5" noWrap style={{ fontWeight: "bold" }}>
-            WeRe
+          <NavLink to="/" style={{ textDecoration: 'none', color: 'white' }}>
+            <Typography className={classes.title} variant="h5" noWrap style={{ fontWeight: "bold" }}>
+              WeRe
           </Typography>
+          </NavLink>
+
 
           <div className={classes.grow} />
           <div className={classes.search}>
@@ -135,6 +149,7 @@ export default function NavBar() {
               aria-haspopup="true"
               onClick={handleProfileMenuOpen}
               color="inherit"
+              onClick={handleToProfile}
             >
               {/* <AccountCircle /> */}
               <img width={"40"} height={"40px"} src={Avatar} style={{ borderRadius: "50%" }} />
@@ -142,7 +157,7 @@ export default function NavBar() {
           </div>
         </Toolbar>
       </AppBar>
-      <Menu
+      {/* <Menu
         anchorEl={anchorEl}
         anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
         id={'primary-search-account-menu'}
@@ -150,10 +165,11 @@ export default function NavBar() {
         transformOrigin={{ vertical: 'top', horizontal: 'right' }}
         open={isMenuOpen}
         onClose={handleMenuClose}
+        onClick={handleToProfile}
       >
         <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
         <MenuItem onClick={handleMenuClose}>My account</MenuItem>
-      </Menu>
+      </Menu> */}
     </div>
   );
 }
