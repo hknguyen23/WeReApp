@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom'
 import {
     Container,
     Grid,
@@ -14,6 +15,7 @@ function Profile() {
     useEffect(() => {
         window.scrollTo(0, 0);
     }, [])
+    const history = useHistory();
 
     return (
         <Container maxWidth={false}>
@@ -31,7 +33,9 @@ function Profile() {
                     xl={3}
                     xs={12}
                 >
-                    <Button size="large">
+                    <Button
+                        size="large"
+                    >
                         <FavoriteCard />
                     </Button>
                 </Grid>
@@ -53,7 +57,9 @@ function Profile() {
                     xl={3}
                     xs={12}
                 >
-                    <Button size="large">
+                    <Button size="large"
+                            onClick={() => { history.push("/Uploading"); }}
+                    >
                         <ManagementCard />
                     </Button>
                 </Grid>

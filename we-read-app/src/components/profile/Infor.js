@@ -16,7 +16,7 @@ import {
 } from '@material-ui/core';
 
 import FaceIcon from '@material-ui/icons/Face';
-import defaultImg from '../../resources/images/defaultAvatar.png';
+import defaultImg from '../../resources/images/portrait.jpg';
 
 const user = {
   avatar: defaultImg,
