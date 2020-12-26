@@ -563,7 +563,7 @@ function Uploading() {
               </Grid>
               <Grid item xs={9}>
                 <div className={classes.imageBox}>
-                  <img className={classes.image} src={preview} />
+                  <img className={classes.image} src={preview} alt='' />
                   <Box>
                     <Button className={classes.imageButton} color="primary" variant="contained" component="label">
                       Đăng ảnh

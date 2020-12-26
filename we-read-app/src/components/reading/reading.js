@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Container,
   Card,
   CardContent,
   CardHeader,
   Divider,
-  makeStyles
+  makeStyles,
+  useTheme
 } from '@material-ui/core';
 
 import MenuBookIcon from '@material-ui/icons/MenuBook';
@@ -20,22 +21,29 @@ import Toolbar from './Toolbar';
 import ControlPanel from './ControlPanel';
 
 const useStyles = makeStyles((theme) => ({
-  root: {
+  root: (theme) => ({
     width: '940px',
     minHeight: '100%',
-    borderRadius: '4px'
-  },
+    borderRadius: '4px',
+  }),
+  card: (theme) => ({
+    backgroundColor: theme.body,
+    border: theme.fieldBorder,
+  }),
   cardHeader: {
     color: '#FFFFFF',
     backgroundColor: '#0452BB'
   },
-  cardContent: {
+  cardContent: (theme) => ({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'flex-start',
     padding: '5px 0px',
-  },
-
+    backgroundColor: theme.body,
+  }),
+  divider: (theme) => ({
+    border: theme.fieldBorder
+  })
 }));
 
 const data = [
@@ -73,47 +81,51 @@ const data = [
 ]
 
 const Reading = () => {
-  const classes = useStyles();
   const [chapterList, setChapterList] = useState(data);
   const [font, setFont] = useState("Arial");
   const [fontSize, setFontSize] = useState(16);
   const [indent, setIndent] = useState('90%');
-  const [theme, setTheme] = useState('light');
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
+  const classes = useStyles(isDarkMode ? darkTheme : lightTheme);
 
   const selected = chapterList.filter((chapter) => chapter.selected === true);
   return (
     <React.Fragment>
-      <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
+      <ThemeProvider theme={isDarkMode ? darkTheme : lightTheme}>
         <GlobalStyles />
       </ThemeProvider>
+
       <Container className={classes.root} maxWidth="lg">
-        <Card>
+        <Card className={classes.card}>
           <CardHeader className={classes.cardHeader}
             avatar={<MenuBookIcon style={{ fontSize: 30 }} />}
             titleTypographyProps={{ variant: 'h5', align: "left" }}
             title="Đọc truyện" />
           <CardContent className={classes.cardContent}>
-            <InfoPanel theme={theme === 'light' ? lightTheme : darkTheme} />
-            <Divider />
+            <InfoPanel theme={isDarkMode ? darkTheme : lightTheme} />
+            <Divider className={classes.divider}/>
             <Toolbar
               font={font} setFont={(i) => setFont(i)}
               fontSize={fontSize} setFontSize={(i) => setFontSize(i)}
               indent={indent} setIndent={(i) => setIndent(i)}
-              theme={theme} setTheme={setTheme}
+              theme={isDarkMode ? darkTheme : lightTheme}
+              isDarkMode={isDarkMode}
+              setIsDarkMode={setIsDarkMode}
             />
-            <Divider />
-            <ControlPanel theme={theme === 'light' ? lightTheme : darkTheme} />
+            <Divider className={classes.divider}/>
+            <ControlPanel theme={isDarkMode ? darkTheme : lightTheme} />
             <Divider />
             <ReadingPanel
               selected={selected[0]}
               font={font}
               fontSize={fontSize}
               indent={indent}
-              theme={theme === 'light' ? lightTheme : darkTheme}
+              theme={isDarkMode ? darkTheme : lightTheme}
             />
-            <Divider />
-            <ControlPanel theme={theme === 'light' ? lightTheme : darkTheme} />
-            <Divider />
+            <Divider className={classes.divider}/>
+            <ControlPanel theme={isDarkMode ? darkTheme : lightTheme} />
+            <Divider className={classes.divider}/>
           </CardContent>
         </Card>
       </Container>
