@@ -65,7 +65,7 @@ const SettingCard = ({ className, ...rest }) => {
                     justifyContent="center"
                     mt={2}
                 >
-                    <Typography>CÀI ĐẶT</Typography>
+                    <Typography>THAY ĐỔI THÔNG SỐ</Typography>
                 </Box>
             </CardContent>
         </Card>

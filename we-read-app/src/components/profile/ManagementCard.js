@@ -53,7 +53,7 @@ const ManagementCard = ({ className, ...rest }) => {
             {...rest}
             style={{ height: '400px', width: '300px', backgroundColor: "#e5e5e5"}}
         >
-            <CardHeader title="QUẢN LÝ TRUYỆN" />
+            <CardHeader title="QUẢN LÝ" />
             <Divider />
             <CardContent>
                 <Box
@@ -66,7 +66,7 @@ const ManagementCard = ({ className, ...rest }) => {
                     justifyContent="center"
                     mt={2}
                 >
-                    <Typography>DANH SÁCH TRUYỆN</Typography>
+                    <Typography>DANH SÁCH TRUYỆN ĐÃ ĐĂNG</Typography>
                 </Box>
             </CardContent>
         </Card>
