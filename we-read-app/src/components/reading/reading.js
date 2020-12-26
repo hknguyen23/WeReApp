@@ -22,9 +22,11 @@ import ControlPanel from './ControlPanel';
 
 const useStyles = makeStyles((theme) => ({
   root: (theme) => ({
-    width: '940px',
+    width: '90%',
     minHeight: '100%',
     borderRadius: '4px',
+    paddingBottom: '24px',
+    paddingTop: '24px',
   }),
   card: (theme) => ({
     backgroundColor: theme.body,
@@ -89,6 +91,11 @@ const Reading = () => {
 
   const classes = useStyles(isDarkMode ? darkTheme : lightTheme);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [])
+
+
   const selected = chapterList.filter((chapter) => chapter.selected === true);
   return (
     <React.Fragment>
@@ -104,7 +111,7 @@ const Reading = () => {
             title="Đọc truyện" />
           <CardContent className={classes.cardContent}>
             <InfoPanel theme={isDarkMode ? darkTheme : lightTheme} />
-            <Divider className={classes.divider}/>
+            <Divider className={classes.divider} />
             <Toolbar
               font={font} setFont={(i) => setFont(i)}
               fontSize={fontSize} setFontSize={(i) => setFontSize(i)}
@@ -113,9 +120,9 @@ const Reading = () => {
               isDarkMode={isDarkMode}
               setIsDarkMode={setIsDarkMode}
             />
-            <Divider className={classes.divider}/>
+            <Divider className={classes.divider} />
             <ControlPanel theme={isDarkMode ? darkTheme : lightTheme} />
-            <Divider />
+            <Divider className={classes.divider} />
             <ReadingPanel
               selected={selected[0]}
               font={font}
@@ -123,9 +130,9 @@ const Reading = () => {
               indent={indent}
               theme={isDarkMode ? darkTheme : lightTheme}
             />
-            <Divider className={classes.divider}/>
+            <Divider className={classes.divider} />
             <ControlPanel theme={isDarkMode ? darkTheme : lightTheme} />
-            <Divider className={classes.divider}/>
+            <Divider className={classes.divider} />
           </CardContent>
         </Card>
       </Container>

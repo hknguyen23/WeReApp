@@ -15,6 +15,7 @@ import {
   Checkbox,
   makeStyles
 } from '@material-ui/core';
+import { useHistory } from 'react-router-dom'
 import MenuBookIcon from '@material-ui/icons/MenuBook';
 import { Editor } from 'react-draft-wysiwyg';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
@@ -24,9 +25,9 @@ import GroupHeader from './groupHeader'
 const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: theme.palette.background.dark,
-    maxWidth: '940px',
+    width: '90%',
     minHeight: '100%',
-    borderRadius: '4',
+    borderRadius: '4px',
     paddingBottom: theme.spacing(3),
     paddingTop: theme.spacing(3)
   },
@@ -183,6 +184,8 @@ const tags = [
 ];
 
 function Uploading() {
+  const histoty = useHistory();
+
   const classes = useStyles();
   const [values, setValues] = useState({
     title: '',
@@ -210,6 +213,7 @@ function Uploading() {
 
   // intial data
   useEffect(() => {
+    window.scrollTo(0, 0);
     var temp = {};
     for (var i = 0; i < genre.length; i++) {
       temp[genre[i].value] = false;
@@ -359,6 +363,7 @@ function Uploading() {
       console.log(tempErrors)
     }
     else {
+      histoty.push("/Detail");
       console.log(values)
 
     }

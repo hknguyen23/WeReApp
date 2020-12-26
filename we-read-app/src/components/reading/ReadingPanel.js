@@ -10,7 +10,9 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
     alignItems: 'center',
     minHeight: '100px',
-    backgroundColor: theme.body
+    backgroundColor: theme.body,
+    paddingTop: '30px',
+    paddingBottom: '40px'
   }),
   title: (theme) => ({
     fontSize: '24px',

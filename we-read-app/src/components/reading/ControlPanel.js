@@ -4,6 +4,7 @@ import {
     Button,
     makeStyles
 } from '@material-ui/core';
+import { useHistory } from 'react-router-dom'
 
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
@@ -18,16 +19,21 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: theme.body
     }),
     button: (theme) => ({
-        width: '297px',
+        width: '33,3%',
         height: '36px',
         borderRadius: '0px',
         backgroundColor: theme.button,
     }),
+    middleButton: (theme) => ({
+        borderLeft: theme.fieldBorder === "0px" ? "1px solid #FFFFFF" : theme.fieldBorder,
+        borderRight: theme.fieldBorder === "0px" ? "1px solid #FFFFFF" : theme.fieldBorder,
+    })
 }));
 
 const ControlPanel = ({ theme }) => {
     const classes = useStyles(theme);
-    console.log(theme)
+    const histoty = useHistory();
+
     const handleChange = () => {
 
     }
@@ -37,14 +43,19 @@ const ControlPanel = ({ theme }) => {
             <Container className={classes.root} maxWidth="lg">
                 <Button fullWidth variant="contained" color="primary"
                     className={classes.button} startIcon={<ArrowBackIosIcon />}
+                    onClick={() => { histoty.push("/Reading"); }}
                 >
                     Chương trước
                 </Button>
-                <Button fullWidth variant="contained" color="primary" className={classes.button}>
+                <Button fullWidth variant="contained" color="primary" className={`${classes.button} ${classes.middleButton}`}
+                    onClick={() => { histoty.push("/Detail"); }}
+
+                >
                     Danh sách chương
                 </Button>
                 <Button fullWidth variant="contained" color="primary"
                     className={classes.button} endIcon={<ArrowForwardIosIcon />}
+                    onClick={() => { histoty.push("/Reading"); }}
                 >
                     Chương sau
             </Button>

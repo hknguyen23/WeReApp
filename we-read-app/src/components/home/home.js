@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
-import NavBar from '../navBar/navBar';
 import { makeStyles } from '@material-ui/core/styles';
 import DoubleArrowIcon from '@material-ui/icons/DoubleArrow';
 import Grid from '@material-ui/core/Grid';
@@ -429,7 +428,6 @@ export default function Home() {
   // main unit
   return (
     <>
-      <NavBar />
       <Container className={classes.cardGrid} maxWidth="xl">
         <Grid container spacing={3}>
           <Grid item xs={12} sm={2} md={2}>

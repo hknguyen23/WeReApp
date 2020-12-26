@@ -29,10 +29,16 @@ const user = {
 };
 
 const useStyles = makeStyles(() => ({
-  root: {},
+  root: {
+    marginTop: '24px',
+    marginBottom: '24px'
+  },
   avatar: {
     height: 100,
     width: 100
+  },
+  chip: {
+    margin: '5px',
   }
 }));
 
@@ -90,10 +96,10 @@ const Profile = ({ className, ...rest }) => {
             >
               {`${moment().format('hh:mm A')} ${user.timezone}`}
             </Typography>
-            <Typography>
-              <Chip icon={<FaceIcon/>} label={"Excelent Author"} color="primary" variant="outlined"/>
-              <Chip label="#Basic_Reader"/>
-              <Chip avatar={<Avatar>M</Avatar>} label="Clickable" onClick={handleClick} variant="outlined"/>
+            <Typography >
+              <Chip className={classes.chip} icon={<FaceIcon/>} label={"Excelent Author"} color="primary" variant="outlined"/>
+              <Chip className={classes.chip} label="#Basic_Reader"/>
+              <Chip className={classes.chip} avatar={<Avatar>M</Avatar>} label="Clickable" onClick={handleClick} variant="outlined"/>
             </Typography>
           </div>
         </Box>

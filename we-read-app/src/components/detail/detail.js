@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Container,
   makeStyles,
@@ -220,6 +220,10 @@ function Detail() {
   const classes = useStyles();
   const [commentPage, setCommentPage] = useState(1);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [])
+
   const drawStars = (rating) => {
     let stars = [];
     for (let i = 0; i < rating; i++) {
@@ -233,10 +237,10 @@ function Detail() {
 
   const calculateDaysAdded = (fromDate, toDate) => {
     // To calculate the time difference of two dates 
-    var differenceInTime = toDate.getTime() - fromDate.getTime(); 
-  
+    var differenceInTime = toDate.getTime() - fromDate.getTime();
+
     // To calculate the no. of days between two dates 
-    var differenceInDays = differenceInTime / (1000 * 3600 * 24); 
+    var differenceInDays = differenceInTime / (1000 * 3600 * 24);
     return Math.round(differenceInDays);
   }
 
@@ -244,8 +248,10 @@ function Detail() {
     let list = [];
     for (let i = chapters.length - 1; i >= 0; i--) {
       list.push(
-        <Card key={i} style={{ height: '56px', backgroundColor: '#e5e5e5', display: 'flex',
-          alignItems: 'center', marginBottom: '2px'  }}
+        <Card key={i} style={{
+          height: '56px', backgroundColor: '#e5e5e5', display: 'flex',
+          alignItems: 'center', marginBottom: '2px'
+        }}
         >
           <Typography style={{ fontSize: '16px', width: '30%', color: '#0276af', textDecoration: 'underline' }}>
             Chương {chapters[i].ordinal}
@@ -304,20 +310,20 @@ function Detail() {
       <Container component="main" maxWidth="lg">
         <div className={classes.container}>
           <div className={classes.leftContainer}>
-            <img height={475} width={400} src={defaultImg} alt="Default fiction" 
+            <img height={475} width={400} src={defaultImg} alt="Default fiction"
               style={{ border: "1px solid black" }}
-            />    
+            />
             <div style={{ width: '402px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
               <div>
                 {drawStars(fiction.rating)}
-              </div>            
+              </div>
               <Typography style={{ fontSize: '30px', marginLeft: '10px' }}>
                 {fiction.rating + "/5"}
               </Typography>
-            </div>         
+            </div>
             <Typography style={{ textAlign: 'center', width: '402px', fontSize: '30px' }}>
               với {fiction.reviews.length} lượt đánh giá
-            </Typography> 
+            </Typography>
           </div>
 
           <div className={classes.rightContainer}>
@@ -325,42 +331,46 @@ function Detail() {
             <Divider className={classes.divider}></Divider>
             <Typography style={{ fontSize: '30px', display: 'flex' }}>
               Tác giả:&nbsp;
-              {fiction.authors.map(author => 
-                <Typography component={'span'} key={author.id} style={{ fontSize: '30px', color: '#0b79d0' }}>
-                  {author.name}&nbsp;
+              {fiction.authors.map(author =>
+              <Typography component={'span'} key={author.id} style={{ fontSize: '30px', color: '#0b79d0' }}>
+                {author.name}&nbsp;
                 </Typography>
-              )}
+            )}
             </Typography>
             <Divider className={classes.divider}></Divider>
             <Typography style={{ fontSize: '30px' }}>
               Thể loại:&nbsp;
-              {fiction.genres.map(genre => 
-                <Button key={genre.id} className={classes.button} style={{ height: '36px', width: '130px', color: 'white',
-                  backgroundColor: '#2196f3', marginRight: '10px', fontSize: '24px' }}
-                >
-                  {genre.name}
-                </Button>
-              )}
+              {fiction.genres.map(genre =>
+              <Button key={genre.id} className={classes.button} style={{
+                height: '36px', width: '150px', color: 'white',
+                backgroundColor: '#2196f3', marginRight: '10px', fontSize: '24px'
+              }}
+              >
+                {genre.name}
+              </Button>
+            )}
             </Typography>
             <Divider className={classes.divider} style={{ marginTop: '5px' }}></Divider>
             <Typography style={{ fontSize: '30px' }}>
               Tag(s):&nbsp;
-              {fiction.tags.map(tag => 
-                <Button key={tag.id} className={classes.button} style={{ height: '36px', width: '130px', color: 'white',
-                  backgroundColor: '#2196f3', marginRight: '10px', fontSize: '24px' }}
-                >
-                  {tag.name}
-                </Button>
-              )}
+              {fiction.tags.map(tag =>
+              <Button key={tag.id} className={classes.button} style={{
+                height: '36px', width: '150px', color: 'white',
+                backgroundColor: '#2196f3', marginRight: '10px', fontSize: '24px'
+              }}
+              >
+                {tag.name}
+              </Button>
+            )}
             </Typography>
             <Divider className={classes.divider} style={{ marginTop: '5px' }}></Divider>
             <Typography style={{ fontSize: '30px', display: 'flex' }}>
               Ngôn ngữ:&nbsp;
-              {fiction.languages.map(language => 
-                <Typography component={'span'} key={language.id} style={{ fontSize: '30px' }}>
-                  {language.name}&nbsp;
+              {fiction.languages.map(language =>
+              <Typography component={'span'} key={language.id} style={{ fontSize: '30px' }}>
+                {language.name}&nbsp;
                 </Typography>
-              )}
+            )}
             </Typography>
             <Divider className={classes.divider}></Divider>
             <Typography style={{ fontSize: '30px' }}>
@@ -378,20 +388,26 @@ function Detail() {
             </div>
             <Divider className={classes.divider} style={{ marginBottom: '10px' }}></Divider>
             <div style={{ textAlign: 'center' }}>
-              <Button className={classes.button} style={{ width: '340px', height: '64px',
-                backgroundColor: '#eb5757', fontSize: '30px', fontWeight: 'bold', marginRight: '24px' }}
+              <Button className={classes.button} style={{
+                width: '340px', height: '64px',
+                backgroundColor: '#eb5757', fontSize: '30px', fontWeight: 'bold', marginRight: '24px'
+              }}
               >
                 Đọc ngay
               </Button>
-              <Button className={classes.button} style={{ width: '64px', height: '64px', color: 'white',
-                backgroundColor: '#27ae60', marginRight: '24px' }}
+              <Button className={classes.button} style={{
+                width: '64px', height: '64px', color: 'white',
+                backgroundColor: '#27ae60', marginRight: '24px'
+              }}
               >
-                <QuestionAnswerIcon style={{ width: '48px', height: '48px'}}></QuestionAnswerIcon>
+                <QuestionAnswerIcon style={{ width: '48px', height: '48px' }}></QuestionAnswerIcon>
               </Button>
-              <Button className={classes.button} style={{ width: '64px', height: '64px', color: 'white',
-                backgroundColor: '#27ae60', marginRight: '24px' }}
+              <Button className={classes.button} style={{
+                width: '64px', height: '64px', color: 'white',
+                backgroundColor: '#27ae60', marginRight: '24px'
+              }}
               >
-                <BookmarkIcon style={{ width: '48px', height: '48px'}}></BookmarkIcon>
+                <BookmarkIcon style={{ width: '48px', height: '48px' }}></BookmarkIcon>
               </Button>
             </div>
           </div>
@@ -419,15 +435,15 @@ function Detail() {
           <Divider className={classes.divider} style={{ marginTop: '-3px', marginBottom: '5px' }}></Divider>
           <TextField placeholder="Nhập bình luận..." fullWidth multiline rows={5} rowsMax={5}
             style={{ backgroundColor: '#bbbbbb', marginBottom: '20px' }}
-            inputProps={{ style: { fontSize: '16px' }}} // font size of input text
+            inputProps={{ style: { fontSize: '16px' } }} // font size of input text
           />
           <div>
             {createCommentsList(fiction.comments)}
           </div>
           <br></br>
           <div style={{ display: 'flex', justifyContent: 'center' }}>
-            <Pagination size="large" color="primary" count={Math.ceil(fiction.comments.length / offset)} 
-              variant="outlined" shape="rounded" showFirstButton showLastButton 
+            <Pagination size="large" color="primary" count={Math.ceil(fiction.comments.length / offset)}
+              variant="outlined" shape="rounded" showFirstButton showLastButton
               onChange={(event, value) => setCommentPage(value)} />
           </div>
           <br></br>

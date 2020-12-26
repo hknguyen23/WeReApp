@@ -1,4 +1,6 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom'
+
 import {
   Container,
   makeStyles,
@@ -88,6 +90,7 @@ const textSize = '18px';
 
 const InfoPanel = ({ theme }) => {
   const classes = useStyles(theme);
+  const histoty = useHistory();
 
   return (
     <React.Fragment>
@@ -101,44 +104,44 @@ const InfoPanel = ({ theme }) => {
         <div className={classes.rightContainer}>
           <div style={{ display: 'flex', alignItems: 'center' }}>
             <Typography variant="h4" className={classes.title}>{fiction.title}</Typography>
-            <Button className={classes.button}>
+            <Button className={classes.button} onClick={() => {histoty.push("/Detail");}}>
               <QuestionAnswerIcon style={{ width: '30px', height: '30px' }}></QuestionAnswerIcon>
             </Button>
-            <Button className={classes.button}>
-              <BookmarkIcon style={{ width: '30px', height: '30px' }}></BookmarkIcon>
-            </Button>
-          </div>
-          <Typography style={{ fontSize: textSize, display: 'flex', color: 'gray' }}>
-            Bởi&nbsp;
+          <Button className={classes.button} onClick={() => {histoty.push("/Detail");}}>
+            <BookmarkIcon style={{ width: '30px', height: '30px' }}></BookmarkIcon>
+          </Button>
+        </div>
+        <Typography style={{ fontSize: textSize, display: 'flex', color: 'gray' }}>
+          Bởi&nbsp;
               {fiction.authors.map(author =>
-            <Link href="" component={'span'} key={author.id} className={classes.author}>
-              {author.name}&nbsp;
-                </Link>
-          )}
-          </Typography>
-          <br></br>
-          <div className={classes.infoBox}>
-            <Typography style={{ fontSize: textSize, width: '37%' }}>
-              Trạng thái:
+          <Link key={author.id} className={classes.author} onClick={() => {histoty.push("/Profile");}}>
+            {author.name}&nbsp;
+              </Link>
+        )}
+        </Typography>
+        <br></br>
+        <div className={classes.infoBox}>
+          <Typography style={{ fontSize: textSize, width: '37%' }}>
+            Trạng thái:
                 {fiction.status === 1 ? " Đang cập nhật" : fiction.status === 2 ? " Hoàn chỉnh" : " Bị hủy"}
-            </Typography>
-            <Typography style={{ fontSize: textSize, width: '25%' }}>
-              Lượt xem: {fiction.views}
-            </Typography>
-            <Typography style={{ fontSize: textSize, width: '20%' }}>
-              Theo dõi: {fiction.followers}
-            </Typography>
-            <Typography style={{ fontSize: textSize, width: '18%' }}>
-              Bình luận: {fiction.comments.length}
-            </Typography>
-          </div>
-          <br></br>
-          <Typography className={classes.description}>
-            {fiction.description}
+          </Typography>
+          <Typography style={{ fontSize: textSize, width: '25%' }}>
+            Lượt xem: {fiction.views}
+          </Typography>
+          <Typography style={{ fontSize: textSize, width: '20%' }}>
+            Theo dõi: {fiction.followers}
+          </Typography>
+          <Typography style={{ fontSize: textSize, width: '18%' }}>
+            Bình luận: {fiction.comments.length}
           </Typography>
         </div>
+        <br></br>
+        <Typography className={classes.description}>
+          {fiction.description}
+        </Typography>
+        </div>
       </Container>
-    </React.Fragment>
+    </React.Fragment >
   );
 }
 
