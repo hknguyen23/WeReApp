@@ -31,10 +31,6 @@ function Profile() {
             >
                 <Grid
                     item
-                    lg={2}
-                    sm={6}
-                    xl={2}
-                    xs={12}
                 >
                     <Button
                         size="large"
@@ -44,10 +40,7 @@ function Profile() {
                 </Grid>
                 <Grid
                     item
-                    lg={2}
-                    sm={6}
-                    xl={2}
-                    xs={12}
+
                 >
                     <Button size="large">
                         <AnalystCard />
@@ -55,10 +48,7 @@ function Profile() {
                 </Grid>
                 <Grid
                     item
-                    lg={2}
-                    sm={6}
-                    xl={2}
-                    xs={12}
+
                 >
                     <Button size="large"
                             onClick={() => { history.push("/Uploading"); }}
@@ -68,10 +58,7 @@ function Profile() {
                 </Grid>
                 <Grid
                     item
-                    lg={2}
-                    sm={6}
-                    xl={2}
-                    xs={12}
+
                 >
                     <Button size="large"
                     >
@@ -80,10 +67,7 @@ function Profile() {
                 </Grid>
                 <Grid
                     item
-                    lg={2}
-                    sm={6}
-                    xl={2}
-                    xs={12}
+
                 >
                     <Button size="large">
                         <SettingCard />
