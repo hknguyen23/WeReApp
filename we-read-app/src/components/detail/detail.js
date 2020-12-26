@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link, useHistory } from 'react-router-dom';
 import {
   Container,
   makeStyles,
@@ -57,6 +58,7 @@ const useStyles = makeStyles((theme) => ({
 const fiction = {
   id: 1,
   title: "Truyện đời tôi",
+  img: null,
   status: 1,
   views: 12345,
   followers: 350,
@@ -218,6 +220,7 @@ const offset = 5;
 
 function Detail() {
   const classes = useStyles();
+  const history = useHistory();
   const [commentPage, setCommentPage] = useState(1);
 
   useEffect(() => {
@@ -305,13 +308,17 @@ function Detail() {
     return list;
   }
 
+  const handleMoveToReadingPage = () => {
+    history.push('/Reading');
+  }
+
   return (
     <React.Fragment>
       <Container component="main" maxWidth="lg">
         <div className={classes.container}>
           <div className={classes.leftContainer}>
-            <img height={475} width={400} src={defaultImg} alt="Default fiction"
-              style={{ border: "1px solid black" }}
+            <img height={475} width={400} src={fiction.img === null ? defaultImg : fiction.img} 
+              alt="Default fiction" style={{ border: "1px solid black" }}
             />
             <div style={{ width: '402px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
               <div>
@@ -332,10 +339,12 @@ function Detail() {
             <Typography style={{ fontSize: '30px', display: 'flex' }}>
               Tác giả:&nbsp;
               {fiction.authors.map(author =>
-              <Typography component={'span'} key={author.id} style={{ fontSize: '30px', color: '#0b79d0' }}>
-                {author.name}&nbsp;
-                </Typography>
-            )}
+                <Link to="/Profile" style={{ textDecoration: 'none' }}>
+                  <Typography component={'span'} key={author.id} style={{ fontSize: '30px', color: '#0b79d0' }}>
+                    {author.name}&nbsp;
+                  </Typography>
+                </Link>
+              )}
             </Typography>
             <Divider className={classes.divider}></Divider>
             <Typography style={{ fontSize: '30px' }}>
@@ -390,24 +399,23 @@ function Detail() {
             <div style={{ textAlign: 'center' }}>
               <Button className={classes.button} style={{
                 width: '340px', height: '64px',
-                backgroundColor: '#eb5757', fontSize: '30px', fontWeight: 'bold', marginRight: '24px'
-              }}
+                backgroundColor: '#eb5757', fontSize: '30px', fontWeight: 'bold', marginRight: '24px' }}
+                onClick={handleMoveToReadingPage}
               >
                 Đọc ngay
               </Button>
               <Button className={classes.button} style={{
                 width: '64px', height: '64px', color: 'white',
-                backgroundColor: '#27ae60', marginRight: '24px'
-              }}
+                backgroundColor: '#27ae60', marginRight: '24px' }}
+                href="#commentSection"
               >
-                <QuestionAnswerIcon style={{ width: '48px', height: '48px' }}></QuestionAnswerIcon>
+                <QuestionAnswerIcon style={{ width: '48px', height: '48px' }} />
               </Button>
               <Button className={classes.button} style={{
                 width: '64px', height: '64px', color: 'white',
-                backgroundColor: '#27ae60', marginRight: '24px'
-              }}
+                backgroundColor: '#27ae60', marginRight: '24px' }}
               >
-                <BookmarkIcon style={{ width: '48px', height: '48px' }}></BookmarkIcon>
+                <BookmarkIcon style={{ width: '48px', height: '48px' }} />
               </Button>
             </div>
           </div>
@@ -428,7 +436,7 @@ function Detail() {
             {createChaptersList(fiction.chapters)}
           </div>
         </div>
-        <div className={classes.container} style={{ textAlign: 'left' }}>
+        <div id="commentSection" className={classes.container} style={{ textAlign: 'left' }}>
           <Typography style={{ fontSize: '36px' }}>
             Bình luận ({fiction.comments.length})
           </Typography>
