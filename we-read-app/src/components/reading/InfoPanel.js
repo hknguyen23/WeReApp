@@ -1,11 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   Container,
   makeStyles,
   Typography,
-  Divider,
-  Button,
-  TextField
+  Button
 } from '@material-ui/core';
 
 import QuestionAnswerIcon from '@material-ui/icons/QuestionAnswer';
@@ -54,12 +52,12 @@ const fiction = {
 
 const textSize = '18px';
 
-const InfoPanel = () => {
+const InfoPanel = ({theme}) => {
   const classes = useStyles();
 
   return (
     <React.Fragment>
-      <Container component="main" maxWidth="lg">
+      <Container component="main" maxWidth="lg" style={{ backgroundColor: theme.body }}>
         <div className={classes.container}>
           <div className={classes.leftContainer}>
             <img height={230} width={200} src={defaultImg} alt="Default fiction" 

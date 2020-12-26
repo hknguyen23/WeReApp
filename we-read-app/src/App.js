@@ -9,10 +9,10 @@ import Reading from './components/reading/reading';
 function App() {
   return (
     <div className="App">
-      <Home />
+      {/* <Home />
       <Uploading/>
       <Detail />
-      <Profile />
+      <Profile /> */}
       <Reading/>
     </div>
   );

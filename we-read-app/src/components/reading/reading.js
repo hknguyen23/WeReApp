@@ -7,7 +7,12 @@ import {
   Divider,
   makeStyles
 } from '@material-ui/core';
+
 import MenuBookIcon from '@material-ui/icons/MenuBook';
+
+import { ThemeProvider } from 'styled-components';
+import { GlobalStyles } from './globalStyles';
+import { lightTheme, darkTheme } from '../../constants/config.json';
 
 import ReadingPanel from './ReadingPanel';
 import InfoPanel from './InfoPanel';
@@ -16,12 +21,9 @@ import ControlPanel from './ControlPanel';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    backgroundColor: theme.palette.background.dark,
     width: '940px',
     minHeight: '100%',
-    borderRadius: '4px',
-    paddingBottom: theme.spacing(3),
-    paddingTop: theme.spacing(3)
+    borderRadius: '4px'
   },
   cardHeader: {
     color: '#FFFFFF',
@@ -76,29 +78,46 @@ const Reading = () => {
   const [font, setFont] = useState("Arial");
   const [fontSize, setFontSize] = useState(16);
   const [indent, setIndent] = useState('90%');
+  const [theme, setTheme] = useState('light');
 
   const selected = chapterList.filter((chapter) => chapter.selected === true);
   return (
-    <Container className={classes.root} maxWidth="lg">
-      <Card>
-        <CardHeader className={classes.cardHeader}
-          avatar={<MenuBookIcon style={{ fontSize: 30 }} />}
-          titleTypographyProps={{ variant: 'h5', align: "left" }}
-          title="Đọc truyện" />
-        <CardContent className={classes.cardContent}>
-          <InfoPanel />
-          <Divider />
-          <Toolbar font={font} fontSize={fontSize} indent={indent} setFont={(i) => setFont(i)} setFontSize={(i) => setFontSize(i)} setIndent={(i) => setIndent(i)}/>
-          <Divider />
-          <ControlPanel/>
-          <Divider />
-          <ReadingPanel selected={selected[0]} font={font} fontSize={fontSize} indent={indent}/>
-          <Divider />
-          <ControlPanel />
-          <Divider />
-        </CardContent>
-      </Card>
-    </Container>
+    <React.Fragment>
+      <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
+        <GlobalStyles />
+      </ThemeProvider>
+      <Container className={classes.root} maxWidth="lg">
+        <Card>
+          <CardHeader className={classes.cardHeader}
+            avatar={<MenuBookIcon style={{ fontSize: 30 }} />}
+            titleTypographyProps={{ variant: 'h5', align: "left" }}
+            title="Đọc truyện" />
+          <CardContent className={classes.cardContent}>
+            <InfoPanel theme={theme === 'light' ? lightTheme : darkTheme} />
+            <Divider />
+            <Toolbar
+              font={font} setFont={(i) => setFont(i)}
+              fontSize={fontSize} setFontSize={(i) => setFontSize(i)}
+              indent={indent} setIndent={(i) => setIndent(i)}
+              theme={theme} setTheme={setTheme}
+            />
+            <Divider />
+            <ControlPanel theme={theme === 'light' ? lightTheme : darkTheme} />
+            <Divider />
+            <ReadingPanel
+              selected={selected[0]}
+              font={font}
+              fontSize={fontSize}
+              indent={indent}
+              theme={theme === 'light' ? lightTheme : darkTheme}
+            />
+            <Divider />
+            <ControlPanel theme={theme === 'light' ? lightTheme : darkTheme} />
+            <Divider />
+          </CardContent>
+        </Card>
+      </Container>
+    </React.Fragment>
   );
 }
 
