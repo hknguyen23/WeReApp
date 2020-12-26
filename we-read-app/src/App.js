@@ -24,7 +24,7 @@ const routes = [
     main: () => <Uploading />
   },
   {
-    path: "/Detail/",
+    path: "/Detail/:fictionID",
     private: false,
     main: () => <Detail />
   },
