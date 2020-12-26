@@ -339,10 +339,10 @@ function Detail() {
             <Typography style={{ fontSize: '30px', display: 'flex' }}>
               Tác giả:&nbsp;
               {fiction.authors.map(author =>
-                <Link to="/Profile" style={{ textDecoration: 'none' }}>
-                  <Typography component={'span'} key={author.id} style={{ fontSize: '30px', color: '#0b79d0' }}>
-                    {author.name}&nbsp;
-                  </Typography>
+                <Link key={author.id} to="/Profile"
+                  style={{ textDecoration: 'none', fontSize: '30px', color: '#0b79d0' }}
+                >
+                  {author.name}&nbsp;
                 </Link>
               )}
             </Typography>
