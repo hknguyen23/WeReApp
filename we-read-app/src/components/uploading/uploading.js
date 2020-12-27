@@ -342,7 +342,7 @@ function Uploading() {
 
   // submit form
   const onSubmit = (event) => {
-    var tempErrors = {...errors};;
+    var tempErrors = { ...errors };;
     if (values.title === '') {
       tempErrors.title = "* Không được để trống";
     }
@@ -352,18 +352,18 @@ function Uploading() {
     if (values.longDes === '' || !values.longDes.getCurrentContent().hasText()) {
       tempErrors.longDes = "* Không được để trống";
     }
-    if (values.data === '' ||  !values.data.getCurrentContent().hasText()) {
+    if (values.data === '' || !values.data.getCurrentContent().hasText()) {
       tempErrors.data = "* Không được để trống";
     }
     setErrors(tempErrors);
-    
+
     var errorList = Object.entries(tempErrors);
     const hasError = errorList.filter((v) => v[1] !== '').length > 0;
     if (hasError || errorGenre) {
       console.log(tempErrors)
     }
     else {
-      histoty.push("/Detail");
+      histoty.push("/Detail/1");
       console.log(values)
 
     }

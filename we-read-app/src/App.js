@@ -25,8 +25,9 @@ const routes = [
   },
   {
     path: "/Detail/:fictionID",
+    exact: true,
     private: false,
-    main: () => <Detail />
+    main: (props) => <Detail fictionID={props.fictionID} />
   },
   {
     path: "/Reading/",
