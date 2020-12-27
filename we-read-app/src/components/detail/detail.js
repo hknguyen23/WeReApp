@@ -318,7 +318,7 @@ function Detail() {
   }
 
   const handleMoveToReadingPage = () => {
-    history.push('/Reading');
+    history.push(`/Reading/${ID}`);
   }
 
   return (
