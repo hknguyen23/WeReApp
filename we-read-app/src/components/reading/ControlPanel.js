@@ -40,7 +40,7 @@ const ControlPanel = ({ theme }) => {
 
     return (
         <React.Fragment>
-            <Container className={classes.root} maxWidth="lg">
+            <Container className={classes.root} maxWidth={false}>
                 <Button fullWidth variant="contained" color="primary"
                     className={classes.button} startIcon={<ArrowBackIosIcon />}
                     onClick={() => { histoty.push("/Reading"); }}

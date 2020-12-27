@@ -103,7 +103,7 @@ const Reading = () => {
         <GlobalStyles />
       </ThemeProvider>
 
-      <Container className={classes.root} maxWidth="lg">
+      <Container className={classes.root} maxWidth={false}>
         <Card className={classes.card}>
           <CardHeader className={classes.cardHeader}
             avatar={<MenuBookIcon style={{ fontSize: 30 }} />}

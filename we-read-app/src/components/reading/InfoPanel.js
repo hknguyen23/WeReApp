@@ -94,7 +94,7 @@ const InfoPanel = ({ theme }) => {
 
   return (
     <React.Fragment>
-      <Container component="main" maxWidth="lg" className={classes.container}>
+      <Container component="main" maxWidth="lg" className={classes.container} maxWidth={false}>
         <div className={classes.leftContainer}>
           <img height={230} width={200} src={defaultImg} alt="Default fiction"
             className={classes.image}

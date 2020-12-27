@@ -41,7 +41,7 @@ const ReadingPanel = (props) => {
 
   return (
     <React.Fragment>
-      <Container component="main" maxWidth="lg" className={classes.container}>
+      <Container component="main" maxWidth="lg" className={classes.container} maxWidth={false}>
         <div className={classes.title}>
           Chapter {props.selected.number}
         </div>

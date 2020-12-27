@@ -370,7 +370,7 @@ function Uploading() {
   };
 
   return (
-    <Container className={classes.root} maxWidth="lg">
+    <Container className={classes.root} maxWidth={false}>
       <form autoComplete="off" noValidate>
         <Card>
           <CardHeader className={classes.cardHeader}

@@ -21,7 +21,7 @@ function GroupHeader(props) {
     const classes = useStyles();
     const title = props.title;
     return (
-        <Container className={classes.root} >
+        <Container className={classes.root} maxWidth={false}>
             {title}
         </Container>
     )

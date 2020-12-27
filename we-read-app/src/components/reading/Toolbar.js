@@ -87,7 +87,7 @@ const Toolbar = (props) => {
 
   return (
     <React.Fragment>
-      <Container className={classes.root} maxWidth="lg">
+      <Container className={classes.root} maxWidth={false}>
         <Box className={classes.toolbar}>
           <Typography className={classes.marginIcon}>Dark mode</Typography>
           <Switch className={classes.marginGroup} onChange={handleChangeTheme}
