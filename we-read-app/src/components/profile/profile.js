@@ -4,13 +4,15 @@ import {
     Container,
     Grid,
     makeStyles,
-    Button
+    Button, Box
 } from '@material-ui/core';
 import AnalystCard from "./AnalystCard";
 import FavoriteCard from "./FavoriteCard";
 import ManagementCard from "./ManagementCard";
 import SettingCard from "./SettingCard";
 import Infor from "./Infor";
+import AddNovel from "./AddNovel";
+
 function Profile() {
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -24,14 +26,11 @@ function Profile() {
             </Grid>
             <Grid
                 container
-                spacing={3}
+                spacing={2}
+                direction="row"  justify="center"  alignItems="center"
             >
                 <Grid
                     item
-                    lg={3}
-                    sm={6}
-                    xl={3}
-                    xs={12}
                 >
                     <Button
                         size="large"
@@ -41,10 +40,7 @@ function Profile() {
                 </Grid>
                 <Grid
                     item
-                    lg={3}
-                    sm={6}
-                    xl={3}
-                    xs={12}
+
                 >
                     <Button size="large">
                         <AnalystCard />
@@ -52,30 +48,32 @@ function Profile() {
                 </Grid>
                 <Grid
                     item
-                    lg={3}
-                    sm={6}
-                    xl={3}
-                    xs={12}
+
                 >
                     <Button size="large"
                             onClick={() => { history.push("/Uploading"); }}
+                    >
+                        <AddNovel />
+                    </Button>
+                </Grid>
+                <Grid
+                    item
+
+                >
+                    <Button size="large"
                     >
                         <ManagementCard />
                     </Button>
                 </Grid>
                 <Grid
                     item
-                    lg={3}
-                    sm={6}
-                    xl={3}
-                    xs={12}
+
                 >
                     <Button size="large">
                         <SettingCard />
                     </Button>
                 </Grid>
             </Grid>
-
         </Container>
     );
 }

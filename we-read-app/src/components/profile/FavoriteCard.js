@@ -55,7 +55,8 @@ const FavoriteCard = ({ className, ...rest }) => {
             {...rest}
             style={{ height: '400px', width: '300px', backgroundColor: "#e5e5e5"}}
         >
-            <CardHeader title="DANH SÁCH YÊU THÍCH" />
+            <CardHeader title="YÊU THÍCH" />
+            <Divider />
             <CardContent>
                 <Box
                     position="relative"
@@ -68,7 +69,7 @@ const FavoriteCard = ({ className, ...rest }) => {
                     align-itmes="center"
                     mt={2}
                 >
-                    <Typography>DANH SÁCH TRUYỆN</Typography>
+                    <Typography>DANH SÁCH TRUYỆN YÊU THÍCH</Typography>
                 </Box>
             </CardContent>
         </Card>

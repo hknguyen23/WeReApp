@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useHistory, useParams } from "react-router-dom";
+import { useHistory, useParams, Link } from "react-router-dom";
 import {
   Container,
   makeStyles,
@@ -317,6 +317,10 @@ function Detail() {
     return list;
   }
 
+  const handleMoveToReadingPage = () => {
+    history.push('/Reading');
+  }
+
   return (
     <React.Fragment>
       <Container component="main" maxWidth="lg">
@@ -344,9 +348,11 @@ function Detail() {
             <Typography style={{ fontSize: '30px', display: 'flex' }}>
               Tác giả:&nbsp;
               {fiction.authors.map(author =>
-              <Typography component={'span'} key={author.id} style={{ fontSize: '30px', color: '#0b79d0' }}>
+              <Link key={author.id} to="/Profile"
+                style={{ textDecoration: 'none', fontSize: '30px', color: '#0b79d0' }}
+              >
                 {author.name}&nbsp;
-                </Typography>
+                </Link>
             )}
             </Typography>
             <Divider className={classes.divider}></Divider>
@@ -404,6 +410,7 @@ function Detail() {
                 width: '340px', height: '64px',
                 backgroundColor: '#eb5757', fontSize: '30px', fontWeight: 'bold', marginRight: '24px'
               }}
+                onClick={handleMoveToReadingPage}
               >
                 Đọc ngay
               </Button>
@@ -411,15 +418,16 @@ function Detail() {
                 width: '64px', height: '64px', color: 'white',
                 backgroundColor: '#27ae60', marginRight: '24px'
               }}
+                href="#commentSection"
               >
-                <QuestionAnswerIcon style={{ width: '48px', height: '48px' }}></QuestionAnswerIcon>
+                <QuestionAnswerIcon style={{ width: '48px', height: '48px' }} />
               </Button>
               <Button className={classes.button} style={{
                 width: '64px', height: '64px', color: 'white',
                 backgroundColor: '#27ae60', marginRight: '24px'
               }}
               >
-                <BookmarkIcon style={{ width: '48px', height: '48px' }}></BookmarkIcon>
+                <BookmarkIcon style={{ width: '48px', height: '48px' }} />
               </Button>
             </div>
           </div>
@@ -440,7 +448,7 @@ function Detail() {
             {createChaptersList(fiction.chapters)}
           </div>
         </div>
-        <div className={classes.container} style={{ textAlign: 'left' }}>
+        <div id="commentSection" className={classes.container} style={{ textAlign: 'left' }}>
           <Typography style={{ fontSize: '36px' }}>
             Bình luận ({fiction.comments.length})
           </Typography>

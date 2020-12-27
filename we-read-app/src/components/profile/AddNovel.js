@@ -1,7 +1,6 @@
 import React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
-import SettingsIcon from '@material-ui/icons/Settings';
 import {
     Box,
     Card,
@@ -13,6 +12,7 @@ import {
     makeStyles,
     useTheme
 } from '@material-ui/core';
+import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 
 const useStyles = makeStyles(() => ({
     root: {
@@ -20,7 +20,7 @@ const useStyles = makeStyles(() => ({
     }
 }));
 
-const SettingCard = ({ className, ...rest }) => {
+const AddNovel = ({ className, ...rest }) => {
     const classes = useStyles();
     const theme = useTheme();
 
@@ -52,28 +52,28 @@ const SettingCard = ({ className, ...rest }) => {
             {...rest}
             style={{ height: '400px', width: '300px', backgroundColor: "#e5e5e5"}}
         >
-            <CardHeader title="CÀI ĐẶT" />
+            <CardHeader title="TRUYỆN" />
             <Divider />
             <CardContent>
                 <Box
                     position="relative"
                 >
-                    <SettingsIcon style={{ fontSize: 100 }} />
+                    <AddCircleOutlineIcon style={{ fontSize: 100 }} />
                 </Box>
                 <Box
                     display="flex"
                     justifyContent="center"
                     mt={2}
                 >
-                    <Typography>THAY ĐỔI THÔNG SỐ</Typography>
+                    <Typography>ĐĂNG TRUYỆN / CẬP NHẬT TRUYỆN</Typography>
                 </Box>
             </CardContent>
         </Card>
     );
 };
 
-SettingCard.propTypes = {
+AddNovel.propTypes = {
     className: PropTypes.string
 };
 
-export default SettingCard;
+export default AddNovel;
