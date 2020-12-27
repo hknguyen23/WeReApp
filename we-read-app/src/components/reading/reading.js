@@ -22,7 +22,7 @@ import ControlPanel from './ControlPanel';
 
 const useStyles = makeStyles((theme) => ({
   root: (theme) => ({
-    width: '90%',
+    width: '100%',
     minHeight: '100%',
     borderRadius: '4px',
     paddingBottom: '24px',

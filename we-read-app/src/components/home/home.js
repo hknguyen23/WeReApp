@@ -105,6 +105,9 @@ export default function Home() {
     setPage(1);
   }
 
+  React.useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   React.useEffect(() => {
     if (sortStrategy === 0)
