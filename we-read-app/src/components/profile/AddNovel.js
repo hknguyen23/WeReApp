@@ -16,8 +16,20 @@ import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 
 const useStyles = makeStyles(() => ({
     root: {
-        height: '100%'
-    }
+        height: '100%',
+        background: 'linear-gradient(45deg, #82f76d 30%, #53fa34 90%)',
+        boxShadow: '0 3px 5px 2px rgba(17, 245, 51 .3)',
+        borderRadius: 3,
+        border: 0,
+        padding: '0 30px',
+    },
+    headerTitle: {
+        fontSize: "30px",
+        fontWeight: "bold",
+        color: "white",
+        boxShadow: "rgba(33, 203, 243, .3)"
+    },
+
 }));
 
 const AddNovel = ({ className, ...rest }) => {
@@ -50,9 +62,11 @@ const AddNovel = ({ className, ...rest }) => {
         <Card
             className={clsx(classes.root, className)}
             {...rest}
-            style={{ height: '400px', width: '300px', backgroundColor: "#e5e5e5"}}
+            // style={{ height: '400px', width: '300px', backgroundColor: "#f5f5f5"}}
+            style={{ height: '400px', width: '300px'}}
+
         >
-            <CardHeader title="TRUYỆN" />
+            <CardHeader classes={{title: classes.headerTitle}}  title="TRUYỆN" />
             <Divider />
             <CardContent>
                 <Box
