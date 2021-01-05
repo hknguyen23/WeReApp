@@ -68,7 +68,7 @@ const Profile = ({ className, ...rest }) => {
                 src={user.avatar}
             />
           </div>
-          <div justifyContent="flex-start">
+          <div display="flex" justifyContent="flex-start">
             <Typography
                 color="textPrimary"
                 gutterBottom
@@ -99,7 +99,7 @@ const Profile = ({ className, ...rest }) => {
             <Typography >
               <Chip className={classes.chip} icon={<FaceIcon/>} label={"Excelent Author"} color="primary" variant="outlined"/>
               <Chip className={classes.chip} label="#Basic_Reader"/>
-              <Chip className={classes.chip} avatar={<Avatar>M</Avatar>} label="Clickable" onClick={handleClick} variant="outlined"/>
+              <Chip className={classes.chip} avatar={<Avatar>M</Avatar>} label="Best_author" variant="outlined"/>
             </Typography>
           </div>
         </Box>

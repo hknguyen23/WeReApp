@@ -20,7 +20,18 @@ import TabletIcon from '@material-ui/icons/Tablet';
 const useStyles = makeStyles(() => ({
     root: {
         height: '100%',
-    }
+        background: 'linear-gradient(45deg, #fac150 30%, #fccf2b 90%)',
+        boxShadow: '0 3px 5px 2px rgba(197, 199, 197 .3)',
+        borderRadius: 3,
+        border: 0,
+        padding: '0 30px',
+    },
+    headerTitle: {
+        fontSize: "30px",
+        fontWeight: "bold",
+        color: "white",
+        boxShadow: "rgba(33, 203, 243, .3)"
+    },
 }));
 
 const AnalystCard = ({ className, ...rest }) => {
@@ -40,7 +51,7 @@ const AnalystCard = ({ className, ...rest }) => {
                 hoverBorderColor: colors.common.white
             }
         ],
-        labels: ['Doc', 'Viet']
+        labels: ['Đọc', 'Viết']
     };
 
     const options = {
@@ -67,13 +78,13 @@ const AnalystCard = ({ className, ...rest }) => {
 
     const devices = [
         {
-            title: 'Doc',
+            title: 'Đọc',
             value: 67,
             icon: LaptopMacIcon,
             color: colors.indigo[500]
         },
         {
-            title: 'Viet',
+            title: 'Viết',
             value: 33,
             icon: TabletIcon,
             color: colors.red[600]
@@ -84,10 +95,10 @@ const AnalystCard = ({ className, ...rest }) => {
         <Card
             className={clsx(classes.root, className)}
             {...rest}
-            style={{ height: '400px', width: '300px', backgroundColor: "#e5e5e5"}}
+            style={{ height: '400px', width: '300px'}}
         >
-            <CardHeader title="THỜI GIAN" />
-            <Divider />
+            <CardHeader classes={{title: classes.headerTitle}} title="THỜI GIAN" />
+            <Divider variant="middle" />
             <CardContent>
                 <Box
                     position="relative"

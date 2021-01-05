@@ -16,8 +16,19 @@ import {
 
 const useStyles = makeStyles(() => ({
     root: {
-        height: '100%'
-    }
+        height: '100%',
+        background: 'linear-gradient(45deg, #4d4d4d 30%, #a8a7a7 90%)',
+        boxShadow: '0 3px 5px 2px rgba(33, 203, 243, .3)',
+        borderRadius: 3,
+        border: 0,
+        padding: '0 30px',
+    },
+    headerTitle: {
+        fontSize: "30px",
+        fontWeight: "bold",
+        color: "white",
+        boxShadow: "rgba(33, 203, 243, .3)"
+    },
 }));
 
 const SettingCard = ({ className, ...rest }) => {
@@ -50,9 +61,9 @@ const SettingCard = ({ className, ...rest }) => {
         <Card
             className={clsx(classes.root, className)}
             {...rest}
-            style={{ height: '400px', width: '300px', backgroundColor: "#e5e5e5"}}
+            style={{ height: '400px', width: '300px'}}
         >
-            <CardHeader title="CÀI ĐẶT" />
+            <CardHeader classes={{title: classes.headerTitle}} title="CÀI ĐẶT" />
             <Divider />
             <CardContent>
                 <Box
