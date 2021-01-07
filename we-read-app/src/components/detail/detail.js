@@ -59,7 +59,7 @@ const offset = 5;
 function Detail() {
   const classes = useStyles();
   const history = useHistory();
-  const ID = useParams().fictionID;
+  const ID = +useParams().fictionID;
   const [commentPage, setCommentPage] = useState(1);
   const [fiction, setFiction] = useState({
     id: 1,
@@ -224,17 +224,16 @@ function Detail() {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-
     const fictionCopy = JSON.parse(JSON.stringify(fiction));
-    if (ID <= 15) {
+    if (ID <= 25) {
       fictionCopy.title = novels[ID - 1].name;
       fictionCopy.imgURL = imgURL[novels[ID - 1].id % imgURL.length];
     } else {
-      fictionCopy.title = topMonth[ID - 15 - 1].name;
-      fictionCopy.imgURL = topMonth[ID - 15 - 1].img;
+      fictionCopy.title = topMonth[ID - 25 - 1].name;
+      fictionCopy.imgURL = topMonth[ID - 25 - 1].img;
     }
     setFiction(fictionCopy);
-  }, [setFiction]);
+  }, []);
 
   const drawStars = (rating) => {
     let stars = [];

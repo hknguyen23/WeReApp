@@ -39,15 +39,16 @@ const useStyles = makeStyles((theme) => ({
       marginLeft: theme.spacing(3),
       width: 'auto',
     },
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   searchIcon: {
     padding: theme.spacing(0, 2),
     height: '100%',
-    position: 'absolute',
-    pointerEvents: 'none',
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'center',
+    // justifyContent: 'center',
   },
   inputRoot: {
     color: 'inherit',
@@ -55,12 +56,12 @@ const useStyles = makeStyles((theme) => ({
   inputInput: {
     padding: theme.spacing(1, 1, 1, 0),
     // vertical padding + font size from searchIcon
-    paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
-    transition: theme.transitions.create('width'),
+    // paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
+    // transition: theme.transitions.create('width'),
     width: '100%',
-    [theme.breakpoints.up('md')]: {
-      width: '20ch',
-    },
+    // [theme.breakpoints.up('md')]: {
+    //   width: '20ch',
+    // },
   },
   sectionDesktop: {
     display: 'none',
@@ -80,6 +81,7 @@ export default function NavBar() {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
+  const [input, setInput] = React.useState("");
   const history = useHistory();
   const isMenuOpen = Boolean(anchorEl);
 
@@ -105,6 +107,15 @@ export default function NavBar() {
 
   }
 
+  const queryParameters = {
+    fictionName: input
+  }
+  // const handleToSearchPage = () => {
+  //   const queryParameters = {
+  //     fictionName: input
+  //   }
+  //   history.push(`/Searching/${input}`)
+  // }
 
   return (
     <div className={classes.grow} >
@@ -125,20 +136,22 @@ export default function NavBar() {
               WeRe
           </Typography>
           </NavLink>
-
-
           <div className={classes.grow} />
-          <div className={classes.search}>
-            <div className={classes.searchIcon}>
+          <div className={classes.search} >
+            <Link className={classes.searchIcon} style={{ cursor: 'pointer', color: 'white' }}
+              to={`/Searching/${input} `}>
               <SearchIcon />
-            </div>
+            </Link>
             <InputBase
-              placeholder="Tìm kiếm…"
+              placeholder="Tìm kiếm..."
               classes={{
                 root: classes.inputRoot,
                 input: classes.inputInput,
               }}
               inputProps={{ 'aria-label': 'search' }}
+              onChange={(e) => setInput(e.target.value)}
+              value={input}
+              fullWidth
             />
           </div>
           <div className={classes.sectionDesktop}>
@@ -170,6 +183,6 @@ export default function NavBar() {
         <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
         <MenuItem onClick={handleMenuClose}>My account</MenuItem>
       </Menu> */}
-    </div>
+    </div >
   );
 }

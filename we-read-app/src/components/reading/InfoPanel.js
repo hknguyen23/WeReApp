@@ -94,12 +94,12 @@ const InfoPanel = ({ theme, ID }) => {
 
   useEffect(() => {
     const fictionCopy = JSON.parse(JSON.stringify(fiction));
-    if (ID <= 15) {
+    if (ID <= 25) {
       fictionCopy.title = novels[ID - 1].name;
       fictionCopy.imgURL = imgURL[novels[ID - 1].id % imgURL.length];
     } else {
-      fictionCopy.title = topMonth[ID - 15 - 1].name;
-      fictionCopy.imgURL = topMonth[ID - 15 - 1].img;
+      fictionCopy.title = topMonth[ID - 25 - 1].name;
+      fictionCopy.imgURL = topMonth[ID - 25 - 1].img;
     }
     setFiction(fictionCopy);
   }, [setFiction]);

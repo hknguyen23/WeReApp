@@ -11,6 +11,7 @@ import Detail from './components/detail/detail';
 import Profile from "./components/profile/profile";
 import Reading from './components/reading/reading';
 import PrivateRoute from './components/PrivateRoute';
+import Searching from './components/searching/searching';
 
 const routes = [
   {
@@ -37,6 +38,16 @@ const routes = [
     path: "/Profile",
     main: () => <Profile />
   },
+  {
+    path: "/Searching",
+    exact: true,
+    main: () => <Searching />
+  },
+  {
+    path: "/Searching/:fictionName",
+    exact: true,
+    main: () => <Searching />
+  }
 ];
 
 function App() {

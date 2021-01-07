@@ -258,21 +258,6 @@ export default function Home() {
                           lineHeight: "1.8em",
                           position: "relative",
                           maxWidth: "100%",
-                          // "&&:before": {   unwork
-                          //   content: '"..."',
-                          //   position: "absolute",
-                          //   right: 0,
-                          //   bottom: 0
-                          // },
-                          // "&&:after": {
-                          //   content: '""',
-                          //   position: "absolute",
-                          //   right: 0,
-                          //   width: "1em",
-                          //   height: "1em",
-                          //   marginTop: "0.2em",
-                          //   background: "white"
-                          // }
                         }}>
                           {novel.desc}
                         </div>
@@ -340,7 +325,7 @@ function SimpleFilter({ sortStrategy, setSortStrategy }) {
 
   return (
     <div className={classes.root}>
-      <List component="nav" aria-label="Device settings" style={{ padding: '0px', margin: "0px", backgroundColor: "#c1c1c1", width: "20%", borderRadius: "8px" }}>
+      <List component="nav" aria-label="Device settings" style={{ padding: '0px', margin: "0px", backgroundColor: "#c1c1c1", width: "12vw", borderRadius: "8px" }}>
         <ListItem
           button
           aria-haspopup="true"
