@@ -5,6 +5,7 @@ import {
   makeStyles,
   Typography,
   Divider,
+  Tooltip,
   Button,
   Card,
   TextField
@@ -46,6 +47,18 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: 'black'
   },
   button: {
+    padding: 0,
+    borderRadius: '8px',
+    lineHeight: 'normal',
+    fontWeight: 'normal',
+    textTransform: 'none',
+    color: 'white',
+    backgroundColor: '#27ae60',
+    "&:hover": {
+      backgroundColor: '#0d5e36',
+    }
+  },
+  readNowButton: {
     padding: 0,
     borderRadius: '8px',
     lineHeight: 'normal',
@@ -263,7 +276,7 @@ function Detail() {
       list.push(
         <Card key={i} style={{
           height: '56px', backgroundColor: '#e5e5e5', display: 'flex',
-          alignItems: 'center', marginBottom: '2px', paddingLeft : '15px', paddingRight: '10px'
+          alignItems: 'center', marginBottom: '2px', paddingLeft: '15px', paddingRight: '10px'
         }}
         >
           <Typography style={{ fontSize: '16px', width: '30%', color: '#0276af', textDecoration: 'underline' }}>
@@ -409,29 +422,30 @@ function Detail() {
             </div>
             <Divider className={classes.divider} style={{ marginBottom: '10px' }}></Divider>
             <div style={{ textAlign: 'center' }}>
-              <Button className={classes.button} style={{
-                width: '340px', height: '64px',
-                backgroundColor: '#eb5757', fontSize: '30px', fontWeight: 'bold', marginRight: '24px'
+              <Button variant="contained"  color="secondary" className={classes.readNowButton} style={{
+                width: '340px', height: '64px', fontSize: '30px', fontWeight: 'bold', marginRight: '24px'
               }}
                 onClick={handleMoveToReadingPage}
               >
                 Đọc ngay
               </Button>
-              <Button className={classes.button} style={{
-                width: '64px', height: '64px', color: 'white',
-                backgroundColor: '#27ae60', marginRight: '24px'
-              }}
-                href="#commentSection"
-              >
-                <QuestionAnswerIcon style={{ width: '48px', height: '48px' }} />
-              </Button>
-              <Button className={classes.button} style={{
-                width: '64px', height: '64px', color: 'white',
-                backgroundColor: '#27ae60', marginRight: '24px'
-              }}
-              >
-                <BookmarkIcon style={{ width: '48px', height: '48px' }} />
-              </Button>
+              <Tooltip title="Bình luận" aria-label="Bình luận">
+                <Button className={classes.button} style={{
+                  width: '64px', height: '64px', marginRight: '24px'
+                }}
+                  href="#commentSection"
+                >
+                  <QuestionAnswerIcon style={{ width: '48px', height: '48px' }} />
+                </Button>
+              </Tooltip>
+              <Tooltip title="Lưu vào yêu thích" aria-label="Lưu vào yêu thích">
+                <Button className={classes.button} style={{
+                  width: '64px', height: '64px', marginRight: '24px'
+                }}
+                >
+                  <BookmarkIcon style={{ width: '48px', height: '48px' }} />
+                </Button>
+              </Tooltip>
             </div>
           </div>
         </div>

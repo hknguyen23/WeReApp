@@ -131,30 +131,30 @@ const useStyles = makeStyles((theme) => ({
 
 const ageGroup = [
   {
-    value: 'all',
+    value: 'Mọi lứa tuổi',
     label: 'Mọi lứa tuổi'
   },
   {
-    value: 'teen',
+    value: 'Teen',
     label: 'Teen'
   },
   {
-    value: '18',
+    value: 'Trên 18 tuổi',
     label: 'Trên 18 tuổi'
   }
 ];
 
 const language = [
   {
-    value: 'vietnam',
+    value: 'Tiếng Việt',
     label: 'Tiếng Việt'
   },
   {
-    value: 'english',
+    value: 'Tiếng Anh',
     label: 'Tiếng Anh'
   },
   {
-    value: 'another',
+    value: 'Ngôn ngữ khác',
     label: 'Ngôn ngữ khác'
   }
 ];
@@ -207,8 +207,8 @@ function Uploading() {
     title: '',
     shortDes: '',
     longDes: '',
-    age: '',
-    language: '',
+    age: 'Mọi lứa tuổi',
+    language: 'Tiếng Việt',
     genre: {},
     tags: {},
     titleChapter: '',
@@ -379,10 +379,11 @@ function Uploading() {
       console.log(tempErrors)
     }
     else {
-      setOpenWaiting(true);
-      await delay(3000);
-      histoty.push("/Detail/1");
+      //setOpenWaiting(true);
+      //await delay(2000);
+      //histoty.push("/Detail/1");
       console.log(values)
+      console.log(selectedFile)
 
     }
   };
@@ -403,7 +404,7 @@ function Uploading() {
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <DialogTitle id="alert-dialog-title">Đăng truyện thành công...</DialogTitle>
+        <DialogTitle id="alert-dialog-title">Đang đăng truyện...</DialogTitle>
         <DialogContent className={classes.dialogContent}>
           <CircularProgress />
         </DialogContent>

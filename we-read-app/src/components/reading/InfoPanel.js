@@ -5,6 +5,7 @@ import {
   makeStyles,
   Typography,
   Link,
+  Tooltip,
   Button
 } from '@material-ui/core';
 import { novels, topMonth, imgURL } from '../../resources/data/data'
@@ -49,7 +50,10 @@ const useStyles = makeStyles((theme) => ({
     color: 'white',
     backgroundColor: '#27ae60',
     borderRadius: '8px',
-    marginRight: '10px'
+    marginRight: '10px',
+    "&:hover": {
+      backgroundColor: '#0d5e36',
+    }
   },
   author: (theme) => ({
     fontSize: textSize,
@@ -116,12 +120,17 @@ const InfoPanel = ({ theme, ID }) => {
         <div className={classes.rightContainer}>
           <div style={{ display: 'flex', alignItems: 'center' }}>
             <Typography variant="h4" className={classes.title}>{fiction.title}</Typography>
-            <Button className={classes.button} onClick={() => { histoty.push("/Detail/1"); }}>
-              <QuestionAnswerIcon style={{ width: '30px', height: '30px' }}></QuestionAnswerIcon>
-            </Button>
-            <Button className={classes.button} onClick={() => { histoty.push("/Detail/1"); }}>
-              <BookmarkIcon style={{ width: '30px', height: '30px' }}></BookmarkIcon>
-            </Button>
+
+            <Tooltip title="Bình luận" aria-label="Bình luận">
+              <Button className={classes.button} onClick={() => { histoty.push("/Detail/1"); }}>
+                <QuestionAnswerIcon style={{ width: '30px', height: '30px' }}></QuestionAnswerIcon>
+              </Button>
+            </Tooltip>
+            <Tooltip title="Lưu vào yêu thích" aria-label="Lưu vào yêu thích">
+              <Button className={classes.button} onClick={() => { histoty.push("/Detail/1"); }}>
+                <BookmarkIcon style={{ width: '30px', height: '30px' }}></BookmarkIcon>
+              </Button>
+            </Tooltip>
           </div>
           <Typography style={{ fontSize: textSize, display: 'flex', color: 'gray' }}>
             Bởi&nbsp;
