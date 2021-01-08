@@ -263,7 +263,7 @@ function Detail() {
       list.push(
         <Card key={i} style={{
           height: '56px', backgroundColor: '#e5e5e5', display: 'flex',
-          alignItems: 'center', marginBottom: '2px'
+          alignItems: 'center', marginBottom: '2px', paddingLeft : '15px', paddingRight: '10px'
         }}
         >
           <Typography style={{ fontSize: '16px', width: '30%', color: '#0276af', textDecoration: 'underline' }}>
@@ -456,7 +456,7 @@ function Detail() {
             Bình luận ({fiction.comments.length})
           </Typography>
           <Divider className={classes.divider} style={{ marginTop: '-3px', marginBottom: '5px' }}></Divider>
-          <TextField placeholder="Nhập bình luận..." fullWidth multiline rows={5} rowsMax={5}
+          <TextField placeholder="  Nhập bình luận..." fullWidth multiline rows={5} rowsMax={5}
             style={{ backgroundColor: '#bbbbbb', marginBottom: '20px' }}
             inputProps={{ style: { fontSize: '16px' } }} // font size of input text
           />
