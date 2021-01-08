@@ -226,9 +226,11 @@ function Detail() {
     window.scrollTo(0, 0);
     const fictionCopy = JSON.parse(JSON.stringify(fiction));
     if (ID <= 25) {
+      fictionCopy.id = novels[ID - 1].id;
       fictionCopy.title = novels[ID - 1].name;
       fictionCopy.imgURL = imgURL[novels[ID - 1].id % imgURL.length];
     } else {
+      fictionCopy.id = topMonth[ID - 25 - 1].id;
       fictionCopy.title = topMonth[ID - 25 - 1].name;
       fictionCopy.imgURL = topMonth[ID - 25 - 1].img;
     }
@@ -265,7 +267,9 @@ function Detail() {
         }}
         >
           <Typography style={{ fontSize: '16px', width: '30%', color: '#0276af', textDecoration: 'underline' }}>
-            Chương {chapters[i].ordinal}
+            <Link key={chapters[i].ordinal} to={"/Reading/" + fiction.id + "/" + chapters[i].ordinal}>
+              Chương {chapters[i].ordinal}
+            </Link>
           </Typography>
           <Typography style={{ fontSize: '16px', width: '40%', textAlign: 'center' }}>
             Cập nhật vào khoảng {calculateDaysAdded(new Date(chapters[i].dateAdded), new Date())} ngày
@@ -351,7 +355,7 @@ function Detail() {
                 style={{ textDecoration: 'none', fontSize: '30px', color: '#0b79d0' }}
               >
                 {author.name}&nbsp;
-                </Link>
+              </Link>
             )}
             </Typography>
             <Divider className={classes.divider}></Divider>
