@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useHistory, useParams, Link } from "react-router-dom";
 import {
   Container,
   Card,
@@ -22,7 +23,7 @@ import ControlPanel from './ControlPanel';
 
 const useStyles = makeStyles((theme) => ({
   root: (theme) => ({
-    width: '100%',
+    width: '90%',
     minHeight: '100%',
     borderRadius: '4px',
     paddingBottom: '24px',
@@ -88,9 +89,8 @@ const Reading = () => {
   const [fontSize, setFontSize] = useState(16);
   const [indent, setIndent] = useState('90%');
   const [isDarkMode, setIsDarkMode] = useState(false);
-
+  const ID = useParams().fictionID;
   const classes = useStyles(isDarkMode ? darkTheme : lightTheme);
-
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [])
@@ -103,14 +103,14 @@ const Reading = () => {
         <GlobalStyles />
       </ThemeProvider>
 
-      <Container className={classes.root} maxWidth={false}>
+      <Container className={classes.root} maxWidth="false">
         <Card className={classes.card}>
           <CardHeader className={classes.cardHeader}
             avatar={<MenuBookIcon style={{ fontSize: 30 }} />}
             titleTypographyProps={{ variant: 'h5', align: "left" }}
             title="Đọc truyện" />
           <CardContent className={classes.cardContent}>
-            <InfoPanel theme={isDarkMode ? darkTheme : lightTheme} />
+            <InfoPanel theme={isDarkMode ? darkTheme : lightTheme} ID={ID} />
             <Divider className={classes.divider} />
             <Toolbar
               font={font} setFont={(i) => setFont(i)}

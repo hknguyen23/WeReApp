@@ -1,6 +1,5 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom'
-
 import {
   Container,
   makeStyles,
@@ -8,10 +7,9 @@ import {
   Link,
   Button
 } from '@material-ui/core';
-
+import { novels, topMonth, imgURL } from '../../resources/data/data'
 import QuestionAnswerIcon from '@material-ui/icons/QuestionAnswer';
 import BookmarkIcon from '@material-ui/icons/Bookmark';
-
 import defaultImg from '../../resources/images/defaultAvatar.png';
 
 const useStyles = makeStyles((theme) => ({
@@ -71,32 +69,46 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-const fiction = {
-  id: 1,
-  title: "Truyện đời tôi",
-  status: 1,
-  views: 12345,
-  followers: 350,
-  description: "Donec eu tellus ut dolor viverra porta. Aliquam sit amet velit vel odio viverra euismod fringilla eu tellus. Aenean dapibus maximus aliquet. Donec bibendum blandit enim et facilisis.",
-  rating: 3,
-  authors: [{
-    id: 1,
-    name: "John Nguyen"
-  }],
-  comments: [{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }, { id: 5 }, { id: 6 }, { id: 7 }]
-}
+
 
 const textSize = '18px';
 
-const InfoPanel = ({ theme }) => {
+const InfoPanel = ({ theme, ID }) => {
   const classes = useStyles(theme);
   const histoty = useHistory();
+  const [fiction, setFiction] = useState({
+    id: 1,
+    title: "Truyện đời tôi",
+    imgURL: "none",
+    status: 1,
+    views: 12345,
+    followers: 350,
+    description: "Donec eu tellus ut dolor viverra porta. Aliquam sit amet velit vel odio viverra euismod fringilla eu tellus. Aenean dapibus maximus aliquet. Donec bibendum blandit enim et facilisis.",
+    rating: 3,
+    authors: [{
+      id: 1,
+      name: "John Nguyen"
+    }],
+    comments: [{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }, { id: 5 }, { id: 6 }, { id: 7 }]
+  });
+
+  useEffect(() => {
+    const fictionCopy = JSON.parse(JSON.stringify(fiction));
+    if (ID <= 25) {
+      fictionCopy.title = novels[ID - 1].name;
+      fictionCopy.imgURL = imgURL[novels[ID - 1].id % imgURL.length];
+    } else {
+      fictionCopy.title = topMonth[ID - 25 - 1].name;
+      fictionCopy.imgURL = topMonth[ID - 25 - 1].img;
+    }
+    setFiction(fictionCopy);
+  }, [setFiction]);
 
   return (
     <React.Fragment>
       <Container component="main" maxWidth="lg" className={classes.container} maxWidth={false}>
         <div className={classes.leftContainer}>
-          <img height={230} width={200} src={defaultImg} alt="Default fiction"
+          <img height={230} width={200} src={fiction.imgURL === "none" ? defaultImg : fiction.imgURL} alt="Default fiction"
             className={classes.image}
           />
         </div>
