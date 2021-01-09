@@ -48,7 +48,7 @@ const ControlPanel = ({ theme }) => {
                     Chương trước
                 </Button>
                 <Button fullWidth variant="contained" color="primary" className={`${classes.button} ${classes.middleButton}`}
-                    onClick={() => { histoty.push("1"); }}
+                    onClick={() => { histoty.push("/Detail/1"); }}
 
                 >
                     Danh sách chương

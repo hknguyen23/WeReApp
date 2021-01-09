@@ -126,8 +126,8 @@ export default function Home() {
 
   React.useEffect(() => {
 
-    const start = (page - 1) * 9;
-    const end = start + 9 - 1;
+    const start = (page - 1) * 12;
+    const end = start + 12 - 1;
     const paginatedNovels = novelByCat.filter((item, index) => index >= start && index <= end);
     setDisplayNovels(paginatedNovels);
 
@@ -137,7 +137,7 @@ export default function Home() {
     <>
       <Container className={classes.cardGrid} maxWidth="xl">
         <Grid container spacing={3}>
-          <Grid item xs={12} sm={2} md={2}>
+          <Grid item xs={12} sm={12} md={2}>
             <Card className={classes.card}>
               <CardHeader title={<b>THỂ LOẠI</b>} style={{ color: "#FF781F" }} className={classes.cardHeader} />
               <CardContent className={classes.cardContent}>
@@ -166,7 +166,7 @@ export default function Home() {
             </Card>
           </Grid>
 
-          <Grid item xs={12} sm={6} md={6}>
+          <Grid item xs={12} sm={12} md={6}>
             <div style={{ marginBottom: '15px' }}>
               <SimpleFilter sortStrategy={sortStrategy} setSortStrategy={setSortStrategy} />
             </div>
@@ -180,9 +180,9 @@ export default function Home() {
                     // (
                     //   sortStrategy === 0 ?
                     displayedNovels.map((novel, index) => (
-                      <Grid item xs={12} sm={4} md={4} key={index}>
+                      <Grid item xs={4} sm={3} md={3} key={index}>
                         <Link to={`/Detail/${novel.id}`} style={{ textDecoration: "none", color: "white" }}>
-                          <img src={imgURL[novel.id % imgURL.length]} width="100%" height="220px" style={{ borderRadius: '8px' }}></img>
+                          <img src={imgURL[novel.id % imgURL.length]} width="100%" height="180px" style={{ borderRadius: '8px' }}></img>
                         </Link>
 
                         <div >
@@ -216,7 +216,7 @@ export default function Home() {
               novelByCat.length !== 0 ?
                 <div style={{ display: 'flex', justifyContent: 'center' }}>
                   <PaginationRounded
-                    count={Math.ceil(novelByCat.length / 9)}
+                    count={Math.ceil(novelByCat.length / 12)}
                     color="primary"
                     size="large"
                     page={page}
@@ -227,7 +227,7 @@ export default function Home() {
             }
           </Grid>
 
-          <Grid item xs={12} sm={4} md={4}>
+          <Grid item xs={12} sm={12} md={4}>
             <TopFilter topStrategy={topStrategy} setTopStrategy={setTopStrategy} />
             <div style={{ backgroundColor: '#E1E1E1', paddingTop: "8px" }}>
               {

@@ -5,6 +5,7 @@ import {
   TextField,
   Typography,
   Switch,
+  Tooltip,
   makeStyles
 } from '@material-ui/core';
 import FontDownloadIcon from '@material-ui/icons/FontDownload';
@@ -89,11 +90,13 @@ const Toolbar = (props) => {
     <React.Fragment>
       <Container className={classes.root} maxWidth={false}>
         <Box className={classes.toolbar}>
-          <Typography className={classes.marginIcon}>Dark mode</Typography>
+          <Typography className={classes.marginIcon}>Nền tối</Typography>
           <Switch className={classes.marginGroup} onChange={handleChangeTheme}
             color="secondary" name="dark"
           />
-          <FontDownloadIcon className={`${classes.fontIcon} ${classes.marginIcon}`} />
+          <Tooltip title="Phông chữ" aria-label="Phông chữ">
+            <FontDownloadIcon className={`${classes.fontIcon} ${classes.marginIcon}`} />
+          </Tooltip>
           <TextField className={`${classes.fontDropdown} ${classes.marginGroup} ${classes.textField}`}
             size="small" name="font" required select variant="outlined" value={props.font}
             onChange={handleChangeFont} SelectProps={{ native: true }}
@@ -104,7 +107,7 @@ const Toolbar = (props) => {
               </option>
             ))}
           </TextField>
-          <Typography className={classes.marginIcon}>Size</Typography>
+          <Typography className={classes.marginIcon}>Cỡ chữ</Typography>
           <TextField className={`${classes.marginGroup} ${classes.textField}`} size="small" name="fontSize"
             required select variant="outlined" value={props.fontSize}
             onChange={handleChangeFontSize} SelectProps={{ native: true }}
@@ -115,7 +118,7 @@ const Toolbar = (props) => {
               </option>
             ))}
           </TextField>
-          <Typography className={classes.marginIcon}>Indent</Typography>
+          <Typography className={classes.marginIcon}>Độ rộng</Typography>
           <TextField className={`${classes.marginGroup} ${classes.textField}`} size="small" name="indent"
             required select variant="outlined" value={props.indent}
             onChange={handleChangeIndent} SelectProps={{ native: true }}

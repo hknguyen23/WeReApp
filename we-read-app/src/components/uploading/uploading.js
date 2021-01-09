@@ -9,6 +9,11 @@ import {
   Divider,
   Grid,
   TextField,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogContentText,
+  CircularProgress,
   Typography,
   FormControlLabel,
   FormHelperText,
@@ -37,6 +42,10 @@ const useStyles = makeStyles((theme) => ({
   },
   cardContent: {
     padding: '16px 20px',
+    display: 'flex',
+  },
+  cardContentGrid: {
+    width: '90%'
   },
   inputLabel: {
     display: 'flex',
@@ -108,37 +117,44 @@ const useStyles = makeStyles((theme) => ({
   uploadButton: {
     backgroundColor: '#2196F3',
     color: '#FFFFFF',
-  }
+  },
+  dialogContent: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: '20px'
+  },
 
 
 }));
 
 const ageGroup = [
   {
-    value: 'all',
+    value: 'Mọi lứa tuổi',
     label: 'Mọi lứa tuổi'
   },
   {
-    value: 'teen',
+    value: 'Teen',
     label: 'Teen'
   },
   {
-    value: '18',
+    value: 'Trên 18 tuổi',
     label: 'Trên 18 tuổi'
   }
 ];
 
 const language = [
   {
-    value: 'vietnam',
+    value: 'Tiếng Việt',
     label: 'Tiếng Việt'
   },
   {
-    value: 'english',
+    value: 'Tiếng Anh',
     label: 'Tiếng Anh'
   },
   {
-    value: 'another',
+    value: 'Ngôn ngữ khác',
     label: 'Ngôn ngữ khác'
   }
 ];
@@ -191,8 +207,8 @@ function Uploading() {
     title: '',
     shortDes: '',
     longDes: '',
-    age: '',
-    language: '',
+    age: 'Mọi lứa tuổi',
+    language: 'Tiếng Việt',
     genre: {},
     tags: {},
     titleChapter: '',
@@ -341,7 +357,7 @@ function Uploading() {
 
 
   // submit form
-  const onSubmit = (event) => {
+  const onSubmit = async (event) => {
     var tempErrors = { ...errors };;
     if (values.title === '') {
       tempErrors.title = "* Không được để trống";
@@ -363,282 +379,306 @@ function Uploading() {
       console.log(tempErrors)
     }
     else {
-      histoty.push("/Detail/1");
+      //setOpenWaiting(true);
+      //await delay(2000);
+      //histoty.push("/Detail/1");
       console.log(values)
+      console.log(selectedFile)
 
     }
   };
 
+  // dialog for when waiting for quick play
+  const [openWaiting, setOpenWaiting] = useState(false);
+  const delay = ms => new Promise(res => setTimeout(res, ms));
+
+  const handleCloseSuccess = (e) => {
+    setOpenWaiting(false);
+  };
+
   return (
-    <Container className={classes.root} maxWidth={false}>
-      <form autoComplete="off" noValidate>
-        <Card>
-          <CardHeader className={classes.cardHeader}
-            avatar={<MenuBookIcon style={{ fontSize: 30 }} />}
-            titleTypographyProps={{ variant: 'h5', align: "left" }}
-            title="Đăng truyện mới" />
+    <React.Fragment>
+      <Dialog
+        open={openWaiting}
+        onClose={(e) => handleCloseSuccess(e)}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">Đang đăng truyện...</DialogTitle>
+        <DialogContent className={classes.dialogContent}>
+          <CircularProgress />
+        </DialogContent>
+      </Dialog>
+      <Container className={classes.root} maxWidth={false}>
+        <form autoComplete="off" noValidate>
+          <Card>
+            <CardHeader className={classes.cardHeader}
+              avatar={<MenuBookIcon style={{ fontSize: 30 }} />}
+              titleTypographyProps={{ variant: 'h5', align: "left" }}
+              title="Đăng truyện mới" />
 
-          <GroupHeader title="Thông tin cơ bản" />
-          <CardContent className={classes.cardContent}>
-            <Grid container spacing={2}>
-              <Grid item xs={3}>
-                <Container className={classes.inputLabel}>
-                  <Typography>Tiêu đề </Typography>
+            <GroupHeader title="Thông tin cơ bản" />
+            <CardContent className={classes.cardContent}>
+              <Grid container spacing={2} className={classes.cardContentGrid}>
+                <Grid item xs={3}>
+                  <Container className={classes.inputLabel}>
+                    <Typography>Tiêu đề </Typography>
                   &nbsp;
                   <Typography color="error"> *</Typography>
-                </Container>
-              </Grid>
-              <Grid item xs={9}>
-                <TextField
-                  size="small"
-                  error={errors.title !== '' ? true : false}
-                  helperText={errors.title !== '' ? errors.title : ''}
-                  fullWidth
-                  name="title"
-                  onChange={handleChange}
-                  onBlur={handleValidate}
-                  required
-                  value={values.firstName}
-                  variant="outlined"
-                />
-              </Grid>
-              <Grid item xs={3}>
-                <Container className={classes.inputLabel}>
-                  <Typography>Mô tả ngắn</Typography>
+                  </Container>
+                </Grid>
+                <Grid item xs={9}>
+                  <TextField
+                    size="small"
+                    error={errors.title !== '' ? true : false}
+                    helperText={errors.title !== '' ? errors.title : ''}
+                    fullWidth
+                    name="title"
+                    onChange={handleChange}
+                    onBlur={handleValidate}
+                    required
+                    value={values.firstName}
+                    variant="outlined"
+                  />
+                </Grid>
+                <Grid item xs={3}>
+                  <Container className={classes.inputLabel}>
+                    <Typography>Mô tả ngắn</Typography>
                   &nbsp;
                   <Typography color="error">  </Typography>
-                </Container>
-              </Grid>
-              <Grid item xs={9}>
-                <TextField
-                  size="small"
-                  error={false}
-                  helperText={false ? "daw" : ""}
-                  fullWidth
-                  name="shortDes"
-                  onChange={handleChange}
-                  required
-                  value={values.firstName}
-                  variant="outlined"
-                />
-              </Grid>
-              <Grid item xs={3}>
-                <Container className={classes.inputLabel}>
-                  <Typography>Mô tả dài</Typography>
+                  </Container>
+                </Grid>
+                <Grid item xs={9}>
+                  <TextField
+                    size="small"
+                    error={false}
+                    helperText={false ? "daw" : ""}
+                    fullWidth
+                    name="shortDes"
+                    onChange={handleChange}
+                    required
+                    value={values.firstName}
+                    variant="outlined"
+                  />
+                </Grid>
+                <Grid item xs={3}>
+                  <Container className={classes.inputLabel}>
+                    <Typography>Mô tả dài</Typography>
                   &nbsp;
                   <Typography color="error"> *</Typography>
-                </Container>
+                  </Container>
+                </Grid>
+                <Grid item xs={9}>
+                  <Editor
+                    toolbarClassName={classes.toolbarStyle}
+                    editorClassName={classes.editorStyleDes}
+                    wrapperClassName={classes.wrapperStyle}
+                    onEditorStateChange={handleChangeEditorDes}
+                    onBlur={handleValidateEditorDes}
+                  />
+                  <FormHelperText className={classes.FormHelperText} error>
+                    {errors.longDes !== '' ? errors.longDes : ''}
+                  </FormHelperText>
+                </Grid>
               </Grid>
-              <Grid item xs={9}>
-                <Editor
-                  toolbarClassName={classes.toolbarStyle}
-                  editorClassName={classes.editorStyleDes}
-                  wrapperClassName={classes.wrapperStyle}
-                  onEditorStateChange={handleChangeEditorDes}
-                  onBlur={handleValidateEditorDes}
-                />
-                <FormHelperText className={classes.FormHelperText} error>
-                  {errors.longDes !== '' ? errors.longDes : ''}
-                </FormHelperText>
-              </Grid>
-            </Grid>
-          </CardContent>
+            </CardContent>
 
-          <GroupHeader title="Thông tin chi tiết" />
-          <CardContent>
-            <Grid container spacing={2}>
-              <Grid item xs={3}>
-                <Container className={classes.inputLabel}>
-                  <Typography>Độ tuổi </Typography>
+            <GroupHeader title="Thông tin chi tiết" />
+            <CardContent>
+              <Grid container spacing={2}>
+                <Grid item xs={3}>
+                  <Container className={classes.inputLabel}>
+                    <Typography>Độ tuổi </Typography>
                   &nbsp;
                   <Typography color="error">  </Typography>
-                </Container>
-              </Grid>
-              <Grid item xs={9}>
-                <TextField
-                  size="small"
-                  fullWidth
-                  name="age"
-                  onChange={handleChange}
-                  required
-                  select
-                  SelectProps={{ native: true }}
-                  value={values.state}
-                  variant="outlined"
-                >
-                  {ageGroup.map((option) => (
-                    <option
-                      key={option.value}
-                      value={option.value}
-                    >
-                      {option.label}
-                    </option>
-                  ))}
-                </TextField>
+                  </Container>
+                </Grid>
+                <Grid item xs={9}>
+                  <TextField
+                    size="small"
+                    fullWidth
+                    name="age"
+                    onChange={handleChange}
+                    required
+                    select
+                    SelectProps={{ native: true }}
+                    value={values.state}
+                    variant="outlined"
+                  >
+                    {ageGroup.map((option) => (
+                      <option
+                        key={option.value}
+                        value={option.value}
+                      >
+                        {option.label}
+                      </option>
+                    ))}
+                  </TextField>
 
-              </Grid>
-              <Grid item xs={3}>
-                <Container className={classes.inputLabel}>
-                  <Typography>Ngôn ngữ</Typography>
+                </Grid>
+                <Grid item xs={3}>
+                  <Container className={classes.inputLabel}>
+                    <Typography>Ngôn ngữ</Typography>
                   &nbsp;
                   <Typography color="error">  </Typography>
-                </Container>
-              </Grid>
-              <Grid item xs={9}>
-                <TextField
-                  size="small"
-                  fullWidth
-                  name="language"
-                  onChange={handleChange}
-                  required
-                  select
-                  SelectProps={{ native: true }}
-                  value={values.state}
-                  variant="outlined"
-                >
-                  {language.map((option) => (
-                    <option
-                      key={option.value}
-                      value={option.value}
-                    >
-                      {option.label}
-                    </option>
-                  ))}
-                </TextField>
-
-              </Grid>
-
-              <Grid item xs={3}>
-                <Container className={classes.inputLabel}>
-                  <Typography>Thể loại</Typography>
-                  &nbsp;
-                  <Typography color="error"> </Typography>
-                </Container>
-              </Grid>
-              <Grid item xs={9}>
-                <Grid container spacing={0} className={classes.formCheckBoxGrid}>
-                  {genre.map(genre => (
-                    <Grid item xs={3}>
-                      <FormControlLabel
-                        className={classes.formCheckBoxGridItem}
-                        control={<Checkbox onChange={handleChangeGenre} name={genre.value} />}
-                        label={genre.label}
-                      />
-                    </Grid>
-                  ))}
+                  </Container>
                 </Grid>
-                <FormHelperText className={classes.FormHelperText} error={errorGenre}> * Tối đa 4 thể loại </FormHelperText>
-              </Grid>
+                <Grid item xs={9}>
+                  <TextField
+                    size="small"
+                    fullWidth
+                    name="language"
+                    onChange={handleChange}
+                    required
+                    select
+                    SelectProps={{ native: true }}
+                    value={values.state}
+                    variant="outlined"
+                  >
+                    {language.map((option) => (
+                      <option
+                        key={option.value}
+                        value={option.value}
+                      >
+                        {option.label}
+                      </option>
+                    ))}
+                  </TextField>
 
-              <Grid item xs={3}>
-                <Container className={classes.inputLabel}>
-                  <Typography>Tags</Typography>
-                  &nbsp;
-                  <Typography color="error"> </Typography>
-                </Container>
-              </Grid>
-              <Grid item xs={9}>
-                <Grid container spacing={0} className={classes.formCheckBoxGrid}>
-                  {tags.map(tags => (
-                    <Grid item xs={3}>
-                      <FormControlLabel
-                        className={classes.formCheckBoxGridItem}
-                        control={<Checkbox onChange={handleChangeTags} name={tags.value} />}
-                        label={tags.label}
-                      />
-                    </Grid>
-                  ))}
                 </Grid>
-                <FormHelperText className={classes.FormHelperText}> </FormHelperText>
 
-              </Grid>
-
-            </Grid>
-          </CardContent>
-
-          <GroupHeader title="Ảnh" />
-          <CardContent className={classes.cardContent}>
-            <Grid container spacing={2}>
-              <Grid item xs={3}>
-                <Container className={classes.inputLabel}>
-                  <Typography>Ảnh bìa truyện </Typography>
+                <Grid item xs={3}>
+                  <Container className={classes.inputLabel}>
+                    <Typography>Thể loại</Typography>
                   &nbsp;
                   <Typography color="error"> </Typography>
-                </Container>
+                  </Container>
+                </Grid>
+                <Grid item xs={9}>
+                  <Grid container spacing={0} className={classes.formCheckBoxGrid}>
+                    {genre.map(genre => (
+                      <Grid item xs={3}>
+                        <FormControlLabel
+                          className={classes.formCheckBoxGridItem}
+                          control={<Checkbox onChange={handleChangeGenre} name={genre.value} />}
+                          label={genre.label}
+                        />
+                      </Grid>
+                    ))}
+                  </Grid>
+                  <FormHelperText className={classes.FormHelperText} error={errorGenre}> * Tối đa 4 thể loại </FormHelperText>
+                </Grid>
+
+                <Grid item xs={3}>
+                  <Container className={classes.inputLabel}>
+                    <Typography>Tags</Typography>
+                  &nbsp;
+                  <Typography color="error"> </Typography>
+                  </Container>
+                </Grid>
+                <Grid item xs={9}>
+                  <Grid container spacing={0} className={classes.formCheckBoxGrid}>
+                    {tags.map(tags => (
+                      <Grid item xs={3}>
+                        <FormControlLabel
+                          className={classes.formCheckBoxGridItem}
+                          control={<Checkbox onChange={handleChangeTags} name={tags.value} />}
+                          label={tags.label}
+                        />
+                      </Grid>
+                    ))}
+                  </Grid>
+                  <FormHelperText className={classes.FormHelperText}> </FormHelperText>
+
+                </Grid>
+
               </Grid>
-              <Grid item xs={9}>
-                <div className={classes.imageBox}>
-                  <img className={classes.image} src={preview} alt='' />
-                  <Box>
-                    <Button className={classes.imageButton} color="primary" variant="contained" component="label">
-                      Đăng ảnh
+            </CardContent>
+
+            <GroupHeader title="Ảnh" />
+            <CardContent className={classes.cardContent}>
+              <Grid container spacing={2}>
+                <Grid item xs={3}>
+                  <Container className={classes.inputLabel}>
+                    <Typography>Ảnh bìa truyện </Typography>
+                  &nbsp;
+                  <Typography color="error"> </Typography>
+                  </Container>
+                </Grid>
+                <Grid item xs={9}>
+                  <div className={classes.imageBox}>
+                    <img className={classes.image} src={preview} alt='' />
+                    <Box>
+                      <Button className={classes.imageButton} color="primary" variant="contained" component="label">
+                        Đăng ảnh
                     <input type='file' hidden onChange={onSelectFile} />
+                      </Button>
+                      <Button className={classes.deleteImageButton} color="primary" size="small" onClick={onDeleteImage}>
+                        Xóa
                     </Button>
-                    <Button className={classes.deleteImageButton} color="primary" size="small" onClick={onDeleteImage}>
-                      Xóa
-                    </Button>
-                  </Box>
-                </div>
+                    </Box>
+                  </div>
+                </Grid>
               </Grid>
-            </Grid>
-          </CardContent>
+            </CardContent>
 
-          <GroupHeader title="Chương truyện đầu tiên" />
-          <CardContent className={classes.cardContent}>
-            <Grid container spacing={2}>
-              <Grid item xs={3}>
-                <Container className={classes.inputLabel}>
-                  <Typography>Tiêu đề chương </Typography>
+            <GroupHeader title="Chương truyện đầu tiên" />
+            <CardContent className={classes.cardContent}>
+              <Grid container spacing={2}>
+                <Grid item xs={3}>
+                  <Container className={classes.inputLabel}>
+                    <Typography>Tiêu đề chương </Typography>
                   &nbsp;
                   <Typography color="error"> *</Typography>
-                </Container>
-              </Grid>
-              <Grid item xs={9}>
-                <TextField
-                  size="small"
-                  error={errors.titleChapter !== '' ? true : false}
-                  helperText={errors.titleChapter !== '' ? errors.titleChapter : ''}
-                  fullWidth
-                  name="titleChapter"
-                  onChange={handleChange}
-                  onBlur={handleValidate}
-                  required
-                  value={values.firstName}
-                  variant="outlined"
-                />
-              </Grid>
-              <Grid item xs={3}>
-                <Container className={classes.inputLabel}>
-                  <Typography>Nội dung</Typography>
+                  </Container>
+                </Grid>
+                <Grid item xs={9}>
+                  <TextField
+                    size="small"
+                    error={errors.titleChapter !== '' ? true : false}
+                    helperText={errors.titleChapter !== '' ? errors.titleChapter : ''}
+                    fullWidth
+                    name="titleChapter"
+                    onChange={handleChange}
+                    onBlur={handleValidate}
+                    required
+                    value={values.firstName}
+                    variant="outlined"
+                  />
+                </Grid>
+                <Grid item xs={3}>
+                  <Container className={classes.inputLabel}>
+                    <Typography>Nội dung</Typography>
                   &nbsp;
                   <Typography color="error"> *</Typography>
-                </Container>
-              </Grid>
-              <Grid item xs={9}>
-                <Editor
-                  toolbarClassName={classes.toolbarStyle}
-                  editorClassName={classes.editorStyleChapter}
-                  wrapperClassName={classes.wrapperStyle}
-                  onEditorStateChange={handleChangeEditorData}
-                  onBlur={handleValidateEditorData}
-                />
-                <FormHelperText className={classes.FormHelperText} error>
-                  {errors.data !== '' ? errors.data : ''}
-                </FormHelperText>
+                  </Container>
+                </Grid>
+                <Grid item xs={9}>
+                  <Editor
+                    toolbarClassName={classes.toolbarStyle}
+                    editorClassName={classes.editorStyleChapter}
+                    wrapperClassName={classes.wrapperStyle}
+                    onEditorStateChange={handleChangeEditorData}
+                    onBlur={handleValidateEditorData}
+                  />
+                  <FormHelperText className={classes.FormHelperText} error>
+                    {errors.data !== '' ? errors.data : ''}
+                  </FormHelperText>
 
+                </Grid>
               </Grid>
-            </Grid>
-          </CardContent>
+            </CardContent>
 
-          <Divider />
-          <Box display="flex" justifyContent="flex-end" p={2} >
-            <Button className={classes.uploadButton} color='primary' variant="contained" onClick={onSubmit}>
-              Đăng truyện
+            <Divider />
+            <Box display="flex" justifyContent="flex-end" p={2} >
+              <Button className={classes.uploadButton} color='primary' variant="contained" onClick={onSubmit}>
+                Đăng truyện
             </Button>
-          </Box>
-        </Card>
-      </form>
-    </Container>
+            </Box>
+          </Card>
+        </form>
+      </Container>
+    </React.Fragment>
   );
 }
 

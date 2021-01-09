@@ -12,6 +12,7 @@ import Profile from "./components/profile/profile";
 import Reading from './components/reading/reading';
 import PrivateRoute from './components/PrivateRoute';
 import Searching from './components/searching/searching';
+import StickyFooter from './components/stickyFooter/StickyFooter';
 
 const routes = [
   {
@@ -77,6 +78,7 @@ function App() {
             <Home />
           </Route>
         </Switch>
+        <StickyFooter />
       </div>
     </Router>
 
