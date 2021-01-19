@@ -25,7 +25,7 @@ const user = {
   jobTitle: 'Author',
   name: 'Nguyen Quang Minh',
   email: "quangminh@gmail.com",
-  timezone: 'GTM-7'
+  timezone: 'GMT-7'
 };
 
 const useStyles = makeStyles(() => ({
@@ -64,42 +64,42 @@ const Profile = ({ className, ...rest }) => {
         >
           <div>
             <Avatar
-                className={classes.avatar}
-                src={user.avatar}
+              className={classes.avatar}
+              src={user.avatar}
             />
           </div>
           <div display="flex" justifyContent="flex-start">
             <Typography
-                color="textPrimary"
-                gutterBottom
-                variant="h3"
+              color="textPrimary"
+              gutterBottom
+              variant="h3"
             >
               {user.name}
             </Typography>
             <Typography
-                color="textPrimary"
-                gutterBottom
-                variant="body1"
+              color="textPrimary"
+              gutterBottom
+              variant="body1"
             >
               {user.email}
             </Typography>
             <Typography
-                color="textSecondary"
-                variant="body1"
+              color="textSecondary"
+              variant="body1"
             >
               {`${user.city} ${user.country}`}
             </Typography>
             <Typography
-                className={classes.dateText}
-                color="textSecondary"
-                variant="body1"
+              className={classes.dateText}
+              color="textSecondary"
+              variant="body1"
             >
               {`${moment().format('hh:mm A')} ${user.timezone}`}
             </Typography>
             <Typography >
-              <Chip className={classes.chip} icon={<FaceIcon/>} label={"Excelent Author"} color="primary" variant="outlined"/>
-              <Chip className={classes.chip} label="#Basic_Reader"/>
-              <Chip className={classes.chip} avatar={<Avatar>M</Avatar>} label="Best_author" variant="outlined"/>
+              <Chip className={classes.chip} icon={<FaceIcon />} label={"Exellent Author"} color="primary" variant="outlined" />
+              <Chip className={classes.chip} label="#Basic_Reader" />
+              <Chip className={classes.chip} avatar={<Avatar>M</Avatar>} label="Best_author" variant="outlined" />
             </Typography>
           </div>
         </Box>

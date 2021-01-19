@@ -63,10 +63,10 @@ const AddNovel = ({ className, ...rest }) => {
             className={clsx(classes.root, className)}
             {...rest}
             // style={{ height: '400px', width: '300px', backgroundColor: "#f5f5f5"}}
-            style={{ height: '400px', width: '300px'}}
+            style={{ height: '400px', width: '300px' }}
 
         >
-            <CardHeader classes={{title: classes.headerTitle}}  title="TRUYỆN" />
+            <CardHeader classes={{ title: classes.headerTitle }} title="TRUYỆN" />
             <Divider />
             <CardContent>
                 <Box
@@ -79,7 +79,7 @@ const AddNovel = ({ className, ...rest }) => {
                     justifyContent="center"
                     mt={2}
                 >
-                    <Typography>ĐĂNG TRUYỆN / CẬP NHẬT TRUYỆN</Typography>
+                    <Typography>ĐĂNG TRUYỆN MỚi</Typography>
                 </Box>
             </CardContent>
         </Card>

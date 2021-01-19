@@ -64,6 +64,15 @@ const useStyles = makeStyles((theme) => ({
     lineHeight: 'normal',
     fontWeight: 'normal',
     textTransform: 'none',
+  },
+  pagination: {
+    '& > *': {
+      marginTop: theme.spacing(2),
+    },
+    '& .Mui-selected': {
+      backgroundColor: '#0057B2',
+      color: 'white',
+    }
   }
 }));
 
@@ -422,7 +431,7 @@ function Detail() {
             </div>
             <Divider className={classes.divider} style={{ marginBottom: '10px' }}></Divider>
             <div style={{ textAlign: 'center' }}>
-              <Button variant="contained"  color="secondary" className={classes.readNowButton} style={{
+              <Button variant="contained" color="secondary" className={classes.readNowButton} style={{
                 width: '340px', height: '64px', fontSize: '30px', fontWeight: 'bold', marginRight: '24px'
               }}
                 onClick={handleMoveToReadingPage}
@@ -479,8 +488,8 @@ function Detail() {
           </div>
           <br></br>
           <div style={{ display: 'flex', justifyContent: 'center' }}>
-            <Pagination size="large" color="primary" count={Math.ceil(fiction.comments.length / offset)}
-              variant="outlined" shape="rounded" showFirstButton showLastButton
+            <Pagination className={classes.pagination} size="large" color="primary" count={Math.ceil(fiction.comments.length / offset)}
+              shape="rounded" /*showFirstButton showLastButton*/
               onChange={(event, value) => setCommentPage(value)} />
           </div>
           <br></br>

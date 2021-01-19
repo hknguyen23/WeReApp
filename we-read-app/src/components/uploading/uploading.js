@@ -379,9 +379,9 @@ function Uploading() {
       console.log(tempErrors)
     }
     else {
-      //setOpenWaiting(true);
-      //await delay(2000);
-      //histoty.push("/Detail/1");
+      setOpenWaiting(true);
+      await delay(2000);
+      histoty.push("/Detail/1");
       console.log(values)
       console.log(selectedFile)
 
