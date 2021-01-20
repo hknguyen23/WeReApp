@@ -43,6 +43,7 @@ const useStyles = makeStyles((theme) => ({
   cardContent: {
     padding: '16px 20px',
     display: 'flex',
+    justifyContent: 'center'
   },
   cardContentGrid: {
     width: '90%'
@@ -161,42 +162,72 @@ const language = [
 
 const genre = [
   {
-    value: 'action',
-    label: 'Hành động'
+    value: 'Bí ẩn',
+    label: 'Bí ẩn'
   },
   {
-    value: 'comedy',
-    label: 'Hài hước'
-  },
-  {
-    value: 'horror',
-    label: 'Kinh dị'
-  },
-  {
-    value: 'stragedy',
+    value: 'Bi kịch',
     label: 'Bi kịch'
   },
   {
-    value: 'romance',
-    label: 'Tình cảm'
+    value: 'Hài hước',
+    label: 'Hài hước'
   },
   {
-    value: 'history',
+    value: 'Hành động',
+    label: 'Hành động'
+  },
+  {
+    value: 'Huyền huyễn',
+    label: 'Huyền huyễn'
+  },
+  {
+    value: 'Kiếm hiệp',
+    label: 'Kiếm hiệp'
+  },
+  {
+    value: 'Kinh dị',
+    label: 'Kinh dị'
+  },
+  {
+    value: 'Lịch sử',
     label: 'Lịch sử'
+  },
+  {
+    value: 'Tâm lý',
+    label: 'Tâm lý'
+  },
+  {
+    value: 'Tình cảm',
+    label: 'Tình cảm'
   },
 ];
 
 const tags = [
   {
-    value: 'Male lead',
+    value: 'Nam chinh',
     label: 'Nam chinh'
   },
   {
-    value: 'Female lead',
+    value: 'Nữ chính',
     label: 'Nữ chính'
   },
-
-
+  {
+    value: 'Ma thuật',
+    label: 'Ma thuật'
+  },
+  {
+    value: 'AI',
+    label: 'AI'
+  },
+  {
+    value: 'Chiến tranh',
+    label: 'Chiến tranh'
+  },
+  {
+    value: 'Vũ trụ',
+    label: 'Vũ trụ'
+  },
 ];
 
 function Uploading() {
@@ -353,7 +384,8 @@ function Uploading() {
   }
 
   var genreList = Object.entries(values.genre);                     // validate genre checkbox
-  const errorGenre = genreList.filter((v) => v[1] === true).length > 4;
+  const selectedGenre = genreList.filter((v) => v[1] === true).length;
+  const errorGenre = selectedGenre > 4 || selectedGenre < 1;
 
 
   // submit form
@@ -379,9 +411,9 @@ function Uploading() {
       console.log(tempErrors)
     }
     else {
-      //setOpenWaiting(true);
-      //await delay(2000);
-      //histoty.push("/Detail/1");
+      setOpenWaiting(true);
+      await delay(2000);
+      histoty.push("/Detail/1");
       console.log(values)
       console.log(selectedFile)
 
@@ -484,8 +516,8 @@ function Uploading() {
             </CardContent>
 
             <GroupHeader title="Thông tin chi tiết" />
-            <CardContent>
-              <Grid container spacing={2}>
+            <CardContent className={classes.cardContent}> 
+              <Grid container spacing={2} className={classes.cardContentGrid}>
                 <Grid item xs={3}>
                   <Container className={classes.inputLabel}>
                     <Typography>Độ tuổi </Typography>
@@ -566,7 +598,7 @@ function Uploading() {
                       </Grid>
                     ))}
                   </Grid>
-                  <FormHelperText className={classes.FormHelperText} error={errorGenre}> * Tối đa 4 thể loại </FormHelperText>
+                  <FormHelperText className={classes.FormHelperText} error={errorGenre}> * Chọn từ 1 tới 4 thể loại </FormHelperText>
                 </Grid>
 
                 <Grid item xs={3}>
@@ -597,7 +629,7 @@ function Uploading() {
 
             <GroupHeader title="Ảnh" />
             <CardContent className={classes.cardContent}>
-              <Grid container spacing={2}>
+              <Grid container spacing={2} className={classes.cardContentGrid}>
                 <Grid item xs={3}>
                   <Container className={classes.inputLabel}>
                     <Typography>Ảnh bìa truyện </Typography>
@@ -624,7 +656,7 @@ function Uploading() {
 
             <GroupHeader title="Chương truyện đầu tiên" />
             <CardContent className={classes.cardContent}>
-              <Grid container spacing={2}>
+              <Grid container spacing={2} className={classes.cardContentGrid}>
                 <Grid item xs={3}>
                   <Container className={classes.inputLabel}>
                     <Typography>Tiêu đề chương </Typography>
