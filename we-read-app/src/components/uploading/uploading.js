@@ -12,7 +12,6 @@ import {
   Dialog,
   DialogTitle,
   DialogContent,
-  DialogContentText,
   CircularProgress,
   Typography,
   FormControlLabel,
@@ -69,7 +68,6 @@ const useStyles = makeStyles((theme) => ({
   wrapperStyle: {
     border: "1px solid #C0C0C0",
   },
-
   formCheckBoxGrid: {
     textAlign: 'left',
     width: '100%',
@@ -77,7 +75,6 @@ const useStyles = makeStyles((theme) => ({
     direction: "row",
     justify: "flex-start",
     alignItems: "flex-start",
-
   },
   formCheckBoxGridItem: {
     marginBottom: '-10px'
@@ -124,9 +121,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom: '20px'
-  },
-
-
+  }
 }));
 
 const ageGroup = [
@@ -195,8 +190,6 @@ const tags = [
     value: 'Female lead',
     label: 'Nữ chính'
   },
-
-
 ];
 
 function Uploading() {
@@ -224,8 +217,8 @@ function Uploading() {
     data: '',
   });
 
-  const [selectedFile, setSelectedFile] = useState()
-  const [preview, setPreview] = useState()
+  const [selectedFile, setSelectedFile] = useState();
+  const [preview, setPreview] = useState();
 
   // intial data
   useEffect(() => {
@@ -253,16 +246,16 @@ function Uploading() {
       return;
     }
 
-    const objectUrl = URL.createObjectURL(selectedFile)
-    setPreview(objectUrl)
+    const objectUrl = URL.createObjectURL(selectedFile);
+    setPreview(objectUrl);
 
     // free memory when ever this component is unmounted
     return () => URL.revokeObjectURL(objectUrl)
-  }, [selectedFile])
+  }, [selectedFile]);
 
   const onSelectFile = e => {
     if (!e.target.files || e.target.files.length === 0) {
-      setSelectedFile(undefined)
+      setSelectedFile(undefined);
       return;
     }
     setSelectedFile(e.target.files[0]);
@@ -270,7 +263,7 @@ function Uploading() {
   }
 
   const onDeleteImage = (e) => {
-    setSelectedFile(undefined)
+    setSelectedFile(undefined);
     return;
   }
 
@@ -280,31 +273,34 @@ function Uploading() {
       ...values,
       [event.target.name]: event.target.value
     });
-  };
+  }
+
   const handleChangeEditorDes = (editorState) => {      // change long des editor 
     setValues({
       ...values,
       longDes: editorState
     });
-  };
+  }
+
   const handleChangeEditorData = (editorState) => {   // change data editor 
     setValues({
       ...values,
       data: editorState
     });
-  };
+  }
+
   const handleChangeGenre = (event) => {             // change genre checkbox 
     setValues({
       ...values,
       genre: { ...values.genre, [event.target.name]: event.target.checked }
     });
   }
+
   const handleChangeTags = (event) => {            // change tags checkbox 
     setValues({
       ...values,
       tags: { ...values.tags, [event.target.name]: event.target.checked }
     });
-
   }
 
   // validate for form
@@ -355,10 +351,9 @@ function Uploading() {
   var genreList = Object.entries(values.genre);                     // validate genre checkbox
   const errorGenre = genreList.filter((v) => v[1] === true).length > 4;
 
-
   // submit form
   const onSubmit = async (event) => {
-    var tempErrors = { ...errors };;
+    var tempErrors = { ...errors };
     if (values.title === '') {
       tempErrors.title = "* Không được để trống";
     }
@@ -376,15 +371,14 @@ function Uploading() {
     var errorList = Object.entries(tempErrors);
     const hasError = errorList.filter((v) => v[1] !== '').length > 0;
     if (hasError || errorGenre) {
-      console.log(tempErrors)
+      console.log(tempErrors);
     }
     else {
       setOpenWaiting(true);
       await delay(2000);
       histoty.push("/Detail/1");
-      console.log(values)
-      console.log(selectedFile)
-
+      console.log(values);
+      console.log(selectedFile);
     }
   };
 
