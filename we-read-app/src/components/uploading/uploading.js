@@ -23,6 +23,7 @@ import { useHistory } from 'react-router-dom'
 import MenuBookIcon from '@material-ui/icons/MenuBook';
 import { Editor } from 'react-draft-wysiwyg';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
+import * as data from '../../resources/data/data';
 
 import GroupHeader from './groupHeader'
 
@@ -135,8 +136,8 @@ const ageGroup = [
     label: 'Teen'
   },
   {
-    value: 'Trên 18 tuổi',
-    label: 'Trên 18 tuổi'
+    value: 'Người lớn 18+',
+    label: 'Người lớn 18+'
   }
 ];
 
@@ -153,76 +154,6 @@ const language = [
     value: 'Ngôn ngữ khác',
     label: 'Ngôn ngữ khác'
   }
-];
-
-const genre = [
-  {
-    value: 'Bí ẩn',
-    label: 'Bí ẩn'
-  },
-  {
-    value: 'Bi kịch',
-    label: 'Bi kịch'
-  },
-  {
-    value: 'Hài hước',
-    label: 'Hài hước'
-  },
-  {
-    value: 'Hành động',
-    label: 'Hành động'
-  },
-  {
-    value: 'Huyền huyễn',
-    label: 'Huyền huyễn'
-  },
-  {
-    value: 'Kiếm hiệp',
-    label: 'Kiếm hiệp'
-  },
-  {
-    value: 'Kinh dị',
-    label: 'Kinh dị'
-  },
-  {
-    value: 'Lịch sử',
-    label: 'Lịch sử'
-  },
-  {
-    value: 'Tâm lý',
-    label: 'Tâm lý'
-  },
-  {
-    value: 'Tình cảm',
-    label: 'Tình cảm'
-  },
-];
-
-const tags = [
-  {
-    value: 'Nam chinh',
-    label: 'Nam chinh'
-  },
-  {
-    value: 'Nữ chính',
-    label: 'Nữ chính'
-  },
-  {
-    value: 'Ma thuật',
-    label: 'Ma thuật'
-  },
-  {
-    value: 'AI',
-    label: 'AI'
-  },
-  {
-    value: 'Chiến tranh',
-    label: 'Chiến tranh'
-  },
-  {
-    value: 'Vũ trụ',
-    label: 'Vũ trụ'
-  },
 ];
 
 function Uploading() {
@@ -257,12 +188,12 @@ function Uploading() {
   useEffect(() => {
     window.scrollTo(0, 0);
     var temp = {};
-    for (var i = 0; i < genre.length; i++) {
-      temp[genre[i].value] = false;
+    for (var i = 0; i < data.category.length; i++) {
+      temp[data.category[i].id] = false;
     }
     var temp2 = {};
-    for (var j = 0; j < tags.length; j++) {
-      temp2[tags[j].value] = false;
+    for (var j = 0; j < data.tags.length; j++) {
+      temp2[data.tags[j].id] = false;
     }
 
     setValues({
@@ -410,7 +341,7 @@ function Uploading() {
     else {
       setOpenWaiting(true);
       await delay(2000);
-      histoty.push("/Detail/1");
+      //histoty.push("/Detail/1");
       console.log(values)
       console.log(selectedFile)
     }
@@ -584,12 +515,12 @@ function Uploading() {
                 </Grid>
                 <Grid item xs={9}>
                   <Grid container spacing={0} className={classes.formCheckBoxGrid}>
-                    {genre.map(genre => (
+                    {data.category.map(genre => (
                       <Grid item xs={3}>
                         <FormControlLabel
                           className={classes.formCheckBoxGridItem}
-                          control={<Checkbox onChange={handleChangeGenre} name={genre.value} />}
-                          label={genre.label}
+                          control={<Checkbox onChange={handleChangeGenre} name={genre.id} />}
+                          label={genre.name}
                         />
                       </Grid>
                     ))}
@@ -606,12 +537,12 @@ function Uploading() {
                 </Grid>
                 <Grid item xs={9}>
                   <Grid container spacing={0} className={classes.formCheckBoxGrid}>
-                    {tags.map(tags => (
+                    {data.tags.map(tags => (
                       <Grid item xs={3}>
                         <FormControlLabel
                           className={classes.formCheckBoxGridItem}
-                          control={<Checkbox onChange={handleChangeTags} name={tags.value} />}
-                          label={tags.label}
+                          control={<Checkbox onChange={handleChangeTags} name={tags.id} />}
+                          label={tags.name}
                         />
                       </Grid>
                     ))}

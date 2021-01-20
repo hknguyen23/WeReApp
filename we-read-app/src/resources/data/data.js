@@ -40,11 +40,41 @@ const category = [
 		name: "Siêu nhiên",
 	}
 ];
+
+const tags = [
+	{
+		id: 1,
+		name: 'Nam chính'
+	},
+	{
+		id: 2,
+		name: 'Nữ chính'
+	},
+	{
+		id: 3,
+		name: 'Ma thuật'
+	},
+	{
+		id: 4,
+		name: 'AI'
+	},
+	{
+		id: 5,
+		name: 'Chiến tranh'
+	},
+	{
+		id: 6,
+		name: 'Vũ trụ'
+	},
+  ];
+  
+
 const novels = [
 	{
 		id: 1,
 		name: "Đêm hào nhoáng",
-		catId: 1,
+		catId: [1,2, 7],
+		tagId: [1],
 		updatedAt: 2, // đại diện cho ngày được cập nhật, số càng lớn thì ngày càng gần
 		rating: 3,
 		year: 2019,
@@ -54,7 +84,8 @@ const novels = [
 	}, {
 		id: 2,
 		name: "Quan tài cho Dimitrios",
-		catId: 1,
+		catId: [1,2],
+		tagId: [2],
 		updatedAt: 1,
 		rating: 1,
 		year: 2019,
@@ -64,7 +95,8 @@ const novels = [
 	}, {
 		id: 3,
 		name: "Giấc ngủ lớn",
-		catId: 1,
+		catId: [1,2],
+		tagId: [3],
 		updatedAt: 5,
 		rating: 4,
 		year: 2020,
@@ -74,7 +106,8 @@ const novels = [
 	}, {
 		id: 4,
 		name: "Bí ẩn mãi là bí ẩn 1",
-		catId: 1,
+		catId: [1,2],
+		tagId: [4],
 		updatedAt: 5,
 		rating: 3,
 		year: 2019,
@@ -84,7 +117,8 @@ const novels = [
 	}, {
 		id: 5,
 		name: "Bí ẩn mãi là bí ẩn 2",
-		catId: 1,
+		catId: [1,2],
+		tagId: [5],
 		updatedAt: 4,
 		rating: 3,
 		year: 2019,
@@ -94,7 +128,8 @@ const novels = [
 	}, {
 		id: 6,
 		name: "Bí ẩn mãi là bí ẩn 3",
-		catId: 1,
+		catId: [1,2],
+		tagId: [1],
 		updatedAt: 3,
 		rating: 2.0,
 		year: 2020,
@@ -104,7 +139,8 @@ const novels = [
 	}, {
 		id: 7,
 		name: "Bí ẩn mãi là bí ẩn 4",
-		catId: 1,
+		catId: [1,2],
+		tagId: [2],
 		updatedAt: 7,
 		rating: 3.5,
 		year: 2020,
@@ -114,7 +150,8 @@ const novels = [
 	}, {
 		id: 8,
 		name: "Bí ẩn mãi là bí ẩn 5",
-		catId: 1,
+		catId: [1,2],
+		tagId: [3],
 		updatedAt: 8,
 		rating: 3.5,
 		year: 2021,
@@ -124,7 +161,8 @@ const novels = [
 	}, {
 		id: 9,
 		name: "Bí ẩn làng ma sói",
-		catId: 1,
+		catId: [1,2],
+		tagId: [4],
 		updatedAt: 6,
 		rating: 3.5,
 		year: 2020,
@@ -134,7 +172,8 @@ const novels = [
 	}, {
 		id: 10,
 		name: "Quân hậu đen",
-		catId: 1,
+		catId: [1,2],
+		tagId: [5],
 		updatedAt: 9,
 		rating: 3.5,
 		year: 2019,
@@ -144,7 +183,8 @@ const novels = [
 	}, {
 		id: 11,
 		name: "Ngôi làng bí ẩn",
-		catId: 1,
+		catId: [1,2],
+		tagId: [1],
 		updatedAt: 10,
 		rating: 3.5,
 		year: 2020,
@@ -154,7 +194,8 @@ const novels = [
 	}, {
 		id: 12,
 		name: "Con tàu huyển bí",
-		catId: 1,
+		catId: [1,2],
+		tagId: [1],
 		updatedAt: 7,
 		rating: 3.5,
 		year: 2020,
@@ -164,7 +205,8 @@ const novels = [
 	}, {
 		id: 13,
 		name: "Như Ý truyện",
-		catId: 3,
+		catId: [3, 4],
+		tagId: [1],
 		updatedAt: 2,
 		rating: 5.0,
 		year: 2019,
@@ -174,7 +216,8 @@ const novels = [
 	}, {
 		id: 14,
 		name: "Chân Hoàn truyện",
-		catId: 3,
+		catId: [3, 4],
+		tagId: [1],
 		updatedAt: 1,
 		rating: 5.0,
 		year: 2011,
@@ -184,7 +227,8 @@ const novels = [
 	}, {
 		id: 15,
 		name: "Hạnh phúc của một tang gia",
-		catId: 2,
+		catId: [2, 3],
+		tagId: [1],
 		updatedAt: 1,
 		rating: 3.0,
 		year: 2000,
@@ -194,7 +238,8 @@ const novels = [
 	}, {
 		id: 16,
 		name: "Cách cách giá lâm",
-		catId: 5,
+		catId: [5, 6],
+		tagId: [1],
 		updatedAt: 1,
 		rating: 4.0,
 		year: 2011,
@@ -204,7 +249,8 @@ const novels = [
 	}, {
 		id: 17,
 		name: "Cá voi trắng và hòn đảo nhỏ",
-		catId: 5,
+		catId: [5, 6],
+		tagId: [1],
 		updatedAt: 3,
 		rating: 3.0,
 		year: 2021,
@@ -214,7 +260,8 @@ const novels = [
 	}, {
 		id: 18,
 		name: "Em không giống ảnh chụp",
-		catId: 2,
+		catId: [2, 3],
+		tagId: [1],
 		updatedAt: 2,
 		rating: 3.0,
 		year: 2021,
@@ -224,7 +271,8 @@ const novels = [
 	}, {
 		id: 19,
 		name: "Chúng ta thử bên nhau nhé",
-		catId: 5,
+		catId: [5, 6],
+		tagId: [1],
 		updatedAt: 2,
 		rating: 5.0,
 		year: 2021,
@@ -234,7 +282,8 @@ const novels = [
 	}, {
 		id: 20,
 		name: "Tặng anh một tình yêu nhỏ",
-		catId: 8,
+		catId: [7, 8],
+		tagId: [1],
 		updatedAt: 1,
 		rating: 4.0,
 		year: 2021,
@@ -244,7 +293,8 @@ const novels = [
 	}, {
 		id: 21,
 		name: "Một mình tôi chấp hết",
-		catId: 2,
+		catId: [2, 3],
+		tagId: [1],
 		updatedAt: 5,
 		rating: 3.0,
 		year: 2021,
@@ -254,7 +304,8 @@ const novels = [
 	}, {
 		id: 22,
 		name: "Love in real life",
-		catId: 2,
+		catId: [2, 3],
+		tagId: [1],
 		updatedAt: 6,
 		rating: 5.0,
 		year: 2021,
@@ -264,7 +315,8 @@ const novels = [
 	}, {
 		id: 23,
 		name: "Cuối cùng anh cũng tìm thấy em",
-		catId: 5,
+		catId: [5, 6],
+		tagId: [1],
 		updatedAt: 5,
 		rating: 2.0,
 		year: 2020,
@@ -274,7 +326,8 @@ const novels = [
 	}, {
 		id: 24,
 		name: "Em là ánh nắng đời anh",
-		catId: 8,
+		catId: [7, 8],
+		tagId: [1],
 		updatedAt: 4,
 		rating: 4.0,
 		year: 2020,
@@ -284,7 +337,8 @@ const novels = [
 	}, {
 		id: 25,
 		name: "Tình yêu này tôi chỉ muốn dành cho em",
-		catId: 8,
+		catId: [2, 7, 8],
+		tagId: [1, 2],
 		updatedAt: 5,
 		rating: 4.0,
 		year: 2020,
@@ -438,4 +492,4 @@ const imgURL = [
 	"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcToRHlqzRBdWdYnqB4jW4-_jkS8qlVZsqGFBQ&usqp=CAU",
 ];
 
-export { category, novels, topMonth, topWeek, allTime, imgURL }
+export { category, tags, novels, topMonth, topWeek, allTime, imgURL }

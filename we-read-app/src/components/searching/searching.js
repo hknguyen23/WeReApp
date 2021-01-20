@@ -34,6 +34,12 @@ const catOption =
   name: 'Thể loại',
   values: [{ id: 0, name: "Tất cả" }].concat(data.category.slice())
 }
+const tagOption =
+{
+  name: 'Tag',
+  values: [{ id: 0, name: "Tất cả" }].concat(data.tags.slice())
+}
+
 const yearOption =
 {
   name: 'Năm',
@@ -121,7 +127,8 @@ const itemsperPage = 12;
 function Searching() {
   const classes = useStyles();
   const input = (useParams().fictionName + " ");
-  const [chosenCatID, setChosenCatID] = useState(0);
+  const [chosenCatID, setChosenCatID] = useState([0]);
+  const [chosenTagID, setChosenTagID] = useState([0]);
   const [chosenYearID, setChosenYearID] = useState(0);
   const [chosenStatusID, setChosenStatusID] = useState(0);
   const [chosenSortID, setChosenSortID] = useState(1);
@@ -132,7 +139,56 @@ function Searching() {
 
 
   const handleChangeCat = (i) => {
-    setChosenCatID(i);
+    let newArr = [0];
+    if (i === 0 && !chosenCatID.includes(0)) {              // if select all, deselect all other genre
+      newArr = [0];
+    }
+    else {
+      const index = chosenCatID.indexOf(i);                // add or remove genre
+      if (index > -1) {                                           // remove genre
+        newArr = chosenCatID.filter(id => id !== i);
+      }
+      else {                                                      // add genre                      
+        newArr = [
+          ...chosenCatID,
+          i,
+        ];
+      }
+
+      if (newArr.length === 0) {                                // if List genre is empty, add all
+        newArr.push(0);
+      }
+      if (newArr.length > 1 && newArr.includes(0)) {            // if List genre has 2 or more genre and includes all, remove all
+        newArr = newArr.filter(id => id !== 0);
+      }
+    }
+    setChosenCatID(newArr);
+  }
+  const handleChangeTag = (i) => {
+    let newArr = [0];
+    if (i === 0 && !chosenTagID.includes(0)) {              // if select all, deselect all other tag
+      newArr = [0];
+    }
+    else {
+      const index = chosenTagID.indexOf(i);                // add or remove tag
+      if (index > -1) {                                           // remove tag
+        newArr = chosenTagID.filter(id => id !== i);
+      }
+      else {                                                      // add tag                      
+        newArr = [
+          ...chosenTagID,
+          i,
+        ];
+      }
+
+      if (newArr.length === 0) {                                // if List tag is empty, add all
+        newArr.push(0);
+      }
+      if (newArr.length > 1 && newArr.includes(0)) {            // if List tag has 2 or more tag and includes all, remove all
+        newArr = newArr.filter(id => id !== 0);
+      }
+    }
+    setChosenTagID(newArr);
   }
 
   const handleChangeYear = (i) => {
@@ -152,8 +208,12 @@ function Searching() {
     const end = start + itemsperPage - 1;
     let novels = JSON.parse(JSON.stringify(data.novels));
 
-    if (chosenCatID !== 0)
-      novels = data.novels.filter(novel => novel.catId === chosenCatID);
+    console.log(novels)
+    if (!chosenCatID.includes(0))
+      novels = novels.filter(novel => chosenCatID.every(id => novel.catId.includes(id)));
+    if (!chosenTagID.includes(0)) {
+      novels = novels.filter(novel => chosenTagID.every(id => novel.tagId.includes(id)));
+    }
     if (chosenYearID !== 0) {
       if (chosenYearID !== 12)
         novels = novels.filter(novel => novel.year === yearOption.values[chosenYearID].name);
@@ -183,7 +243,7 @@ function Searching() {
       setDisplayNovels(paginatedNovels);
       setResultNum(`${novelsByName.length} Kết quả tìm kiếm "${input.trim()}"`);
     }
-  }, [input, page, chosenCatID, chosenYearID, chosenStatusID, setTotalNovels]);
+  }, [input, page, chosenCatID, chosenTagID, chosenYearID, chosenStatusID, setTotalNovels]);
 
   return (
     <Container className={classes.cardGrid} maxWidth="xl">
@@ -201,10 +261,37 @@ function Searching() {
                       style={{
                         margin: '5px', backgroundColor: '#e0e0e0', borderRadius: '8px', border: '0px', outline: 'none', cursor: 'pointer',
                         padding: '6px 16px 6px', boxShadow: '0 4px 4px 0px rgba(0, 0, 0, 0.2), 0 4px 4px 0 rgba(0, 0, 0, 0.19)',
-                        backgroundColor: chosenCatID === value.id ? '#2F80ED' : '#E0E0E0',
-                        color: chosenCatID === value.id ? 'white' : 'black'
+                        backgroundColor: chosenCatID.includes(value.id) ? '#2F80ED' : '#E0E0E0',
+                        color: chosenCatID.includes(value.id) ? 'white' : 'black'
                       }}
                       onClick={() => handleChangeCat(value.id)}
+                    >
+                      {value.name}
+                    </button>
+                  ))
+                }
+              </div>
+
+            </Grid>
+          </Grid>
+        }
+        {
+          <Grid container style={{ marginTop: '7px', marginBottom: '7px' }}>
+            <Grid item xs={12} sm={2} md={1} lg={1}>
+              <Typography style={{ textAlign: 'right', marginTop: '7px' }}>{tagOption.name}</Typography>
+            </Grid>
+            <Grid item xs={12} sm={10} md={11} lg={11}>
+              <div style={{ textAlign: 'justify', marginLeft: '20px' }}>
+                {
+                  tagOption.values.map((value, index) => (
+                    <button key={index}
+                      style={{
+                        margin: '5px', backgroundColor: '#e0e0e0', borderRadius: '8px', border: '0px', outline: 'none', cursor: 'pointer',
+                        padding: '6px 16px 6px', boxShadow: '0 4px 4px 0px rgba(0, 0, 0, 0.2), 0 4px 4px 0 rgba(0, 0, 0, 0.19)',
+                        backgroundColor: chosenTagID.includes(value.id) ? '#2F80ED' : '#E0E0E0',
+                        color: chosenTagID.includes(value.id) ? 'white' : 'black'
+                      }}
+                      onClick={() => handleChangeTag(value.id)}
                     >
                       {value.name}
                     </button>

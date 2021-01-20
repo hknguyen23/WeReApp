@@ -95,7 +95,7 @@ export default function Home() {
   const [chosenCategory, setChosenCategory] = React.useState(1);
   const [sortStrategy, setSortStrategy] = React.useState(0);
   const [topStrategy, setTopStrategy] = React.useState(0);
-  const [novelByCat, setNovelByCat] = React.useState(novels.filter(novel => novel.catId === chosenCategory).sort((novel1, novel2) => novel2.updatedAt - novel1.updatedAt));
+  const [novelByCat, setNovelByCat] = React.useState(novels.filter(novel => novel.catId.includes(chosenCategory)).sort((novel1, novel2) => novel2.updatedAt - novel1.updatedAt));
   const [displayedNovels, setDisplayNovels] = React.useState([]);
   const [displayedTop, setDisplayedTop] = React.useState(topMonth);
   const [page, setPage] = React.useState(1);
@@ -111,9 +111,9 @@ export default function Home() {
 
   React.useEffect(() => {
     if (sortStrategy === 0)
-      setNovelByCat(novels.filter(novel => novel.catId === chosenCategory).sort((novel1, novel2) => novel2.updatedAt - novel1.updatedAt))
+      setNovelByCat(novels.filter(novel => novel.catId.includes(chosenCategory)).sort((novel1, novel2) => novel2.updatedAt - novel1.updatedAt))
     else
-      setNovelByCat(novels.filter(novel => novel.catId === chosenCategory).sort((novel1, novel2) => novel2.rating - novel1.rating));
+      setNovelByCat(novels.filter(novel => novel.catId.includes(chosenCategory)).sort((novel1, novel2) => novel2.rating - novel1.rating));
 
   }, [chosenCategory, sortStrategy])
 
