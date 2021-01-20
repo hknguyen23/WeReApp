@@ -8,7 +8,8 @@ import {
   Tooltip,
   Button,
   Card,
-  TextField
+  TextField,
+  IconButton
 } from '@material-ui/core';
 import Pagination from '@material-ui/lab/Pagination';
 import QuestionAnswerIcon from '@material-ui/icons/QuestionAnswer';
@@ -20,7 +21,6 @@ import ThumbDownIcon from '@material-ui/icons/ThumbDown';
 import defaultImg from '../../resources/images/defaultAvatar.png';
 import { novels, topMonth, imgURL } from '../../resources/data/data'
 
-
 const useStyles = makeStyles((theme) => ({
   container: {
     display: 'inline-block',
@@ -29,15 +29,15 @@ const useStyles = makeStyles((theme) => ({
   },
   rightContainer: {
     float: "right",
-    width: '65%',
+    width: '69%',
     display: 'flex',
     flexDirection: 'column',
     textAlign: 'left',
   },
   leftContainer: {
     float: "left",
-    width: '35%',
-    textAlign: 'left',
+    width: '31%',
+    textAlign: 'center',
   },
   viewsAndFollowers: {
     display: 'flex',
@@ -64,10 +64,25 @@ const useStyles = makeStyles((theme) => ({
     lineHeight: 'normal',
     fontWeight: 'normal',
     textTransform: 'none',
+  },
+  pagination: {
+    '& > *': {
+      marginTop: theme.spacing(2),
+    },
+    '& .Mui-selected': {
+      backgroundColor: '#0057B2',
+      color: 'white',
+    }
   }
 }));
 
 const offset = 5;
+const fontSize = {
+  title: '44px',
+  label: '24px',
+  button: '20px',
+  header: '30px'
+}
 
 function Detail() {
   const classes = useStyles();
@@ -233,7 +248,7 @@ function Detail() {
       dislikeCount: 10,
       text: "He wondered if he should disclose the truth to his friends. It would be a risky move. Yes, the truth would make things a lot easier if they all stayed on the same page, but the truth might fracture the group leaving everything in even more of a mess than it was not telling the truth. It was time to decide which way to go."
     }]
-  })
+  });
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -253,10 +268,10 @@ function Detail() {
   const drawStars = (rating) => {
     let stars = [];
     for (let i = 0; i < rating; i++) {
-      stars.push(<StarIcon key={i} style={{ width: '48px', height: '48px', color: '#ffb400' }} />);
+      stars.push(<StarIcon key={i} style={{ width: '40px', height: '40px', color: '#ffb400' }} />);
     }
     for (let i = 0; i < 5 - rating; i++) {
-      stars.push(<StarIcon key={rating + i} style={{ width: '48px', height: '48px', color: 'gray' }} />);
+      stars.push(<StarIcon key={rating + i} style={{ width: '40px', height: '40px', color: 'gray' }} />);
     }
     return stars;
   }
@@ -314,11 +329,19 @@ function Detail() {
               </Typography>
             </div>
             <div style={{ flexDirection: 'column', width: '5%', textAlign: 'center' }}>
-              <ThumbDownIcon style={{ color: '#979797', width: '40px', height: '40px' }} />
+              <Tooltip title="Không thích" aria-label="Không thích">
+                <IconButton size='small'>
+                  <ThumbDownIcon style={{ color: '#979797', width: '40px', height: '40px' }} />
+                </IconButton>
+              </Tooltip>
               <Typography>{comments[i].dislikeCount}</Typography>
             </div>
             <div style={{ flexDirection: 'column', width: '5%', textAlign: 'center' }}>
-              <ThumbUpIcon style={{ color: '#0e4da4', width: '40px', height: '40px' }} />
+              <Tooltip title="Thích" aria-label="Thích">
+                <IconButton size='small'>
+                  <ThumbUpIcon style={{ color: '#0e4da4', width: '40px', height: '40px' }} />
+                </IconButton>
+              </Tooltip>
               <Typography>{comments[i].likeCount}</Typography>
             </div>
           </div>
@@ -342,88 +365,96 @@ function Detail() {
       <Container component="main" maxWidth="lg">
         <div className={classes.container}>
           <div className={classes.leftContainer}>
-            <img height={475} width={400} src={fiction.imgURL === "none" ? defaultImg : fiction.imgURL} alt="Default fiction"
+            <img height={425} width={350} src={fiction.imgURL === "none" ? defaultImg : fiction.imgURL} alt="Default fiction"
               style={{ border: "1px solid black" }}
             />
-            <div style={{ width: '402px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
               <div>
                 {drawStars(fiction.rating)}
               </div>
-              <Typography style={{ fontSize: '30px', marginLeft: '10px' }}>
+              <Typography style={{ fontSize: fontSize.label, marginLeft: '10px' }}>
                 {fiction.rating + "/5"}
               </Typography>
             </div>
-            <Typography style={{ textAlign: 'center', width: '402px', fontSize: '30px' }}>
+            <Typography style={{ textAlign: 'center', fontSize: fontSize.label }}>
               với {fiction.reviews.length} lượt đánh giá
             </Typography>
           </div>
 
           <div className={classes.rightContainer}>
-            <Typography style={{ fontSize: '54px' }}>{fiction.title}</Typography>
+            <Typography style={{ fontSize: fontSize.title }}>{fiction.title}</Typography>
             <Divider className={classes.divider}></Divider>
-            <Typography style={{ fontSize: '30px', display: 'flex' }}>
-              Tác giả:&nbsp;
+            <div style={{ display: 'flex', flexDirection: 'row' }}>
+              <Typography style={{ fontSize: fontSize.label, display: 'flex' }}>
+                Tác giả:&nbsp;
+              </Typography>
               {fiction.authors.map(author =>
-              <Link key={author.id} to="/Profile"
-                style={{ textDecoration: 'none', fontSize: '30px', color: '#0b79d0' }}
-              >
-                {author.name}&nbsp;
-              </Link>
-            )}
-            </Typography>
-            <Divider className={classes.divider}></Divider>
-            <Typography style={{ fontSize: '30px' }}>
-              Thể loại:&nbsp;
+                <Link key={author.id} to="/Profile"
+                  style={{ textDecoration: 'none', fontSize: fontSize.label, color: '#0b79d0' }}
+                >
+                  {author.name}&nbsp;
+                </Link>
+              )}
+            </div>
+            <Divider className={classes.divider} style={{ marginBottom: '5px' }}></Divider>
+            <div style={{ display: 'flex', flexDirection: 'row' }}>
+              <Typography style={{ fontSize: fontSize.label, marginRight: '3px' }}>
+                Thể loại:
+              </Typography>
               {fiction.genres.map(genre =>
-              <Button key={genre.id} className={classes.button} style={{
-                height: '36px', width: '150px', color: 'white',
-                backgroundColor: '#2196f3', marginRight: '10px', fontSize: '24px'
-              }}
-              >
-                {genre.name}
-              </Button>
-            )}
-            </Typography>
-            <Divider className={classes.divider} style={{ marginTop: '5px' }}></Divider>
-            <Typography style={{ fontSize: '30px' }}>
-              Tag(s):&nbsp;
+                <Button key={genre.id} className={classes.button} style={{
+                  height: '36px', width: '150px', color: 'white',
+                  backgroundColor: '#2196f3', marginRight: '10px', fontSize: fontSize.button
+                }}
+                >
+                  {genre.name}
+                </Button>
+              )}
+            </div>
+            <Divider className={classes.divider} style={{ marginTop: '5px', marginBottom: '5px' }}></Divider>
+            <div style={{ display: 'flex', flexDirection: 'row' }}>
+              <Typography style={{ fontSize: fontSize.label, marginRight: '23px' }}>
+                Tag(s):
+              </Typography>
               {fiction.tags.map(tag =>
-              <Button key={tag.id} className={classes.button} style={{
-                height: '36px', width: '150px', color: 'white',
-                backgroundColor: '#2196f3', marginRight: '10px', fontSize: '24px'
-              }}
-              >
-                {tag.name}
-              </Button>
-            )}
-            </Typography>
+                <Button key={tag.id} className={classes.button} style={{
+                  height: '36px', width: '150px', color: 'white',
+                  backgroundColor: '#2196f3', marginRight: '10px', fontSize: fontSize.button
+                }}
+                >
+                  {tag.name}
+                </Button>
+              )}
+            </div>
             <Divider className={classes.divider} style={{ marginTop: '5px' }}></Divider>
-            <Typography style={{ fontSize: '30px', display: 'flex' }}>
-              Ngôn ngữ:&nbsp;
+            <div style={{ display: 'flex', flexDirection: 'row' }}>
+              <Typography style={{ fontSize: fontSize.label, display: 'flex' }}>
+                Ngôn ngữ:&nbsp;        
+              </Typography>
               {fiction.languages.map(language =>
-              <Typography component={'span'} key={language.id} style={{ fontSize: '30px' }}>
-                {language.name}&nbsp;
-                </Typography>
-            )}
-            </Typography>
+                <Typography component={'span'} key={language.id} style={{ fontSize: fontSize.label }}>
+                  {language.name}&nbsp;
+                  </Typography>
+              )}
+            </div>
             <Divider className={classes.divider}></Divider>
-            <Typography style={{ fontSize: '30px' }}>
+            <Typography style={{ fontSize: fontSize.label }}>
               Trạng thái:
               {fiction.status === 1 ? " Đang cập nhật" : fiction.status === 2 ? " Hoàn chỉnh" : " Bị hủy"}
             </Typography>
             <Divider className={classes.divider}></Divider>
             <div className={classes.viewsAndFollowers}>
-              <Typography style={{ fontSize: '30px', width: '50%' }}>
-                Lượt xem:&nbsp;{fiction.views}
+              <Typography style={{ fontSize: fontSize.label, width: '50%' }}>
+                Lượt xem:<b>&nbsp;{fiction.views}</b>
               </Typography>
-              <Typography style={{ fontSize: '30px', width: '50%' }}>
-                Theo dõi:&nbsp;{fiction.followers}
+              <Typography style={{ fontSize: fontSize.label, width: '50%' }}>
+                Theo dõi:&nbsp;<b>{fiction.followers}</b>
               </Typography>
             </div>
             <Divider className={classes.divider} style={{ marginBottom: '10px' }}></Divider>
             <div style={{ textAlign: 'center' }}>
-              <Button variant="contained"  color="secondary" className={classes.readNowButton} style={{
-                width: '340px', height: '64px', fontSize: '30px', fontWeight: 'bold', marginRight: '24px'
+              <Button variant="contained" color="secondary" className={classes.readNowButton} style={{
+                width: '300px', height: '60px', fontSize: '24px', fontWeight: 'bold', marginRight: '24px'
               }}
                 onClick={handleMoveToReadingPage}
               >
@@ -431,7 +462,7 @@ function Detail() {
               </Button>
               <Tooltip title="Bình luận" aria-label="Bình luận">
                 <Button className={classes.button} style={{
-                  width: '64px', height: '64px', marginRight: '24px'
+                  width: '60px', height: '60px', marginRight: '24px'
                 }}
                   href="#commentSection"
                 >
@@ -440,7 +471,7 @@ function Detail() {
               </Tooltip>
               <Tooltip title="Lưu vào yêu thích" aria-label="Lưu vào yêu thích">
                 <Button className={classes.button} style={{
-                  width: '64px', height: '64px', marginRight: '24px'
+                  width: '60px', height: '60px', marginRight: '24px'
                 }}
                 >
                   <BookmarkIcon style={{ width: '48px', height: '48px' }} />
@@ -449,15 +480,16 @@ function Detail() {
             </div>
           </div>
         </div>
+
         <div className={classes.container} style={{ textAlign: 'left' }}>
-          <Typography style={{ fontSize: '36px' }}>Nội dung</Typography>
+          <Typography style={{ fontSize: fontSize.header }}>Nội dung</Typography>
           <Divider className={classes.divider}></Divider>
-          <Typography style={{ fontSize: '30px', wordBreak: 'break-all', textAlign: 'justify' }}>
+          <Typography style={{ fontSize: fontSize.label, wordBreak: 'break-all', textAlign: 'justify' }}>
             {fiction.description}
           </Typography>
         </div>
         <div className={classes.container} style={{ textAlign: 'left' }}>
-          <Typography style={{ fontSize: '36px' }}>
+          <Typography style={{ fontSize: fontSize.header }}>
             Danh sách các chương ({fiction.chapters.length})
           </Typography>
           <Divider className={classes.divider} style={{ marginTop: '-3px', marginBottom: '5px' }}></Divider>
@@ -466,21 +498,28 @@ function Detail() {
           </div>
         </div>
         <div id="commentSection" className={classes.container} style={{ textAlign: 'left' }}>
-          <Typography style={{ fontSize: '36px' }}>
+          <Typography style={{ fontSize: fontSize.header }}>
             Bình luận ({fiction.comments.length})
           </Typography>
           <Divider className={classes.divider} style={{ marginTop: '-3px', marginBottom: '5px' }}></Divider>
-          <TextField placeholder="  Nhập bình luận..." fullWidth multiline rows={5} rowsMax={5}
-            style={{ backgroundColor: '#bbbbbb', marginBottom: '20px' }}
-            inputProps={{ style: { fontSize: '16px' } }} // font size of input text
-          />
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: '10px' }}>
+            <TextField placeholder="  Nhập bình luận..." fullWidth multiline rows={5} rowsMax={5}
+              style={{ backgroundColor: '#bbbbbb', marginBottom: '10px' }}
+              inputProps={{ style: { fontSize: '16px' } }} // font size of input text
+            />
+            <Button className={classes.button} variant="contained" color="secondary" 
+              style={{ width: '150px', height: '40px', textTransform: 'none', borderRadius: '8px', fontSize: fontSize.button }}>
+              <QuestionAnswerIcon style={{ width: '30px', height: '30px' }} />
+              &nbsp;Bình luận
+            </Button>
+          </div>
           <div>
             {createCommentsList(fiction.comments)}
           </div>
           <br></br>
           <div style={{ display: 'flex', justifyContent: 'center' }}>
-            <Pagination size="large" color="primary" count={Math.ceil(fiction.comments.length / offset)}
-              variant="outlined" shape="rounded" showFirstButton showLastButton
+            <Pagination className={classes.pagination} size="large" color="primary" shape="rounded"
+              count={Math.ceil(fiction.comments.length / offset)} /*showFirstButton showLastButton*/
               onChange={(event, value) => setCommentPage(value)} />
           </div>
           <br></br>
