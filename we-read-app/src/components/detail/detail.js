@@ -384,51 +384,59 @@ function Detail() {
           <div className={classes.rightContainer}>
             <Typography style={{ fontSize: fontSize.title }}>{fiction.title}</Typography>
             <Divider className={classes.divider}></Divider>
-            <Typography style={{ fontSize: fontSize.label, display: 'flex' }}>
-              Tác giả:&nbsp;
+            <div style={{ display: 'flex', flexDirection: 'row' }}>
+              <Typography style={{ fontSize: fontSize.label, display: 'flex' }}>
+                Tác giả:&nbsp;
+              </Typography>
               {fiction.authors.map(author =>
-              <Link key={author.id} to="/Profile"
-                style={{ textDecoration: 'none', fontSize: fontSize.label, color: '#0b79d0' }}
-              >
-                {author.name}&nbsp;
-              </Link>
-            )}
-            </Typography>
+                <Link key={author.id} to="/Profile"
+                  style={{ textDecoration: 'none', fontSize: fontSize.label, color: '#0b79d0' }}
+                >
+                  {author.name}&nbsp;
+                </Link>
+              )}
+            </div>
             <Divider className={classes.divider} style={{ marginBottom: '5px' }}></Divider>
-            <Typography style={{ fontSize: fontSize.label }}>
-              Thể loại:&nbsp;
+            <div style={{ display: 'flex', flexDirection: 'row' }}>
+              <Typography style={{ fontSize: fontSize.label, marginRight: '3px' }}>
+                Thể loại:
+              </Typography>
               {fiction.genres.map(genre =>
-              <Button key={genre.id} className={classes.button} style={{
-                height: '36px', width: '150px', color: 'white',
-                backgroundColor: '#2196f3', marginRight: '10px', fontSize: fontSize.button
-              }}
-              >
-                {genre.name}
-              </Button>
-            )}
-            </Typography>
+                <Button key={genre.id} className={classes.button} style={{
+                  height: '36px', width: '150px', color: 'white',
+                  backgroundColor: '#2196f3', marginRight: '10px', fontSize: fontSize.button
+                }}
+                >
+                  {genre.name}
+                </Button>
+              )}
+            </div>
             <Divider className={classes.divider} style={{ marginTop: '5px', marginBottom: '5px' }}></Divider>
-            <Typography style={{ fontSize: fontSize.label }}>
-              Tag(s):&nbsp;
+            <div style={{ display: 'flex', flexDirection: 'row' }}>
+              <Typography style={{ fontSize: fontSize.label, marginRight: '23px' }}>
+                Tag(s):
+              </Typography>
               {fiction.tags.map(tag =>
-              <Button key={tag.id} className={classes.button} style={{
-                height: '36px', width: '150px', color: 'white',
-                backgroundColor: '#2196f3', marginRight: '10px', fontSize: fontSize.button
-              }}
-              >
-                {tag.name}
-              </Button>
-            )}
-            </Typography>
+                <Button key={tag.id} className={classes.button} style={{
+                  height: '36px', width: '150px', color: 'white',
+                  backgroundColor: '#2196f3', marginRight: '10px', fontSize: fontSize.button
+                }}
+                >
+                  {tag.name}
+                </Button>
+              )}
+            </div>
             <Divider className={classes.divider} style={{ marginTop: '5px' }}></Divider>
-            <Typography style={{ fontSize: fontSize.label, display: 'flex' }}>
-              Ngôn ngữ:&nbsp;
+            <div style={{ display: 'flex', flexDirection: 'row' }}>
+              <Typography style={{ fontSize: fontSize.label, display: 'flex' }}>
+                Ngôn ngữ:&nbsp;        
+              </Typography>
               {fiction.languages.map(language =>
-              <Typography component={'span'} key={language.id} style={{ fontSize: fontSize.label }}>
-                {language.name}&nbsp;
-                </Typography>
-            )}
-            </Typography>
+                <Typography component={'span'} key={language.id} style={{ fontSize: fontSize.label }}>
+                  {language.name}&nbsp;
+                  </Typography>
+              )}
+            </div>
             <Divider className={classes.divider}></Divider>
             <Typography style={{ fontSize: fontSize.label }}>
               Trạng thái:
@@ -437,10 +445,10 @@ function Detail() {
             <Divider className={classes.divider}></Divider>
             <div className={classes.viewsAndFollowers}>
               <Typography style={{ fontSize: fontSize.label, width: '50%' }}>
-                Lượt xem:&nbsp;{fiction.views}
+                Lượt xem:<b>&nbsp;{fiction.views}</b>
               </Typography>
               <Typography style={{ fontSize: fontSize.label, width: '50%' }}>
-                Theo dõi:&nbsp;{fiction.followers}
+                Theo dõi:&nbsp;<b>{fiction.followers}</b>
               </Typography>
             </div>
             <Divider className={classes.divider} style={{ marginBottom: '10px' }}></Divider>
