@@ -20,11 +20,11 @@ import defaultImg from '../../resources/images/portrait.jpg';
 
 const user = {
   avatar: defaultImg,
-  city: 'Ho Chi Minh City',
-  country: 'Viet Nam',
+  city: 'Thành phố Hồ Chí Minh',
+  country: 'Việt Nam',
   jobTitle: 'Author',
-  name: 'Nguyen Quang Minh',
-  email: "quangminh@gmail.com",
+  name: 'John Nguyen',
+  email: "john23@gmail.com",
   timezone: 'GMT-7'
 };
 
@@ -87,7 +87,7 @@ const Profile = ({ className, ...rest }) => {
               color="textSecondary"
               variant="body1"
             >
-              {`${user.city} ${user.country}`}
+              {`${user.city} - ${user.country}`}
             </Typography>
             <Typography
               className={classes.dateText}

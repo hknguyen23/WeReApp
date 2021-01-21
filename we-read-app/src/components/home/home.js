@@ -332,7 +332,7 @@ function SimpleFilter({ sortStrategy, setSortStrategy }) {
           aria-controls="lock-menu"
           aria-label="when device is locked"
           onClick={handleClickListItem}
-          style={{ color: 'white' }}
+          style={{ color: 'black' }}
         >
           <ListItemText primary={options[sortStrategy]} />
           < ExpandMoreIcon />

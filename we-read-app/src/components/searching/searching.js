@@ -3,14 +3,19 @@ import { useParams, useHistory } from 'react-router-dom';
 import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
-import Card from '@material-ui/core/Card';
-import CardHeader from '@material-ui/core/CardHeader';
-import CardContent from '@material-ui/core/CardContent';
+import clsx from 'clsx';
+import { makeStyles } from '@material-ui/core/styles';
+import IconButton from '@material-ui/core/IconButton';
+import OutlinedInput from '@material-ui/core/OutlinedInput';
+import InputLabel from '@material-ui/core/InputLabel';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import FormControl from '@material-ui/core/FormControl';
+import CloseIcon from '@material-ui/icons/Close';
+import SearchIcon from '@material-ui/icons/Search';
 import { Link } from 'react-router-dom';
 import Pagination from '@material-ui/lab/Pagination';
 
 import * as data from '../../resources/data/data';
-import { makeStyles } from '@material-ui/core/styles';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -126,7 +131,7 @@ const sortOption = {
 const itemsperPage = 12;
 function Searching() {
   const classes = useStyles();
-  const input = (useParams().fictionName + " ");
+  const [input, setInput] = useState(useParams().fictionName + " ");
   const [chosenCatID, setChosenCatID] = useState([0]);
   const [chosenTagID, setChosenTagID] = useState([0]);
   const [chosenYearID, setChosenYearID] = useState(0);
@@ -136,6 +141,20 @@ function Searching() {
   const [page, setPage] = useState(1);
   const [totalNovels, setTotalNovels] = useState(0);
   const [displayedNovels, setDisplayNovels] = useState([]);
+  const [values, setValues] = useState(input);
+
+  const handleChange = (event) => {
+    setValues(event.target.value);
+  };
+
+  const handleClickClearInput = () => {
+    setValues("");
+  };
+
+  const handleSearch = (event) => {
+    event.preventDefault();
+    setInput(values);
+  };
 
 
   const handleChangeCat = (i) => {
@@ -247,7 +266,43 @@ function Searching() {
 
   return (
     <Container className={classes.cardGrid} maxWidth="xl">
+
       <div style={{ backgroundColor: '#f3f3f3', textAlign: 'center', borderRadius: '18px', padding: '20px' }}>
+
+        {<Grid container >
+          <Grid item xs={12} sm={2} md={1} lg={1}></Grid>
+          <Grid item xs={12} sm={10} md={11} lg={11} >
+            <div style={{ textAlign: 'left' }}>
+              <FormControl className={clsx(classes.margin, classes.textField)} variant="outlined" style={{ marginLeft: '20px', marginTop: '20px', marginBottom: '7px', width: '45%' }}>
+                <InputLabel htmlFor="outlined-adornment-password">Tên truyện</InputLabel>
+                <OutlinedInput
+                  id="outlined-adornment-password"
+                  type={'text'}
+                  label={'Tên truyện'}
+                  value={values.trim()}
+                  onChange={(e) => handleChange(e)}
+                  endAdornment={
+                    <InputAdornment position="end">
+                      <IconButton
+                        aria-label="toggle password visibility"
+                        onClick={handleClickClearInput}
+                        edge="end"
+                      >
+                        <CloseIcon />
+                      </IconButton>
+                    </InputAdornment>
+                  }
+                  labelWidth={70}
+                />
+              </FormControl>
+              <IconButton style={{ marginTop: '25px' }} onClick={handleSearch}><SearchIcon /></IconButton>
+            </div>
+
+          </Grid>
+
+        </Grid>}
+
+
         {
           <Grid container style={{ marginTop: '7px', marginBottom: '7px' }}>
             <Grid item xs={12} sm={2} md={1} lg={1}>
@@ -302,7 +357,7 @@ function Searching() {
             </Grid>
           </Grid>
         }
-        {
+        {/* {
           <Grid container style={{ marginTop: '7px', marginBottom: '7px' }}>
             <Grid item xs={12} sm={2} md={1} lg={1}>
               <Typography style={{ textAlign: 'right', marginTop: '7px' }}>{yearOption.name}</Typography>
@@ -327,7 +382,7 @@ function Searching() {
               </div>
             </Grid>
           </Grid>
-        }
+        } */}
         {
           <Grid container style={{ marginTop: '7px', marginBottom: '7px' }}>
             <Grid item xs={12} sm={2} md={1} lg={1}>

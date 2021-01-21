@@ -107,6 +107,13 @@ export default function NavBar() {
 
   }
 
+  const handleEnter = (e) => {
+    if (e.key === 'Enter') {
+      history.push(`/Searching/${input} `);
+    }
+
+  }
+
   const queryParameters = {
     fictionName: input
   }
@@ -152,6 +159,7 @@ export default function NavBar() {
               onChange={(e) => setInput(e.target.value)}
               value={input}
               fullWidth
+              onKeyPress={handleEnter}
             />
           </div>
           <div className={classes.sectionDesktop}>

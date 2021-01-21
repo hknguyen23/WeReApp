@@ -96,7 +96,12 @@ function Detail() {
     status: 1,
     views: 12345,
     followers: 350,
-    description: "Donec eu tellus ut dolor viverra porta. Aliquam sit amet velit vel odio viverra euismod fringilla eu tellus. Aenean dapibus maximus aliquet. Donec bibendum blandit enim et facilisis.",
+    description: "\nÁ Liên là kiếp trước của A Yên sau đó cô bị chồng mình giết chết là (Cao Vương) và trong kiếp này là Khải." +
+      "\n\nNhưng cô lại nghi ngờ Minh là kẻ giết mình trong kiếp trước cũng là thuộc hạ của thần chết, và cũng chính là người có mối tơ duyên cùng các ân oán hận thù với cô trong kiếp này ." +
+      "\n\nĐịnh mệnh đã đưa Á Liên gặp được thần chết vì mê muội nhanh sắc tuyệt trần của cô nên ông ta đã cho cô một lời hẹn ước." +
+      "\n\nNếu nàng muốn trở lại làm người thì kiếp sau 16 tuổi ta sẽ ra mắt nàng, 20 tuổi ta sẽ lấy nàng" +
+      "\n\nÁ Liên đồng ý và đầu thai thành A Yên ." +
+      "\n\nMời các bạn tiếp tục đọc! ",
     rating: 3,
     authors: [{
       id: 1,
@@ -112,7 +117,7 @@ function Detail() {
     },
     {
       id: 3,
-      name: "Hành động"
+      name: "Ngôn tình"
     },
     {
       id: 4,
@@ -429,7 +434,7 @@ function Detail() {
             <Divider className={classes.divider} style={{ marginTop: '5px' }}></Divider>
             <div style={{ display: 'flex', flexDirection: 'row' }}>
               <Typography style={{ fontSize: fontSize.label, display: 'flex' }}>
-                Ngôn ngữ:&nbsp;        
+                Ngôn ngữ:&nbsp;
               </Typography>
               {fiction.languages.map(language =>
                 <Typography component={'span'} key={language.id} style={{ fontSize: fontSize.label }}>
@@ -484,7 +489,7 @@ function Detail() {
         <div className={classes.container} style={{ textAlign: 'left' }}>
           <Typography style={{ fontSize: fontSize.header }}>Nội dung</Typography>
           <Divider className={classes.divider}></Divider>
-          <Typography style={{ fontSize: fontSize.label, wordBreak: 'break-all', textAlign: 'justify' }}>
+          <Typography style={{ fontSize: fontSize.label, whiteSpace: 'pre-line', textAlign: 'justify', fontSize: '18px' }}>
             {fiction.description}
           </Typography>
         </div>
@@ -507,7 +512,7 @@ function Detail() {
               style={{ backgroundColor: '#bbbbbb', marginBottom: '10px' }}
               inputProps={{ style: { fontSize: '16px' } }} // font size of input text
             />
-            <Button className={classes.button} variant="contained" color="secondary" 
+            <Button className={classes.button} variant="contained" color="secondary"
               style={{ width: '150px', height: '40px', textTransform: 'none', borderRadius: '8px', fontSize: fontSize.button }}>
               <QuestionAnswerIcon style={{ width: '30px', height: '30px' }} />
               &nbsp;Bình luận

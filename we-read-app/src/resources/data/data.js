@@ -9,7 +9,7 @@ const category = [
 	},
 	{
 		id: 3,
-		name: "Cung đấu",
+		name: "Cổ trang",
 	},
 	{
 		id: 4,
@@ -18,6 +18,14 @@ const category = [
 	{
 		id: 5,
 		name: "Hài hước",
+	},
+	{
+		id: 11,
+		name: "Hành động",
+	},
+	{
+		id: 12,
+		name: "Kinh dị",
 	},
 	{
 		id: 6,
@@ -66,14 +74,14 @@ const tags = [
 		id: 6,
 		name: 'Vũ trụ'
 	},
-  ];
-  
+];
+
 
 const novels = [
 	{
 		id: 1,
-		name: "Đêm hào nhoáng",
-		catId: [1,2, 7],
+		name: "Đêm định mệnh",
+		catId: [1, 2, 7],
 		tagId: [1],
 		updatedAt: 2, // đại diện cho ngày được cập nhật, số càng lớn thì ngày càng gần
 		rating: 3,
@@ -83,8 +91,8 @@ const novels = [
 		month: 1
 	}, {
 		id: 2,
-		name: "Quan tài cho Dimitrios",
-		catId: [1,2],
+		name: "Lạ lùng",
+		catId: [1, 2],
 		tagId: [2],
 		updatedAt: 1,
 		rating: 1,
@@ -94,8 +102,8 @@ const novels = [
 		month: 6
 	}, {
 		id: 3,
-		name: "Giấc ngủ lớn",
-		catId: [1,2],
+		name: "Giấc ngủ ngàn thu",
+		catId: [1, 2],
 		tagId: [3],
 		updatedAt: 5,
 		rating: 4,
@@ -105,8 +113,8 @@ const novels = [
 		month: 9
 	}, {
 		id: 4,
-		name: "Bí ẩn mãi là bí ẩn 1",
-		catId: [1,2],
+		name: "Tòa nhà kim tiêu 1",
+		catId: [1, 2],
 		tagId: [4],
 		updatedAt: 5,
 		rating: 3,
@@ -116,8 +124,8 @@ const novels = [
 		month: 3
 	}, {
 		id: 5,
-		name: "Bí ẩn mãi là bí ẩn 2",
-		catId: [1,2],
+		name: "Tòa nhà kim tiêu 2",
+		catId: [1, 2],
 		tagId: [5],
 		updatedAt: 4,
 		rating: 3,
@@ -127,8 +135,8 @@ const novels = [
 		month: 9
 	}, {
 		id: 6,
-		name: "Bí ẩn mãi là bí ẩn 3",
-		catId: [1,2],
+		name: "Tòa nhà kim tiêu 3",
+		catId: [1, 2],
 		tagId: [1],
 		updatedAt: 3,
 		rating: 2.0,
@@ -138,8 +146,8 @@ const novels = [
 		month: 3
 	}, {
 		id: 7,
-		name: "Bí ẩn mãi là bí ẩn 4",
-		catId: [1,2],
+		name: "Tòa nhà kim tiêu 4",
+		catId: [1, 2],
 		tagId: [2],
 		updatedAt: 7,
 		rating: 3.5,
@@ -149,8 +157,8 @@ const novels = [
 		month: 9
 	}, {
 		id: 8,
-		name: "Bí ẩn mãi là bí ẩn 5",
-		catId: [1,2],
+		name: "Tòa nhà kim tiêu 5",
+		catId: [1, 2],
 		tagId: [3],
 		updatedAt: 8,
 		rating: 3.5,
@@ -161,7 +169,7 @@ const novels = [
 	}, {
 		id: 9,
 		name: "Bí ẩn làng ma sói",
-		catId: [1,2],
+		catId: [1, 2],
 		tagId: [4],
 		updatedAt: 6,
 		rating: 3.5,
@@ -171,8 +179,8 @@ const novels = [
 		month: 1
 	}, {
 		id: 10,
-		name: "Quân hậu đen",
-		catId: [1,2],
+		name: "Tam giác quỷ",
+		catId: [1, 2],
 		tagId: [5],
 		updatedAt: 9,
 		rating: 3.5,
@@ -182,8 +190,8 @@ const novels = [
 		month: 9
 	}, {
 		id: 11,
-		name: "Ngôi làng bí ẩn",
-		catId: [1,2],
+		name: "Hẹn ước cõi âm",
+		catId: [1, 2],
 		tagId: [1],
 		updatedAt: 10,
 		rating: 3.5,
@@ -194,7 +202,7 @@ const novels = [
 	}, {
 		id: 12,
 		name: "Con tàu huyển bí",
-		catId: [1,2],
+		catId: [1, 2],
 		tagId: [1],
 		updatedAt: 7,
 		rating: 3.5,
@@ -204,7 +212,7 @@ const novels = [
 		month: 12
 	}, {
 		id: 13,
-		name: "Như Ý truyện",
+		name: "Vương phi xin đừng chạy",
 		catId: [3, 4],
 		tagId: [1],
 		updatedAt: 2,
@@ -215,7 +223,7 @@ const novels = [
 		month: 3
 	}, {
 		id: 14,
-		name: "Chân Hoàn truyện",
+		name: "Tung hoành cổ đại",
 		catId: [3, 4],
 		tagId: [1],
 		updatedAt: 1,
@@ -226,7 +234,7 @@ const novels = [
 		month: 11
 	}, {
 		id: 15,
-		name: "Hạnh phúc của một tang gia",
+		name: "Hạnh phúc đâu tự có",
 		catId: [2, 3],
 		tagId: [1],
 		updatedAt: 1,
@@ -350,145 +358,145 @@ const novels = [
 const topMonth = [
 	{
 		id: 26,
-		name: "Pháp sư vô tâm",
+		name: "Em là cả thế giới của anh",
 		date: "21/01/2021",
 		author: "Đỗ Thị Mai Chờ",
 		desc: "Truyện kể về một nữ nhân được mệnh danh “Dạ Kiêu”, hắc bạch lưỡng đạo đều kính nể cùng sợ hãi, trang dung hiện đại, kinh diễm ra bốn phía. Xinh đẹp của cô khiến người người nguyện ý đi vào chỗ chết nhưng khí tràng của cô lại khiến người ta lực bất tòng tâm.",
 		rating: 5,
-		img: "https://macthienyblog.files.wordpress.com/2015/08/phap-su-vo-tam3-macthienyblog.jpg?w=656",
+		img: "https://i.pinimg.com/736x/a7/1b/7d/a71b7d74f56b9a9853f5629bca62a0ea.jpg",
 	}, {
 		id: 27,
-		name: "Bến thượng hải",
+		name: "Trái Đất vẫn cứ xoay",
 		date: "05/01/2021",
-		author: "Lưu Liệm Tử",
+		author: "Đồng Dao",
 		desc: "Truyện kể về một nữ nhân được mệnh danh “Dạ Kiêu”, hắc bạch lưỡng đạo đều kính nể cùng sợ hãi, trang dung hiện đại, kinh diễm ra bốn phía. Xinh đẹp của cô khiến người người nguyện ý đi vào chỗ chết nhưng khí tràng của cô lại khiến người ta lực bất tòng tâm.",
 		rating: 5,
-		img: "https://i.pinimg.com/originals/0d/47/0e/0d470e179522f6d53c0a3cedfbc8eac9.png"
+		img: "https://i.pinimg.com/originals/04/26/ac/0426acb6964aae0deeaa7271c47a1478.jpg"
 	}, {
 		id: 28,
-		name: "Chân Hoàn truyện",
+		name: "Cho tôi một nụ hôn",
 		date: "15/01/2021",
-		author: "Lưu Liệm Tử",
+		author: "Đồng Dao",
 		desc: "Truyện kể về một nữ nhân được mệnh danh “Dạ Kiêu”, hắc bạch lưỡng đạo đều kính nể cùng sợ hãi, trang dung hiện đại, kinh diễm ra bốn phía. Xinh đẹp của cô khiến người người nguyện ý đi vào chỗ chết nhưng khí tràng của cô lại khiến người ta lực bất tòng tâm.",
 		rating: 4.5,
-		img: "https://sstruyen.com/assets/img/story/hau-cung-chan-hoan-truyen.jpg"
+		img: "https://i.pinimg.com/originals/57/75/65/5775652ff1aec4a5e79765411c37267d.jpg"
 	}, {
 		id: 29,
 		name: "Cung",
 		date: "09/01/2021",
-		author: "Vu Chính",
+		author: "Ammy Trần",
 		desc: "Truyện kể về một nữ nhân được mệnh danh “Dạ Kiêu”, hắc bạch lưỡng đạo đều kính nể cùng sợ hãi, trang dung hiện đại, kinh diễm ra bốn phía. Xinh đẹp của cô khiến người người nguyện ý đi vào chỗ chết nhưng khí tràng của cô lại khiến người ta lực bất tòng tâm.",
 		rating: 4.0,
 		img: "https://wikidich.com/photo/5ad973a4ef21ec7264c0fb91?o=1"
 	}, {
 		id: 30,
-		name: "Như Ý truyện",
+		name: "Thiên địa phong vân",
 		date: "14/01/2021",
 		author: "Trịnh Hiểu Long",
 		desc: "Truyện kể về một nữ nhân được mệnh danh “Dạ Kiêu”, hắc bạch lưỡng đạo đều kính nể cùng sợ hãi, trang dung hiện đại, kinh diễm ra bốn phía. Xinh đẹp của cô khiến người người nguyện ý đi vào chỗ chết nhưng khí tràng của cô lại khiến người ta lực bất tòng tâm.",
 		rating: 4.0,
-		img: "https://img.webtruyen.com/public/images/reviews_img/20191230/review-nhu-y-truyen-3.jpg"
+		img: "https://img.wattpad.com/d3a20e754f0e3666cda0529458190f13ef232996/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f776174747061642d6d656469612d736572766963652f53746f7279496d6167652f4a73474b4e72635f6b4a4c6836673d3d2d3432373235373334332e313463616637323530383030636534313138353435343138333938392e6a7067"
 	}
 ];
 const topWeek = [
 	{
 		id: 28,
-		name: "Chân Hoàn truyện",
+		name: "Cho tôi một nụ hôn",
 		date: "15/01/2021",
-		author: "Lưu Liệm Tử",
+		author: "Đồng Dao",
 		desc: "Truyện kể về một nữ nhân được mệnh danh “Dạ Kiêu”, hắc bạch lưỡng đạo đều kính nể cùng sợ hãi, trang dung hiện đại, kinh diễm ra bốn phía. Xinh đẹp của cô khiến người người nguyện ý đi vào chỗ chết nhưng khí tràng của cô lại khiến người ta lực bất tòng tâm.",
 		rating: 4.5,
-		img: "https://sstruyen.com/assets/img/story/hau-cung-chan-hoan-truyen.jpg"
+		img: "https://i.pinimg.com/originals/57/75/65/5775652ff1aec4a5e79765411c37267d.jpg"
 	}, {
 		id: 27,
-		name: "Bến thượng hải",
+		name: "Trái Đất vẫn cứ xoay",
 		date: "10/01/2021",
-		author: "Lưu Liệm Tử",
+		author: "Đồng Dao",
 		desc: "Truyện kể về một nữ nhân được mệnh danh “Dạ Kiêu”, hắc bạch lưỡng đạo đều kính nể cùng sợ hãi, trang dung hiện đại, kinh diễm ra bốn phía. Xinh đẹp của cô khiến người người nguyện ý đi vào chỗ chết nhưng khí tràng của cô lại khiến người ta lực bất tòng tâm.",
 		rating: 5,
-		img: "https://i.pinimg.com/originals/0d/47/0e/0d470e179522f6d53c0a3cedfbc8eac9.png"
+		img: "https://i.pinimg.com/originals/04/26/ac/0426acb6964aae0deeaa7271c47a1478.jpg"
 	}, {
 		id: 30,
-		name: "Như Ý truyện",
+		name: "Thiên địa phong vân",
 		date: "14/01/2021",
 		author: "Trịnh Hiểu Long",
 		desc: "Truyện kể về một nữ nhân được mệnh danh “Dạ Kiêu”, hắc bạch lưỡng đạo đều kính nể cùng sợ hãi, trang dung hiện đại, kinh diễm ra bốn phía. Xinh đẹp của cô khiến người người nguyện ý đi vào chỗ chết nhưng khí tràng của cô lại khiến người ta lực bất tòng tâm.",
 		rating: 4.0,
-		img: "https://img.webtruyen.com/public/images/reviews_img/20191230/review-nhu-y-truyen-3.jpg"
+		img: "https://img.wattpad.com/d3a20e754f0e3666cda0529458190f13ef232996/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f776174747061642d6d656469612d736572766963652f53746f7279496d6167652f4a73474b4e72635f6b4a4c6836673d3d2d3432373235373334332e313463616637323530383030636534313138353435343138333938392e6a7067"
 	}, {
 		id: 29,
 		name: "Cung",
 		date: "16/01/2021",
-		author: "Vu Chính",
+		author: "Ammy Trần",
 		desc: "Truyện kể về một nữ nhân được mệnh danh “Dạ Kiêu”, hắc bạch lưỡng đạo đều kính nể cùng sợ hãi, trang dung hiện đại, kinh diễm ra bốn phía. Xinh đẹp của cô khiến người người nguyện ý đi vào chỗ chết nhưng khí tràng của cô lại khiến người ta lực bất tòng tâm.",
 		rating: 4.0,
 		img: "https://wikidich.com/photo/5ad973a4ef21ec7264c0fb91?o=1"
 	}, {
 		id: 26,
-		name: "Pháp sư vô tâm",
+		name: "Em là cả thế giới của anh",
 		date: "13/01/2021",
 		author: "Đỗ Thị Mai Chờ",
 		desc: "Truyện kể về một nữ nhân được mệnh danh “Dạ Kiêu”, hắc bạch lưỡng đạo đều kính nể cùng sợ hãi, trang dung hiện đại, kinh diễm ra bốn phía. Xinh đẹp của cô khiến người người nguyện ý đi vào chỗ chết nhưng khí tràng của cô lại khiến người ta lực bất tòng tâm.",
 		rating: 5,
-		img: "https://macthienyblog.files.wordpress.com/2015/08/phap-su-vo-tam3-macthienyblog.jpg?w=656",
+		img: "https://i.pinimg.com/736x/a7/1b/7d/a71b7d74f56b9a9853f5629bca62a0ea.jpg",
 	}
 ];
 const allTime = [
 	{
 		id: 28,
-		name: "Chân Hoàn truyện",
+		name: "Cho tôi một nụ hôn",
 		date: "15/01/2021",
-		author: "Lưu Liệm Tử",
+		author: "Đồng Dao",
 		desc: "Truyện kể về một nữ nhân được mệnh danh “Dạ Kiêu”, hắc bạch lưỡng đạo đều kính nể cùng sợ hãi, trang dung hiện đại, kinh diễm ra bốn phía. Xinh đẹp của cô khiến người người nguyện ý đi vào chỗ chết nhưng khí tràng của cô lại khiến người ta lực bất tòng tâm.",
 		rating: 4.5,
-		img: "https://sstruyen.com/assets/img/story/hau-cung-chan-hoan-truyen.jpg"
+		img: "https://i.pinimg.com/originals/57/75/65/5775652ff1aec4a5e79765411c37267d.jpg"
 	}, {
 		id: 30,
-		name: "Như Ý truyện",
+		name: "Thiên địa phong vân",
 		date: "14/01/2021",
 		author: "Trịnh Hiểu Long",
 		desc: "Truyện kể về một nữ nhân được mệnh danh “Dạ Kiêu”, hắc bạch lưỡng đạo đều kính nể cùng sợ hãi, trang dung hiện đại, kinh diễm ra bốn phía. Xinh đẹp của cô khiến người người nguyện ý đi vào chỗ chết nhưng khí tràng của cô lại khiến người ta lực bất tòng tâm.",
 		rating: 4.0,
-		img: "https://img.webtruyen.com/public/images/reviews_img/20191230/review-nhu-y-truyen-3.jpg"
+		img: "https://img.wattpad.com/d3a20e754f0e3666cda0529458190f13ef232996/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f776174747061642d6d656469612d736572766963652f53746f7279496d6167652f4a73474b4e72635f6b4a4c6836673d3d2d3432373235373334332e313463616637323530383030636534313138353435343138333938392e6a7067"
 	}, {
 		id: 29,
 		name: "Cung",
 		date: "16/01/2021",
-		author: "Vu Chính",
+		author: "Ammy Trần",
 		desc: "Truyện kể về một nữ nhân được mệnh danh “Dạ Kiêu”, hắc bạch lưỡng đạo đều kính nể cùng sợ hãi, trang dung hiện đại, kinh diễm ra bốn phía. Xinh đẹp của cô khiến người người nguyện ý đi vào chỗ chết nhưng khí tràng của cô lại khiến người ta lực bất tòng tâm.",
 		rating: 4.0,
 		img: "https://wikidich.com/photo/5ad973a4ef21ec7264c0fb91?o=1"
 	}, {
 		id: 27,
-		name: "Bến thượng hải",
+		name: "Trái Đất vẫn cứ xoay",
 		date: "10/01/2021",
-		author: "Lưu Liệm Tử",
+		author: "Đồng Dao",
 		desc: "Truyện kể về một nữ nhân được mệnh danh “Dạ Kiêu”, hắc bạch lưỡng đạo đều kính nể cùng sợ hãi, trang dung hiện đại, kinh diễm ra bốn phía. Xinh đẹp của cô khiến người người nguyện ý đi vào chỗ chết nhưng khí tràng của cô lại khiến người ta lực bất tòng tâm.",
 		rating: 5,
-		img: "https://i.pinimg.com/originals/0d/47/0e/0d470e179522f6d53c0a3cedfbc8eac9.png"
+		img: "https://i.pinimg.com/originals/04/26/ac/0426acb6964aae0deeaa7271c47a1478.jpg"
 	}, {
 		id: 26,
-		name: "Pháp sư vô tâm",
+		name: "Em là cả thế giới của anh",
 		date: "13/01/2021",
 		author: "Đỗ Thị Mai Chờ",
 		desc: "Truyện kể về một nữ nhân được mệnh danh “Dạ Kiêu”, hắc bạch lưỡng đạo đều kính nể cùng sợ hãi, trang dung hiện đại, kinh diễm ra bốn phía. Xinh đẹp của cô khiến người người nguyện ý đi vào chỗ chết nhưng khí tràng của cô lại khiến người ta lực bất tòng tâm.",
 		rating: 5,
-		img: "https://macthienyblog.files.wordpress.com/2015/08/phap-su-vo-tam3-macthienyblog.jpg?w=656",
+		img: "https://i.pinimg.com/736x/a7/1b/7d/a71b7d74f56b9a9853f5629bca62a0ea.jpg",
 	}
 ];
 const imgURL = [
-	"https://i.pinimg.com/originals/9f/95/47/9f95477167938b1df2c513e1c89fb155.png",
-	"https://i.pinimg.com/236x/03/40/64/034064001bee35be94c16228884bf57b--wattpad-black-cats.jpg",
-	"https://vnkings.com/wp-content/uploads/2018/09/C5FA230B-B569-4783-B92B-156AA667D1CC.jpeg",
-	"https://cf.shopee.vn/file/5595a01670964d0295b156e5f4b5f2c5",
-	"https://i.pinimg.com/236x/ae/bd/d3/aebdd3b97f77fac4112610f64ff601a1.jpg",
-	"https://i.pinimg.com/236x/79/e3/f3/79e3f32c79474c41b7588b7247806dbb--wattpad.jpg",
-	"https://i.imgur.com/qflHGgf.jpg?1",
-	"https://vnkings.com/wp-content/uploads/2016/05/174759.jpg",
-	"https://www.dongabooks.vn/uploads/Products/product_947/Truyen_co_tich_VN_Bia_1_Cung_web.jpg",
-	"https://nhasachmiendong.com/files/products/hom-nay-toi-that-tinh_14.jpg",
-	"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcZWjFjaJWpqtQ7rB-bFRMI08X_QBAblWf5g&usqp=CAU",
-	"https://diendanlequydon.com/downloads/image_prv/103/102517.jpg",
+	"https://i.pinimg.com/236x/a4/04/aa/a404aa8016db5841c1bec9ce8c0c37fb.jpg",
+	"https://hoaroitrongmong.files.wordpress.com/2015/08/0068a6mmgw1eu2680bsylj31812dl1kx.jpg",
+	"https://i.pinimg.com/originals/89/e7/70/89e77061941e61b535486601816aa8bb.jpg",
+	"https://i.pinimg.com/originals/12/77/69/12776913b7b5b54358b41f09dd19eb13.jpg",
+	"https://i.pinimg.com/564x/16/d6/e1/16d6e1c5e444401b66cade2e0f2068d3.jpg",
+	"https://i.pinimg.com/564x/21/ff/ab/21ffab35fd8d6d920a2a9f4a83377cc3.jpg",
+	"https://vnkings.com/wp-content/uploads/2017/06/9facba756bba3423c63de3d3daf1f9dd.jpg",
+	"https://i.pinimg.com/originals/59/70/f6/5970f6b5d6e6d76d41068871e27467b1.jpg",
+	"https://i.pinimg.com/236x/92/ba/a9/92baa99b7e18d7af404cda62e2744a43.jpg",
+	"https://i.pinimg.com/564x/d3/6f/08/d36f089a307dc4b132fe7cfb8d9f38af.jpg",
+	"https://i.pinimg.com/originals/5f/6b/67/5f6b670ae715c79d3c839db3f8710d66.jpg",
+	"https://i.pinimg.com/originals/4c/ea/cb/4ceacb639cdbbf108631a89a6471f3d9.jpg",
 	"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcToRHlqzRBdWdYnqB4jW4-_jkS8qlVZsqGFBQ&usqp=CAU",
 ];
 
