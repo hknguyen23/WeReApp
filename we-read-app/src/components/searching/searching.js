@@ -245,13 +245,10 @@ function Searching() {
       setValues(parsed.name + " ");
     }
     if (parsed.genre) {
-      alert(parsed.genre)
-      const newArr = [parsed.genre];
-
-      setChosenCatID(newArr)
+      setChosenCatID([+parsed.genre])
     }
     if (parsed.tag) {
-      setChosenTagID([parsed.tag]);
+      setChosenTagID([+parsed.tag]);
     }
     // if (parsed.id && parsed.name && parsed.token) { }
   }, [])
@@ -318,11 +315,16 @@ function Searching() {
     );
   }
 
+  const handleEnter = (e) => {
+    if (e.key === 'Enter') {
+      setInput(values);
+    }
+
+  }
+
   return (
     <Container className={classes.cardGrid} maxWidth="xl">
-
       <div style={{ backgroundColor: '#f3f3f3', textAlign: 'center', borderRadius: '18px', padding: '20px' }}>
-
         {<Grid container >
           <Grid item xs={12} sm={2} md={1} lg={1}></Grid>
           <Grid item xs={12} sm={10} md={11} lg={11} >
@@ -347,11 +349,11 @@ function Searching() {
                     </InputAdornment>
                   }
                   labelWidth={70}
+                  onKeyPress={handleEnter}
                 />
               </FormControl>
               <IconButton style={{ marginTop: '25px' }} onClick={handleSearch}><SearchIcon /></IconButton>
             </div>
-
           </Grid>
         </Grid>
         }
