@@ -106,13 +106,18 @@ function Detail() {
         fictionCopy.id = novels[ID - 1].id;
         fictionCopy.title = novels[ID - 1].name;
         fictionCopy.imgURL = imgURL[novels[ID - 1].id % imgURL.length];
+        fictionCopy.rating = novels[ID - 1].rating;
+        fictionCopy.views = novels[ID - 1].view;
       } else {
         fictionCopy.id = topMonth[ID - 25 - 1].id;
         fictionCopy.title = topMonth[ID - 25 - 1].name;
         fictionCopy.imgURL = topMonth[ID - 25 - 1].img;
+        fictionCopy.rating = topMonth[ID - 25 - 1].rating;
+        fictionCopy.views = topMonth[ID - 25 - 1].view;
+
       }
       setFiction(fictionCopy);
-      setRating(fiction.rating);
+      setRating(fictionCopy.rating);
     }
   }, []);
 
@@ -285,7 +290,7 @@ function Detail() {
                       height: '36px', width: '150px', color: 'white',
                       backgroundColor: '#2196f3', marginRight: '10px', fontSize: fontSize.button
                     }}
-                      onClick={() => handleSearchTag(tag.id)}
+                      onClick={() => handleSearchTag(tempTag[0].id)}
                     >
                       {tempTag[0].name}
                     </Button>)

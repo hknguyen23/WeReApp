@@ -198,7 +198,7 @@ const novels = [
 		rating: 3.5,
 		year: 2020,
 		status: 2, // 2: hoàn tất, 1: đang sáng tác
-		view: 1025,
+		view: 12345,
 		month: 6
 	}, {
 		id: 12,
@@ -365,6 +365,7 @@ const topMonth = [
 		desc: "Truyện kể về một nữ nhân được mệnh danh “Dạ Kiêu”, hắc bạch lưỡng đạo đều kính nể cùng sợ hãi, trang dung hiện đại, kinh diễm ra bốn phía. Xinh đẹp của cô khiến người người nguyện ý đi vào chỗ chết nhưng khí tràng của cô lại khiến người ta lực bất tòng tâm.",
 		rating: 5,
 		img: "https://i.pinimg.com/736x/a7/1b/7d/a71b7d74f56b9a9853f5629bca62a0ea.jpg",
+		view: 982
 	}, {
 		id: 27,
 		name: "Trái Đất vẫn cứ xoay",
@@ -372,7 +373,8 @@ const topMonth = [
 		author: "Đồng Dao",
 		desc: "Truyện kể về một nữ nhân được mệnh danh “Dạ Kiêu”, hắc bạch lưỡng đạo đều kính nể cùng sợ hãi, trang dung hiện đại, kinh diễm ra bốn phía. Xinh đẹp của cô khiến người người nguyện ý đi vào chỗ chết nhưng khí tràng của cô lại khiến người ta lực bất tòng tâm.",
 		rating: 5,
-		img: "https://i.pinimg.com/originals/04/26/ac/0426acb6964aae0deeaa7271c47a1478.jpg"
+		img: "https://i.pinimg.com/originals/04/26/ac/0426acb6964aae0deeaa7271c47a1478.jpg",
+		view: 1155
 	}, {
 		id: 28,
 		name: "Cho tôi một nụ hôn",
@@ -380,7 +382,8 @@ const topMonth = [
 		author: "Đồng Dao",
 		desc: "Truyện kể về một nữ nhân được mệnh danh “Dạ Kiêu”, hắc bạch lưỡng đạo đều kính nể cùng sợ hãi, trang dung hiện đại, kinh diễm ra bốn phía. Xinh đẹp của cô khiến người người nguyện ý đi vào chỗ chết nhưng khí tràng của cô lại khiến người ta lực bất tòng tâm.",
 		rating: 4.5,
-		img: "https://i.pinimg.com/originals/57/75/65/5775652ff1aec4a5e79765411c37267d.jpg"
+		img: "https://i.pinimg.com/originals/57/75/65/5775652ff1aec4a5e79765411c37267d.jpg",
+		view: 777
 	}, {
 		id: 29,
 		name: "Cung",
@@ -388,7 +391,8 @@ const topMonth = [
 		author: "Ammy Trần",
 		desc: "Truyện kể về một nữ nhân được mệnh danh “Dạ Kiêu”, hắc bạch lưỡng đạo đều kính nể cùng sợ hãi, trang dung hiện đại, kinh diễm ra bốn phía. Xinh đẹp của cô khiến người người nguyện ý đi vào chỗ chết nhưng khí tràng của cô lại khiến người ta lực bất tòng tâm.",
 		rating: 4.0,
-		img: "https://wikidich.com/photo/5ad973a4ef21ec7264c0fb91?o=1"
+		img: "https://wikidich.com/photo/5ad973a4ef21ec7264c0fb91?o=1",
+		view: 1005
 	}, {
 		id: 30,
 		name: "Thiên địa phong vân",
@@ -396,7 +400,8 @@ const topMonth = [
 		author: "Trịnh Hiểu Long",
 		desc: "Truyện kể về một nữ nhân được mệnh danh “Dạ Kiêu”, hắc bạch lưỡng đạo đều kính nể cùng sợ hãi, trang dung hiện đại, kinh diễm ra bốn phía. Xinh đẹp của cô khiến người người nguyện ý đi vào chỗ chết nhưng khí tràng của cô lại khiến người ta lực bất tòng tâm.",
 		rating: 4.0,
-		img: "https://img.wattpad.com/d3a20e754f0e3666cda0529458190f13ef232996/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f776174747061642d6d656469612d736572766963652f53746f7279496d6167652f4a73474b4e72635f6b4a4c6836673d3d2d3432373235373334332e313463616637323530383030636534313138353435343138333938392e6a7067"
+		img: "https://img.wattpad.com/d3a20e754f0e3666cda0529458190f13ef232996/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f776174747061642d6d656469612d736572766963652f53746f7279496d6167652f4a73474b4e72635f6b4a4c6836673d3d2d3432373235373334332e313463616637323530383030636534313138353435343138333938392e6a7067",
+		view: 741
 	}
 ];
 const topWeek = [
