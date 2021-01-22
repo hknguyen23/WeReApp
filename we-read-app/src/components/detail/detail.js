@@ -108,19 +108,19 @@ function Detail() {
       name: "John Nguyen"
     }],
     genres: [{
-      id: 1,
+      id: 12,
       name: "Kinh dị"
     },
     {
-      id: 2,
+      id: 13,
       name: "Tâm lý"
     },
     {
-      id: 3,
+      id: 8,
       name: "Ngôn tình"
     },
     {
-      id: 4,
+      id: 1,
       name: "Bí ẩn"
     }],
     tags: [{
@@ -128,11 +128,11 @@ function Detail() {
       name: "Nam chính"
     },
     {
-      id: 2,
+      id: 3,
       name: "Ma thuật"
     },
     {
-      id: 3,
+      id: 5,
       name: "Chiến tranh"
     }],
     languages: [{
@@ -365,6 +365,13 @@ function Detail() {
     history.push(`/Reading/${ID}`);
   }
 
+  const handleSearchGenre = (genreID) => {
+    history.push(`/Searching?genre=${genreID}`);
+  }
+  const handleSearchTag = (tagID) => {
+    history.push(`/Searching?tag=${tagID}`);
+  }
+
   return (
     <React.Fragment>
       <Container component="main" maxWidth="lg">
@@ -411,6 +418,7 @@ function Detail() {
                   height: '36px', width: '150px', color: 'white',
                   backgroundColor: '#2196f3', marginRight: '10px', fontSize: fontSize.button
                 }}
+                  onClick={() => handleSearchGenre(genre.id)}
                 >
                   {genre.name}
                 </Button>
@@ -426,6 +434,8 @@ function Detail() {
                   height: '36px', width: '150px', color: 'white',
                   backgroundColor: '#2196f3', marginRight: '10px', fontSize: fontSize.button
                 }}
+                  onClick={() => handleSearchTag(tag.id)}
+
                 >
                   {tag.name}
                 </Button>

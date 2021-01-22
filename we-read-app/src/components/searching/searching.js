@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { useParams, useHistory } from 'react-router-dom';
+import { useParams, useHistory, useLocation } from 'react-router-dom';
 import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
@@ -10,6 +10,7 @@ import OutlinedInput from '@material-ui/core/OutlinedInput';
 import InputLabel from '@material-ui/core/InputLabel';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import FormControl from '@material-ui/core/FormControl';
+import Tooltip from '@material-ui/core/Tooltip';
 import CloseIcon from '@material-ui/icons/Close';
 import SearchIcon from '@material-ui/icons/Search';
 import { Link } from 'react-router-dom';
@@ -19,6 +20,8 @@ import StarBorderIcon from '@material-ui/icons/StarBorder';
 import * as data from '../../resources/data/data';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import StarHalfIcon from '@material-ui/icons/StarHalf';
+import queryString from 'query-string'
+
 const useStyles = makeStyles((theme) => ({
   cardGrid: {
     paddingTop: theme.spacing(4),
@@ -144,7 +147,8 @@ const itemsperPage = 12;
 
 function Searching() {
   const classes = useStyles();
-  const [input, setInput] = useState(useParams().fictionName + " ");
+  const location = useLocation();
+  const [input, setInput] = useState("");
   const [chosenCatID, setChosenCatID] = useState([0]);
   const [chosenTagID, setChosenTagID] = useState([0]);
   const [chosenYearID, setChosenYearID] = useState(0);
@@ -154,7 +158,7 @@ function Searching() {
   const [page, setPage] = useState(1);
   const [totalNovels, setTotalNovels] = useState(0);
   const [displayedNovels, setDisplayNovels] = useState([]);
-  const [values, setValues] = useState(input);
+  const [values, setValues] = useState("");
 
   const handleChange = (event) => {
     setValues(event.target.value);
@@ -234,6 +238,23 @@ function Searching() {
   const handleChangeSort = (i) => {
     setChosenSortID(i)
   }
+  useEffect(() => {
+    const parsed = queryString.parse(location.search);
+    if (parsed.name) {
+      setInput(parsed.name + " ");
+      setValues(parsed.name + " ");
+    }
+    if (parsed.genre) {
+      alert(parsed.genre)
+      const newArr = [parsed.genre];
+
+      setChosenCatID(newArr)
+    }
+    if (parsed.tag) {
+      setChosenTagID([parsed.tag]);
+    }
+    // if (parsed.id && parsed.name && parsed.token) { }
+  }, [])
 
   useEffect(() => {
     const start = (page - 1) * itemsperPage;
@@ -260,7 +281,6 @@ function Searching() {
     } else if (chosenSortID === 2) {
       novels = novels.sort((novel1, novel2) => novel2.rating - novel1.rating);
     }
-
 
     if (input === "undefined " || input.trim() === "") {
       setResultNum("");
@@ -292,7 +312,10 @@ function Searching() {
       }
       else result.push(<StarBorderIcon key={i} fontSize={"small"} style={{ color: "#FFB400" }} />);
     }
-    return result;
+    return (
+      <span>{result}</span>
+
+    );
   }
 
   return (
@@ -477,27 +500,28 @@ function Searching() {
               </Link>
 
               <div>
-                <Typography title={novel.name} style={{
+                <Tooltip title={novel.name} style={{
                   width: "100%", display: 'inline-block',
                   whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', fontWeight: 'bold', textAlign: 'left',
                 }}>
                   <Link to={`/Detail/${novel.id}`} className={classes.quickAccess}>{novel.name}</Link>
-                </Typography>
+                </Tooltip>
               </div>
               <div style={{ display: 'flex', alignContent: 'center' }}>
-                <Typography title={"Điểm đánh giá"} style={{ textAlign: "left", marginRight: '10px' }}>
+                <Tooltip title={"Điểm đánh giá"} style={{ textAlign: "left", marginRight: '10px' }}>
                   {
                     calStar(novel.rating)
                   }
-                </Typography>
-                <Typography> {novel.rating.toFixed(1)}</Typography>
+                </Tooltip>
+                <Tooltip title={"Điểm đánh giá"}>
+                  <Typography> {novel.rating.toFixed(1)}</Typography></Tooltip>
               </div>
 
               <div style={{ display: 'flex', alignContent: 'center' }}>
-                <Typography title={"Số lượt xem"} style={{ textAlign: "left", marginRight: '10px' }}>
+                <Tooltip title={"Số lượt xem"} style={{ textAlign: "left", marginRight: '10px' }}>
                   <VisibilityIcon />
-                </Typography>
-                <Typography> {novel.view}</Typography>
+                </Tooltip>
+                <Tooltip title={"Số lượt xem"}><Typography> {novel.view}</Typography></Tooltip>
               </div>
 
             </Grid>

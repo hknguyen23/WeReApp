@@ -44,12 +44,13 @@ const routes = [
     exact: true,
     main: (props) => <Searching {...props} />,
     // render: 
-  },
-  {
-    path: "/Searching/:fictionName",
-    exact: true,
-    main: (props) => <Searching  {...props} />
   }
+  // ,
+  // {
+  //   path: "/Searching/:fictionName",
+  //   exact: true,
+  //   main: (props) => <Searching  {...props} />
+  // }
 ];
 
 function App() {

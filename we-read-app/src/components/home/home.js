@@ -20,6 +20,7 @@ import ListItem from '@material-ui/core/ListItem';
 import StarIcon from '@material-ui/icons/Star';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
 import Badge from '@material-ui/core/Badge';
+import Tooltip from '@material-ui/core/Tooltip';
 import { category, novels, topMonth, topWeek, allTime, imgURL } from '../../resources/data/data'
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import StarHalfIcon from '@material-ui/icons/StarHalf';
@@ -130,7 +131,11 @@ export default function Home() {
       }
       else result.push(<StarBorderIcon key={i} fontSize={"small"} style={{ color: "#FFB400" }} />);
     }
-    return result;
+    return (
+      <span>
+        {result}
+      </span>
+    );
   }
 
   React.useEffect(() => {
@@ -214,28 +219,33 @@ export default function Home() {
                         </Link>
 
                         <div >
-                          <Typography title={novel.name}
+                          <Tooltip title={novel.name}
                             style={{
                               width: "100%", display: 'inline-block',
                               whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', fontWeight: 'bold', textAlign: 'left',
                             }}>
                             <Link to={`/Detail/${novel.id}`} className={classes.quickAccess}>{novel.name}</Link>
-                          </Typography>
+                          </Tooltip>
                         </div>
                         <div style={{ display: 'flex', alignContent: 'center' }}>
-                          <Typography title={"Điểm đánh giá"} style={{ textAlign: "left", marginRight: '2px' }}>
+                          <Tooltip title={"Điểm đánh giá"} style={{ textAlign: "left", marginRight: '2px' }}>
                             {
                               calStar(novel.rating)
                             }
-                          </Typography>
-                          <Typography> {novel.rating.toFixed(1)}</Typography>
+                          </Tooltip>
+                          <Tooltip title={"Điểm đánh giá"}>
+                            <Typography> {novel.rating.toFixed(1)}</Typography>
+                          </Tooltip>
                         </div>
 
                         <div style={{ display: 'flex', alignContent: 'center' }}>
-                          <Typography title={"Số lượt xem"} style={{ textAlign: "left", marginRight: '5px' }}>
+                          <Tooltip title={"Số lượt xem"} style={{ textAlign: "left", marginRight: '5px' }}>
                             <VisibilityIcon />
-                          </Typography>
-                          <Typography> {novel.view}</Typography>
+                          </Tooltip>
+                          <Tooltip title={"Số lượt xem"} >
+                            <Typography> {novel.view}</Typography>
+
+                          </Tooltip>
                         </div>
 
                       </Grid>
@@ -282,25 +292,31 @@ export default function Home() {
                         <Link to={`/Detail/${novel.id}`} style={{ textDecoration: "none", color: "black" }}>
                           <Typography style={{ fontSize: "25px", fontWeight: "bold", textAlign: "center" }}>{novel.name}</Typography>
                         </Link>
-                        <div title={novel.desc} style={{
-                          textAlign: "justify",
-                          overflow: "hidden",
-                          maxHeight: "5.4em",
-                          lineHeight: "1.8em",
-                          position: "relative",
-                          maxWidth: "100%",
-                        }}>
-                          {novel.desc}
-                        </div>
+                        <Tooltip title={novel.desc}>
+                          <div style={{
+                            textAlign: "justify",
+                            overflow: "hidden",
+                            maxHeight: "5.4em",
+                            lineHeight: "1.8em",
+                            position: "relative",
+                            maxWidth: "100%",
+                          }}>
+                            {novel.desc}
+                          </div>
+                        </Tooltip>
+
                       </div>
                     </div>
                     <div style={{ display: 'flex', alignContent: 'center' }}>
-                      <Typography title={"Điểm đánh giá"} style={{ textAlign: "left", marginRight: '2px' }}>
+                      <Tooltip title={"Điểm đánh giá"} style={{ textAlign: "left", marginRight: '2px' }}>
                         {
                           calStar(novel.rating)
                         }
-                      </Typography>
-                      <Typography> {novel.rating.toFixed(1)}</Typography>
+                      </Tooltip>
+                      <Tooltip title={"Điểm đánh giá"} >
+                        <Typography> {novel.rating.toFixed(1)}</Typography>
+                      </Tooltip>
+
                     </div>
                     <div style={{ display: "flex", justifyContent: "space-between" }}>
                       <span>

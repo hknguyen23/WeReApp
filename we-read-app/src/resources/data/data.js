@@ -40,6 +40,10 @@ const category = [
 		name: "Ngôn tình",
 	},
 	{
+		id: 13,
+		name: "Tâm lý",
+	},
+	{
 		id: 9,
 		name: "Thám hiểm",
 	},
@@ -48,7 +52,6 @@ const category = [
 		name: "Siêu nhiên",
 	}
 ];
-
 const tags = [
 	{
 		id: 1,
@@ -75,8 +78,6 @@ const tags = [
 		name: 'Vũ trụ'
 	},
 ];
-
-
 const novels = [
 	{
 		id: 1,
