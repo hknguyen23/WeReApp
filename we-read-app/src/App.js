@@ -42,7 +42,7 @@ const routes = [
   {
     path: "/Searching",
     exact: true,
-    main: (props) => <Searching {...props} />,
+    main: () => <Searching />,
     // render: 
   }
   // ,

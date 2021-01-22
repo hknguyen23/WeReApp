@@ -109,7 +109,7 @@ export default function NavBar() {
 
   const handleEnter = (e) => {
     if (e.key === 'Enter') {
-      history.push(`/Searching/${input} `);
+      history.push(`/Searching?name=${input}`);
     }
 
   }
