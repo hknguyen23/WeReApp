@@ -146,7 +146,9 @@ export default function NavBar() {
           <div className={classes.grow} />
           <div className={classes.search} >
             <Link className={classes.searchIcon} style={{ cursor: 'pointer', color: 'white' }}
-              to={`/Searching/${input} `}>
+              // to={`/Searching/${input} `}>
+              to={`/Searching?name=${input}`}>
+
               <SearchIcon />
             </Link>
             <InputBase

@@ -200,6 +200,13 @@ function Detail() {
     history.push(`/Reading/${ID}/1`);
   }
 
+  const handleSearchGenre = (genreID) => {
+    history.push(`/Searching?genre=${genreID}`);
+  }
+  const handleSearchTag = (tagID) => {
+    history.push(`/Searching?tag=${tagID}`);
+  }
+
   return (
     <React.Fragment>
       <Container component="main" maxWidth="lg">
@@ -253,10 +260,12 @@ function Detail() {
                 const cat = category.filter(cat => cat.id === genre);
                 if (cat.length !== 0) {
                   return (
-                    <Button key={cat[0].id} className={classes.button} style={{
-                      height: '36px', width: '150px', color: 'white',
-                      backgroundColor: '#2196f3', marginRight: '10px', fontSize: fontSize.button
-                    }}
+                    <Button key={cat[0].id} className={classes.button}
+                      onClick={() => handleSearchGenre(genre.id)}
+                      style={{
+                        height: '36px', width: '150px', color: 'white',
+                        backgroundColor: '#2196f3', marginRight: '10px', fontSize: fontSize.button
+                      }}
                     >
                       {cat[0].name}
                     </Button>)
@@ -276,6 +285,7 @@ function Detail() {
                       height: '36px', width: '150px', color: 'white',
                       backgroundColor: '#2196f3', marginRight: '10px', fontSize: fontSize.button
                     }}
+                      onClick={() => handleSearchTag(tag.id)}
                     >
                       {tempTag[0].name}
                     </Button>)
@@ -320,10 +330,11 @@ function Detail() {
             </div>
             <Divider className={classes.divider} style={{ marginBottom: '10px' }}></Divider>
             <div style={{ textAlign: 'center' }}>
-              <Button variant="contained" color="secondary" className={classes.readNowButton} style={{
-                width: '300px', height: '60px', fontSize: '24px', fontWeight: 'bold', marginRight: '24px'
-              }}
+              <Button variant="contained" color="secondary" className={classes.readNowButton}
                 onClick={handleMoveToReadingPage}
+                style={{
+                  width: '300px', height: '60px', fontSize: '24px', fontWeight: 'bold', marginRight: '24px'
+                }}
               >
                 Đọc ngay
               </Button>
@@ -396,7 +407,7 @@ function Detail() {
           <br></br>
         </div>
       </Container>
-    </React.Fragment>
+    </React.Fragment >
   );
 }
 
