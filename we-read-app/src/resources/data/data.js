@@ -681,6 +681,8 @@ let detailTest = {
 		dateAdded: "2020/12/23",
 		lastModified: "2020/12/23"
 	}],
+	titleChapter: "",
+	data: "",
 	comments: []
 }
 export { category, tags, novels, topMonth, topWeek, allTime, imgURL, detail, detailTest }

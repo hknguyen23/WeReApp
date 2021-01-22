@@ -11,9 +11,6 @@ export const GlobalStyles = createGlobalStyle`
     align-items: center;
     background: ${({ theme }) => theme.body};
     color: ${({ theme }) => theme.text};
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
     height: 100%;
     margin: 0;
     padding: 0;

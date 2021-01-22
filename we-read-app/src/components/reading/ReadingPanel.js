@@ -7,11 +7,11 @@ import {
 import { detail, detailTest } from '../../resources/data/data'
 
 const useStyles = makeStyles((theme) => ({
-  container: (theme) => ({
+  root: (theme) => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    minHeight: '100px',
+    minHeight: '250px',
     backgroundColor: theme.body,
     paddingTop: '30px',
     paddingBottom: '40px'
@@ -60,19 +60,31 @@ const ReadingPanel = (props) => {
     width: props.indent,
     fontFamily: props.font,
   };
-
+  console.log(detailTest);
   return (
     <React.Fragment>
-      <Container component="main" maxWidth="lg" className={classes.container} maxWidth={false}>
+      <Container className={classes.root} maxWidth={false}>
         <div className={classes.title}>
           Chapter {props.chapterID}
         </div>
-        <div className={classes.title}>
-          {"Khởi đầu"}
-        </div>
-        <Typography className={classes.paragraph} style={customStyle}>
-          {data}
-        </Typography>
+        {props.ID !== 1000 ?
+          <React.Fragment>
+            <div className={classes.title}>
+              {"Khởi đầu"}
+            </div>
+            <Typography className={classes.paragraph} style={customStyle}>
+              {data}
+            </Typography>
+          </React.Fragment>
+          : <React.Fragment>
+            <div className={classes.title}>
+              {detailTest.titleChapter}
+            </div>
+            <div className={classes.paragraph} style={customStyle}
+              dangerouslySetInnerHTML={{ __html: detailTest.data }} />
+          </React.Fragment>
+
+        }
 
       </Container>
     </React.Fragment>

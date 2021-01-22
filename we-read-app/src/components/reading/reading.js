@@ -69,7 +69,7 @@ const Reading = () => {
         <GlobalStyles />
       </ThemeProvider>
 
-      <Container className={classes.root} maxWidth="false">
+      <Container className={classes.root} maxWidth={false}>
         <Card className={classes.card}>
           <CardHeader className={classes.cardHeader}
             avatar={<MenuBookIcon style={{ fontSize: 30 }} />}
@@ -95,6 +95,7 @@ const Reading = () => {
             />
             <Divider className={classes.divider} />
             <ReadingPanel
+              ID={ID}
               font={font}
               fontSize={fontSize}
               indent={indent}
