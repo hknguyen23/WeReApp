@@ -42,12 +42,13 @@ const routes = [
   {
     path: "/Searching",
     exact: true,
-    main: () => <Searching />
+    main: (props) => <Searching {...props} />,
+    // render: 
   },
   {
     path: "/Searching/:fictionName",
     exact: true,
-    main: () => <Searching />
+    main: (props) => <Searching  {...props} />
   }
 ];
 
@@ -81,7 +82,6 @@ function App() {
         <StickyFooter />
       </div>
     </Router>
-
   );
 }
 

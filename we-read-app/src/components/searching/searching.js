@@ -14,10 +14,11 @@ import CloseIcon from '@material-ui/icons/Close';
 import SearchIcon from '@material-ui/icons/Search';
 import { Link } from 'react-router-dom';
 import Pagination from '@material-ui/lab/Pagination';
-
+import StarIcon from '@material-ui/icons/Star';
+import StarBorderIcon from '@material-ui/icons/StarBorder';
 import * as data from '../../resources/data/data';
-
-
+import VisibilityIcon from '@material-ui/icons/Visibility';
+import StarHalfIcon from '@material-ui/icons/StarHalf';
 const useStyles = makeStyles((theme) => ({
   cardGrid: {
     paddingTop: theme.spacing(4),
@@ -31,6 +32,17 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 0,
     backgroundColor:
       theme.palette.type === 'light' ? theme.palette.grey[200] : theme.palette.grey[700],
+  },
+  quickAccess: {
+    color: "black",
+    cursor: 'pointer',
+    "&:hover": {
+      color: "#FF781F"
+    },
+    textDecoration: 'none'
+  },
+  paperLikeShadow: {
+    boxShadow: '0 2px 4px 3px rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19)',
   },
 }));
 
@@ -129,6 +141,7 @@ const sortOption = {
 }
 
 const itemsperPage = 12;
+
 function Searching() {
   const classes = useStyles();
   const [input, setInput] = useState(useParams().fictionName + " ");
@@ -156,7 +169,6 @@ function Searching() {
     setInput(values);
   };
 
-
   const handleChangeCat = (i) => {
     let newArr = [0];
     if (i === 0 && !chosenCatID.includes(0)) {              // if select all, deselect all other genre
@@ -183,6 +195,7 @@ function Searching() {
     }
     setChosenCatID(newArr);
   }
+
   const handleChangeTag = (i) => {
     let newArr = [0];
     if (i === 0 && !chosenTagID.includes(0)) {              // if select all, deselect all other tag
@@ -233,13 +246,13 @@ function Searching() {
     if (!chosenTagID.includes(0)) {
       novels = novels.filter(novel => chosenTagID.every(id => novel.tagId.includes(id)));
     }
-    if (chosenYearID !== 0) {
-      if (chosenYearID !== 12)
-        novels = novels.filter(novel => novel.year === yearOption.values[chosenYearID].name);
-      else
-        novels = novels.filter(novel => novel.year < 2010);
-    }
-    if (chosenStatusID != 0)
+    // if (chosenYearID !== 0) {
+    //   if (chosenYearID !== 12)
+    //     novels = novels.filter(novel => novel.year === yearOption.values[chosenYearID].name);
+    //   else
+    //     novels = novels.filter(novel => novel.year < 2010);
+    // }
+    if (chosenStatusID !== 0)
       novels = novels.filter(novel => novel.status === statusOption.values[chosenStatusID].id);
 
     if (chosenSortID === 1) {
@@ -262,7 +275,25 @@ function Searching() {
       setDisplayNovels(paginatedNovels);
       setResultNum(`${novelsByName.length} Kết quả tìm kiếm "${input.trim()}"`);
     }
-  }, [input, page, chosenCatID, chosenTagID, chosenYearID, chosenStatusID, setTotalNovels]);
+  }, [input, page, chosenCatID, chosenTagID, chosenStatusID, chosenSortID, setTotalNovels]);
+
+  const calStar = (rating) => {
+    const array = [1.0, 2.0, 3.0, 4.0, 5.0, 6.0];
+    const result = [];
+    for (let i = 0; i < 5; i++) {
+      if (array[i] <= rating && array[i + 1] <= rating)
+        result.push(<StarIcon key={i} fontSize={"small"} style={{ color: "#FFB400" }} />);
+      else if (rating === array[i])
+        result.push(<StarIcon key={i} fontSize={"small"} style={{ color: "#FFB400" }} />);
+      else if (array[i] < rating && array[i + 1] > rating) {
+        result.push(<StarIcon key={i} fontSize={"small"} style={{ color: "#FFB400" }} />);
+        result.push(<StarHalfIcon key={i} fontSize={"small"} style={{ color: "#FFB400" }} />);
+        i++;
+      }
+      else result.push(<StarBorderIcon key={i} fontSize={"small"} style={{ color: "#FFB400" }} />);
+    }
+    return result;
+  }
 
   return (
     <Container className={classes.cardGrid} maxWidth="xl">
@@ -299,10 +330,8 @@ function Searching() {
             </div>
 
           </Grid>
-
-        </Grid>}
-
-
+        </Grid>
+        }
         {
           <Grid container style={{ marginTop: '7px', marginBottom: '7px' }}>
             <Grid item xs={12} sm={2} md={1} lg={1}>
@@ -326,7 +355,6 @@ function Searching() {
                   ))
                 }
               </div>
-
             </Grid>
           </Grid>
         }
@@ -353,7 +381,6 @@ function Searching() {
                   ))
                 }
               </div>
-
             </Grid>
           </Grid>
         }
@@ -446,17 +473,33 @@ function Searching() {
           {displayedNovels.map((novel, index) => (
             <Grid item xs={4} sm={3} md={2} lg={2} key={index}>
               <Link to={`/Detail/${novel.id}`} style={{ textDecoration: "none", color: "white" }}>
-                <img src={data.imgURL[novel.id % data.imgURL.length]} width="100%" height="200px" style={{ borderRadius: '8px' }}></img>
+                <img src={data.imgURL[novel.id % data.imgURL.length]} className={classes.paperLikeShadow} width="93%" height="220px" style={{ borderRadius: '8px' }}></img>
               </Link>
 
-              <div >
+              <div>
                 <Typography title={novel.name} style={{
                   width: "100%", display: 'inline-block',
-                  whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis'
+                  whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', fontWeight: 'bold', textAlign: 'left',
                 }}>
-                  <Link to={`/Detail/${novel.id}`} style={{ color: 'black' }}>{novel.name}</Link>
+                  <Link to={`/Detail/${novel.id}`} className={classes.quickAccess}>{novel.name}</Link>
                 </Typography>
               </div>
+              <div style={{ display: 'flex', alignContent: 'center' }}>
+                <Typography title={"Điểm đánh giá"} style={{ textAlign: "left", marginRight: '10px' }}>
+                  {
+                    calStar(novel.rating)
+                  }
+                </Typography>
+                <Typography> {novel.rating.toFixed(1)}</Typography>
+              </div>
+
+              <div style={{ display: 'flex', alignContent: 'center' }}>
+                <Typography title={"Số lượt xem"} style={{ textAlign: "left", marginRight: '10px' }}>
+                  <VisibilityIcon />
+                </Typography>
+                <Typography> {novel.view}</Typography>
+              </div>
+
             </Grid>
           ))
             // :

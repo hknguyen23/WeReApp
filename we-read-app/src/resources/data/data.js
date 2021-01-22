@@ -84,7 +84,7 @@ const novels = [
 		catId: [1, 2, 7],
 		tagId: [1],
 		updatedAt: 2, // đại diện cho ngày được cập nhật, số càng lớn thì ngày càng gần
-		rating: 3,
+		rating: 3.0,
 		year: 2019,
 		status: 2, // 2: hoàn tất, 1: đang sáng tác
 		view: 1000,
@@ -95,7 +95,7 @@ const novels = [
 		catId: [1, 2],
 		tagId: [2],
 		updatedAt: 1,
-		rating: 1,
+		rating: 1.0,
 		year: 2019,
 		status: 2, // 2: hoàn tất, 1: đang sáng tác
 		view: 1234,
@@ -106,7 +106,7 @@ const novels = [
 		catId: [1, 2],
 		tagId: [3],
 		updatedAt: 5,
-		rating: 4,
+		rating: 4.0,
 		year: 2020,
 		status: 1, // 2: hoàn tất, 1: đang sáng tác
 		view: 1234,
@@ -117,7 +117,7 @@ const novels = [
 		catId: [1, 2],
 		tagId: [4],
 		updatedAt: 5,
-		rating: 3,
+		rating: 3.0,
 		year: 2019,
 		status: 2, // 2: hoàn tất, 1: đang sáng tác
 		view: 2690,
@@ -128,7 +128,7 @@ const novels = [
 		catId: [1, 2],
 		tagId: [5],
 		updatedAt: 4,
-		rating: 3,
+		rating: 3.0,
 		year: 2019,
 		status: 2, // 2: hoàn tất, 1: đang sáng tác
 		view: 1690,
@@ -183,7 +183,7 @@ const novels = [
 		catId: [1, 2],
 		tagId: [5],
 		updatedAt: 9,
-		rating: 3.5,
+		rating: 5.0,
 		year: 2019,
 		status: 2, // 2: hoàn tất, 1: đang sáng tác
 		view: 8900,
@@ -208,7 +208,7 @@ const novels = [
 		rating: 3.5,
 		year: 2020,
 		status: 1, // 2: hoàn tất, 1: đang sáng tác
-		view: 3630,
+		view: 9000,
 		month: 12
 	}, {
 		id: 13,
@@ -271,7 +271,7 @@ const novels = [
 		catId: [2, 3],
 		tagId: [1],
 		updatedAt: 2,
-		rating: 3.0,
+		rating: 3.5,
 		year: 2021,
 		status: 1, // 2: hoàn tất, 1: đang sáng tác
 		view: 690,

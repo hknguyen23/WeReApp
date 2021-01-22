@@ -94,15 +94,15 @@ function Detail() {
     title: "Truyện đời tôi",
     imgURL: "none",
     status: 1,
-    views: 12345,
+    views: 1025,
     followers: 350,
     description: "\nÁ Liên là kiếp trước của A Yên sau đó cô bị chồng mình giết chết là (Cao Vương) và trong kiếp này là Khải." +
-      "\n\nNhưng cô lại nghi ngờ Minh là kẻ giết mình trong kiếp trước cũng là thuộc hạ của thần chết, và cũng chính là người có mối tơ duyên cùng các ân oán hận thù với cô trong kiếp này ." +
+      "\n\nNhưng cô lại nghi ngờ Minh là kẻ giết mình trong kiếp trước cũng là thuộc hạ của thần chết, và cũng chính là người có mối tơ duyên cùng các ân oán hận thù với cô trong kiếp này." +
       "\n\nĐịnh mệnh đã đưa Á Liên gặp được thần chết vì mê muội nhanh sắc tuyệt trần của cô nên ông ta đã cho cô một lời hẹn ước." +
       "\n\nNếu nàng muốn trở lại làm người thì kiếp sau 16 tuổi ta sẽ ra mắt nàng, 20 tuổi ta sẽ lấy nàng" +
-      "\n\nÁ Liên đồng ý và đầu thai thành A Yên ." +
+      "\n\nÁ Liên đồng ý và đầu thai thành A Yên." +
       "\n\nMời các bạn tiếp tục đọc! ",
-    rating: 3,
+    rating: 3.5,
     authors: [{
       id: 1,
       name: "John Nguyen"

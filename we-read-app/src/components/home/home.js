@@ -21,6 +21,8 @@ import StarIcon from '@material-ui/icons/Star';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
 import Badge from '@material-ui/core/Badge';
 import { category, novels, topMonth, topWeek, allTime, imgURL } from '../../resources/data/data'
+import VisibilityIcon from '@material-ui/icons/Visibility';
+import StarHalfIcon from '@material-ui/icons/StarHalf';
 
 const useStyles = makeStyles((theme) => ({
   heroContent: {
@@ -78,8 +80,16 @@ const useStyles = makeStyles((theme) => ({
     width: '25%'
   },
   paperLikeShadow: {
-    boxShadow: '0 4px 8px 5px rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',
+    boxShadow: '0 2px 4px 3px rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19)',
   },
+  quickAccess: {
+    color: "black",
+    cursor: 'pointer',
+    "&:hover": {
+      color: "#FF781F"
+    },
+    textDecoration: 'none'
+  }
 }));
 
 const StyledBadge = withStyles((theme) => ({
@@ -103,6 +113,24 @@ export default function Home() {
   const handleChangeCategory = (id) => {
     setChosenCategory(id);
     setPage(1);
+  }
+
+  const calStar = (rating) => {
+    const array = [1.0, 2.0, 3.0, 4.0, 5.0, 6.0];
+    const result = [];
+    for (let i = 0; i < 5; i++) {
+      if (array[i] <= rating && array[i + 1] <= rating)
+        result.push(<StarIcon key={i} fontSize={"small"} style={{ color: "#FFB400" }} />);
+      else if (rating === array[i])
+        result.push(<StarIcon key={i} fontSize={"small"} style={{ color: "#FFB400" }} />);
+      else if (array[i] < rating && array[i + 1] > rating) {
+        result.push(<StarIcon key={i} fontSize={"small"} style={{ color: "#FFB400" }} />);
+        result.push(<StarHalfIcon key={i} fontSize={"small"} style={{ color: "#FFB400" }} />);
+        i++;
+      }
+      else result.push(<StarBorderIcon key={i} fontSize={"small"} style={{ color: "#FFB400" }} />);
+    }
+    return result;
   }
 
   React.useEffect(() => {
@@ -182,33 +210,36 @@ export default function Home() {
                     displayedNovels.map((novel, index) => (
                       <Grid item xs={4} sm={3} md={3} key={index}>
                         <Link to={`/Detail/${novel.id}`} style={{ textDecoration: "none", color: "white" }}>
-                          <img src={imgURL[novel.id % imgURL.length]} width="100%" height="180px" style={{ borderRadius: '8px' }}></img>
+                          <img src={imgURL[novel.id % imgURL.length]} className={classes.paperLikeShadow} width="100%" height="180px" style={{ borderRadius: '8px' }}></img>
                         </Link>
 
                         <div >
-                          <Typography title={novel.name} style={{
-                            width: "100%", display: 'inline-block',
-                            whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis'
-                          }}>
-                            <Link to={`/Detail/${novel.id}`} style={{ color: 'black' }}>{novel.name}</Link>
+                          <Typography title={novel.name}
+                            style={{
+                              width: "100%", display: 'inline-block',
+                              whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', fontWeight: 'bold', textAlign: 'left',
+                            }}>
+                            <Link to={`/Detail/${novel.id}`} className={classes.quickAccess}>{novel.name}</Link>
                           </Typography>
                         </div>
+                        <div style={{ display: 'flex', alignContent: 'center' }}>
+                          <Typography title={"Điểm đánh giá"} style={{ textAlign: "left", marginRight: '2px' }}>
+                            {
+                              calStar(novel.rating)
+                            }
+                          </Typography>
+                          <Typography> {novel.rating.toFixed(1)}</Typography>
+                        </div>
+
+                        <div style={{ display: 'flex', alignContent: 'center' }}>
+                          <Typography title={"Số lượt xem"} style={{ textAlign: "left", marginRight: '5px' }}>
+                            <VisibilityIcon />
+                          </Typography>
+                          <Typography> {novel.view}</Typography>
+                        </div>
+
                       </Grid>
                     ))
-                  // :
-                  // //nổi bật nhất
-                  // displayedNovels.map((novel, index) => (
-                  //   <Grid item xs={12} sm={4} md={4} key={index}>
-                  //     <img src={imgURL[Math.floor(Math.random() * Math.floor(imgURL.length))]} width="100%" height="220px" style={{ borderRadius: '8px' }}></img>
-                  //     <div >
-                  //       <Typography style={{
-                  //         width: "100%", display: 'inline-block',
-                  //         whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis'
-                  //       }}><a href="/path" style={{ color: 'black' }}>{novel.name}</a></Typography>
-                  //     </div>
-                  //   </Grid>
-                  // ))
-                  // )
                 }
               </Grid>
             </div>
@@ -263,15 +294,13 @@ export default function Home() {
                         </div>
                       </div>
                     </div>
-                    <div style={{ textAlign: "left" }}>
-                      {
-                        [1, 2, 3, 4, 5].map((item, index) => (
-                          item <= novel.rating ?
-                            <StarIcon key={index} fontSize={"small"} style={{ color: "#FFB400" }} />
-                            :
-                            <StarBorderIcon key={index} fontSize={"small"} style={{ color: "#FFB400" }} />
-                        ))
-                      }
+                    <div style={{ display: 'flex', alignContent: 'center' }}>
+                      <Typography title={"Điểm đánh giá"} style={{ textAlign: "left", marginRight: '2px' }}>
+                        {
+                          calStar(novel.rating)
+                        }
+                      </Typography>
+                      <Typography> {novel.rating.toFixed(1)}</Typography>
                     </div>
                     <div style={{ display: "flex", justifyContent: "space-between" }}>
                       <span>
@@ -324,7 +353,7 @@ function SimpleFilter({ sortStrategy, setSortStrategy }) {
   };
 
   return (
-    <div className={classes.root}>
+    <div className={classes.root} style={{ backgroundColor: '#fafafa' }}>
       <List component="nav" aria-label="Device settings" style={{ padding: '0px', margin: "0px", backgroundColor: "#c1c1c1", width: "12vw", borderRadius: "8px" }}>
         <ListItem
           button
