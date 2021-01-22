@@ -95,12 +95,11 @@ function Detail() {
   const [rating, setRating] = useState(0);
 
   useEffect(() => {
-
+    window.scrollTo(0, 0);
     if (ID === 1000) {
       setFiction(detailTest);
     }
     else {
-      window.scrollTo(0, 0);
       const fictionCopy = JSON.parse(JSON.stringify(fiction));
       if (ID <= 25) {
         fictionCopy.id = novels[ID - 1].id;

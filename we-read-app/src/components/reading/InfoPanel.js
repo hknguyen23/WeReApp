@@ -104,7 +104,7 @@ const InfoPanel = ({ theme, ID }) => {
 
   return (
     <React.Fragment>
-      <Container component="main" maxWidth="lg" className={classes.container} maxWidth={false}>
+      <Container component="main" className={classes.container} maxWidth={false}>
         <div className={classes.leftContainer}>
           <img height={230} width={200} src={fiction.imgURL === "none" ? defaultImg : fiction.imgURL} alt="Default fiction"
             className={classes.image}
@@ -151,12 +151,17 @@ const InfoPanel = ({ theme, ID }) => {
           </div>
           <br></br>
           <Divider></Divider>
-          <Typography className={classes.description} style={{ whiteSpace: 'pre-line', textAlign: 'justify', fontSize: '18px' }}>
-            {fiction.description}
-          </Typography>
+          {ID !== 1000 ?
+            <Typography className={classes.description} style={{ whiteSpace: 'pre-line', textAlign: 'justify', fontSize: '18px' }}>
+              {fiction.description}
+            </Typography>
+            : <div className={classes.description}  style={{textAlign: 'justify', fontSize: '18px' }}
+              dangerouslySetInnerHTML={{ __html: fiction.description }} />
+          }
+
         </div>
       </Container>
-    </React.Fragment >
+    </React.Fragment>
   );
 }
 

@@ -343,6 +343,7 @@ function Uploading() {
       console.log(values)
       console.log(selectedFile)
       detailTest.title = values.title;
+      detailTest.titleChapter = values.titleChapter;
 
       detailTest.genres = Object.keys(values.genre).map((key) => {
         if (values.genre[key])
@@ -361,9 +362,9 @@ function Uploading() {
         id: 1,
         name: values.age
       }]
-      detailTest.description = draftToHtml(convertToRaw(values.longDes.getCurrentContent()))
-      console.log(detailTest.description)
-      await delay(2000);
+      detailTest.description = draftToHtml(convertToRaw(values.longDes.getCurrentContent()));
+      detailTest.data = draftToHtml(convertToRaw(values.data.getCurrentContent()))
+      await delay(500);
       histoty.push("/Detail/1000");
     }
   };

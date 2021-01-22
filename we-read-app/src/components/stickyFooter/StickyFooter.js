@@ -68,7 +68,7 @@ export default function StickyFooter() {
       <CssBaseline />
 
       <footer className={`${classes.footer} ${classes.paperLikeShadow}`} >
-        <Container maxWidth="lg"
+        <Container maxWidth={false}
           style={{
             color: 'white',
             // fontWeight: 'bold'

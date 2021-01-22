@@ -8,7 +8,7 @@ import { useHistory } from 'react-router-dom'
 
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
-import { detail } from '../../resources/data/data'
+import { detail, detailTest } from '../../resources/data/data'
 
 const useStyles = makeStyles((theme) => ({
     root: (theme) => ({
@@ -65,7 +65,7 @@ const ControlPanel = (props) => {
                 </Button>
                 <Button fullWidth variant="contained" color="primary"
                     className={classes.button} endIcon={<ArrowForwardIosIcon />}
-                    disabled={nextChapter > detail.chapters.length}
+                    disabled={props.ID !== 1000 ? nextChapter > detail.chapters.length : nextChapter > detailTest.chapters.length}
                     onClick={() => {
                         histoty.push(`/Reading/${props.ID}/${nextChapter}`);
                         if (props.refProp) {
