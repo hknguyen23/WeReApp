@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useHistory, useParams, Link } from "react-router-dom";
 import {
   Container,
@@ -49,54 +49,20 @@ const useStyles = makeStyles((theme) => ({
   })
 }));
 
-const data = [
-  {
-    number: 1,
-    title: 'Tiêu đề chương 1',
-    selected: false,
-  },
-  {
-    number: 2,
-    title: 'Tiêu đề chương 2',
-    selected: false,
-  },
-  {
-    number: 3,
-    title: 'Tiêu đề chương 3',
-    selected: false,
-  },
-  {
-    number: 4,
-    title: 'Tiêu đề chương 4 ',
-    selected: true,
-  },
-  {
-    number: 5,
-    title: 'Tiêu đề chương 5',
-    selected: false,
-  },
-  {
-    number: 6,
-    title: 'Tiêu đề chương 6',
-    selected: false,
-  },
-
-]
-
 const Reading = () => {
-  const [chapterList, setChapterList] = useState(data);
   const [font, setFont] = useState("Arial");
   const [fontSize, setFontSize] = useState(16);
   const [indent, setIndent] = useState('90%');
   const [isDarkMode, setIsDarkMode] = useState(false);
-  const ID = useParams().fictionID;
+  const ID = +useParams().fictionID;
+  const chapterID = useParams().chapterID;
   const classes = useStyles(isDarkMode ? darkTheme : lightTheme);
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [])
 
+  const myRef = useRef(null)
 
-  const selected = chapterList.filter((chapter) => chapter.selected === true);
   return (
     <React.Fragment>
       <ThemeProvider theme={isDarkMode ? darkTheme : lightTheme}>
@@ -113,6 +79,7 @@ const Reading = () => {
             <InfoPanel theme={isDarkMode ? darkTheme : lightTheme} ID={ID} />
             <Divider className={classes.divider} />
             <Toolbar
+              refProp={myRef}
               font={font} setFont={(i) => setFont(i)}
               fontSize={fontSize} setFontSize={(i) => setFontSize(i)}
               indent={indent} setIndent={(i) => setIndent(i)}
@@ -121,17 +88,25 @@ const Reading = () => {
               setIsDarkMode={setIsDarkMode}
             />
             <Divider className={classes.divider} />
-            <ControlPanel theme={isDarkMode ? darkTheme : lightTheme} />
-            <Divider className={classes.divider} />
-            <ReadingPanel
-              selected={selected[0]}
-              font={font}
-              fontSize={fontSize}
-              indent={indent}
+            <ControlPanel
+              chapterID={chapterID}
+              ID={ID}
               theme={isDarkMode ? darkTheme : lightTheme}
             />
             <Divider className={classes.divider} />
-            <ControlPanel theme={isDarkMode ? darkTheme : lightTheme} />
+            <ReadingPanel
+              font={font}
+              fontSize={fontSize}
+              indent={indent}
+              chapterID={chapterID}
+              theme={isDarkMode ? darkTheme : lightTheme}
+            />
+            <Divider className={classes.divider} />
+            <ControlPanel
+              refProp={myRef}
+              chapterID={chapterID}
+              ID={ID}
+              theme={isDarkMode ? darkTheme : lightTheme} />
             <Divider className={classes.divider} />
           </CardContent>
         </Card>

@@ -8,6 +8,7 @@ import { useHistory } from 'react-router-dom'
 
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
+import { detail } from '../../resources/data/data'
 
 const useStyles = makeStyles((theme) => ({
     root: (theme) => ({
@@ -30,32 +31,47 @@ const useStyles = makeStyles((theme) => ({
     })
 }));
 
-const ControlPanel = ({ theme }) => {
-    const classes = useStyles(theme);
+const ControlPanel = (props) => {
+    const classes = useStyles(props.theme);
     const histoty = useHistory();
 
     const handleChange = () => {
 
     }
 
+    const prevChapter = Number(props.chapterID) - 1;
+    const nextChapter = Number(props.chapterID) + 1;
+
     return (
         <React.Fragment>
             <Container className={classes.root} maxWidth={false}>
                 <Button fullWidth variant="contained" color="primary"
                     className={classes.button} startIcon={<ArrowBackIosIcon />}
-                    onClick={() => { histoty.push("/Reading"); }}
+                    disabled={prevChapter <= 0}
+                    onClick={() => {
+                        histoty.push(`/Reading/${props.ID}/${prevChapter}`);
+                        if (props.refProp) {
+                            props.refProp.current.scrollIntoView()
+                        }
+                    }}
                 >
                     Chương trước
                 </Button>
                 <Button fullWidth variant="contained" color="primary" className={`${classes.button} ${classes.middleButton}`}
-                    onClick={() => { histoty.push("/Detail/1"); }}
+                    onClick={() => { histoty.push(`/Detail/${props.ID}`); }}
 
                 >
                     Danh sách chương
                 </Button>
                 <Button fullWidth variant="contained" color="primary"
                     className={classes.button} endIcon={<ArrowForwardIosIcon />}
-                    onClick={() => { histoty.push("/Reading"); }}
+                    disabled={nextChapter > detail.chapters.length}
+                    onClick={() => {
+                        histoty.push(`/Reading/${props.ID}/${nextChapter}`);
+                        if (props.refProp) {
+                            props.refProp.current.scrollIntoView()
+                        }
+                    }}
                 >
                     Chương sau
             </Button>

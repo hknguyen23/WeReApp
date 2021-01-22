@@ -32,7 +32,7 @@ const routes = [
     main: (props) => <Detail fictionID={props.fictionID} />
   },
   {
-    path: "/Reading/:fictionID",
+    path: "/Reading/:fictionID/:chapterID",
     main: () => <Reading />
   },
   {
