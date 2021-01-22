@@ -337,6 +337,7 @@ function Uploading() {
     const hasError = errorList.filter((v) => v[1] !== '').length > 0;
     if (hasError || errorGenre) {
       console.log(tempErrors);
+      window.scrollTo(0, 0);
     }
     else {
       setOpenWaiting(true);
