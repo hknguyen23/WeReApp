@@ -21,9 +21,13 @@ import {
 } from '@material-ui/core';
 import { useHistory } from 'react-router-dom'
 import MenuBookIcon from '@material-ui/icons/MenuBook';
+import { EditorState, convertToRaw } from 'draft-js';
 import { Editor } from 'react-draft-wysiwyg';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
+import draftToHtml from 'draftjs-to-html';
+import htmlToDraft from 'html-to-draftjs';
 import * as data from '../../resources/data/data';
+import { detailTest } from '../../resources/data/data';
 
 import GroupHeader from './groupHeader'
 
@@ -130,10 +134,6 @@ const ageGroup = [
   {
     value: 'Mọi lứa tuổi',
     label: 'Mọi lứa tuổi'
-  },
-  {
-    value: 'Teen',
-    label: 'Teen'
   },
   {
     value: 'Người lớn 18+',
@@ -340,10 +340,31 @@ function Uploading() {
     }
     else {
       setOpenWaiting(true);
-      await delay(2000);
-      //histoty.push("/Detail/1");
       console.log(values)
       console.log(selectedFile)
+      detailTest.title = values.title;
+
+      detailTest.genres = Object.keys(values.genre).map((key) => {
+        if (values.genre[key])
+          return Number(key)
+      });
+      detailTest.tags = Object.keys(values.tags).map((key) => {
+        if (values.tags[key])
+          return Number(key)
+      });
+      console.log(detailTest)
+      detailTest.languages = [{
+        id: 1,
+        name: values.language
+      }]
+      detailTest.age = [{
+        id: 1,
+        name: values.age
+      }]
+      detailTest.description = draftToHtml(convertToRaw(values.longDes.getCurrentContent()))
+      console.log(detailTest.description)
+      await delay(2000);
+      histoty.push("/Detail/1000");
     }
   };
 
@@ -443,7 +464,7 @@ function Uploading() {
             </CardContent>
 
             <GroupHeader title="Thông tin chi tiết" />
-            <CardContent className={classes.cardContent}> 
+            <CardContent className={classes.cardContent}>
               <Grid container spacing={2} className={classes.cardContentGrid}>
                 <Grid item xs={3}>
                   <Container className={classes.inputLabel}>

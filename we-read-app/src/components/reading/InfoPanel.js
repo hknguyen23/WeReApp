@@ -5,6 +5,7 @@ import {
   makeStyles,
   Typography,
   Link,
+  Divider,
   Tooltip,
   Button
 } from '@material-ui/core';
@@ -12,10 +13,12 @@ import { novels, topMonth, imgURL } from '../../resources/data/data'
 import QuestionAnswerIcon from '@material-ui/icons/QuestionAnswer';
 import BookmarkIcon from '@material-ui/icons/Bookmark';
 import defaultImg from '../../resources/images/defaultAvatar.png';
+import { detail, detailTest } from '../../resources/data/data'
 
 const useStyles = makeStyles((theme) => ({
   container: (theme) => ({
-    display: 'inline-block',
+    display: 'flex',
+    justifyContent: 'flex-start',
     width: '100%',
     marginTop: '15px',
     marginBottom: '15px',
@@ -23,15 +26,15 @@ const useStyles = makeStyles((theme) => ({
   }),
   rightContainer: {
     float: "right",
-    width: '74%',
     display: 'flex',
+    width: '100%',
     flexDirection: 'column',
     textAlign: 'left',
   },
   leftContainer: {
     float: "left",
-    width: '26%',
     textAlign: 'left',
+    marginRight: '25px',
   },
   divider: {
     backgroundColor: 'black'
@@ -80,32 +83,23 @@ const textSize = '18px';
 const InfoPanel = ({ theme, ID }) => {
   const classes = useStyles(theme);
   const histoty = useHistory();
-  const [fiction, setFiction] = useState({
-    id: 1,
-    title: "Truyện đời tôi",
-    imgURL: "none",
-    status: 1,
-    views: 12345,
-    followers: 350,
-    description: "Donec eu tellus ut dolor viverra porta. Aliquam sit amet velit vel odio viverra euismod fringilla eu tellus. Aenean dapibus maximus aliquet. Donec bibendum blandit enim et facilisis.",
-    rating: 3,
-    authors: [{
-      id: 1,
-      name: "John Nguyen"
-    }],
-    comments: [{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }, { id: 5 }, { id: 6 }, { id: 7 }]
-  });
+  const [fiction, setFiction] = useState(detail);
 
   useEffect(() => {
-    const fictionCopy = JSON.parse(JSON.stringify(fiction));
-    if (ID <= 25) {
-      fictionCopy.title = novels[ID - 1].name;
-      fictionCopy.imgURL = imgURL[novels[ID - 1].id % imgURL.length];
-    } else {
-      fictionCopy.title = topMonth[ID - 25 - 1].name;
-      fictionCopy.imgURL = topMonth[ID - 25 - 1].img;
+    if (ID === 1000) {
+      setFiction(detailTest);
     }
-    setFiction(fictionCopy);
+    else {
+      const fictionCopy = JSON.parse(JSON.stringify(fiction));
+      if (ID <= 25) {
+        fictionCopy.title = novels[ID - 1].name;
+        fictionCopy.imgURL = imgURL[novels[ID - 1].id % imgURL.length];
+      } else {
+        fictionCopy.title = topMonth[ID - 25 - 1].name;
+        fictionCopy.imgURL = topMonth[ID - 25 - 1].img;
+      }
+      setFiction(fictionCopy);
+    }
   }, [setFiction]);
 
   return (
@@ -120,14 +114,13 @@ const InfoPanel = ({ theme, ID }) => {
         <div className={classes.rightContainer}>
           <div style={{ display: 'flex', alignItems: 'center' }}>
             <Typography variant="h4" className={classes.title}>{fiction.title}</Typography>
-
             <Tooltip title="Bình luận" aria-label="Bình luận">
-              <Button className={classes.button} onClick={() => { histoty.push("/Detail/1"); }}>
+              <Button className={classes.button} onClick={() => { histoty.push(`/Detail/${ID}`); }}>
                 <QuestionAnswerIcon style={{ width: '30px', height: '30px' }}></QuestionAnswerIcon>
               </Button>
             </Tooltip>
             <Tooltip title="Lưu vào yêu thích" aria-label="Lưu vào yêu thích">
-              <Button className={classes.button} onClick={() => { histoty.push("/Detail/1"); }}>
+              <Button className={classes.button} onClick={() => { histoty.push(`/Detail/${ID}`); }}>
                 <BookmarkIcon style={{ width: '30px', height: '30px' }}></BookmarkIcon>
               </Button>
             </Tooltip>
@@ -157,7 +150,8 @@ const InfoPanel = ({ theme, ID }) => {
             </Typography>
           </div>
           <br></br>
-          <Typography className={classes.description}>
+          <Divider></Divider>
+          <Typography className={classes.description} style={{ whiteSpace: 'pre-line', textAlign: 'justify', fontSize: '18px' }}>
             {fiction.description}
           </Typography>
         </div>

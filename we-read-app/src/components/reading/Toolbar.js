@@ -58,7 +58,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const data1 = [8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28];
-const data2 = ['Arial', 'Roboto', 'Cambria', 'Georgia', 'Times New Roman'];
+const data2 = ['Arial', 'Roboto', 'Cambria', 'Times New Roman'];
 const data3 = ['50%', '60%', '70%', '80%', '90%'];
 
 const Toolbar = (props) => {
@@ -88,7 +88,7 @@ const Toolbar = (props) => {
 
   return (
     <React.Fragment>
-      <Container className={classes.root} maxWidth={false}>
+      <Container ref={props.refProp} className={classes.root} maxWidth={false}>
         <Box className={classes.toolbar}>
           <Typography className={classes.marginIcon}>Nền tối</Typography>
           <Switch className={classes.marginGroup} onChange={handleChangeTheme}

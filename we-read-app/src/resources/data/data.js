@@ -501,4 +501,181 @@ const imgURL = [
 	"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcToRHlqzRBdWdYnqB4jW4-_jkS8qlVZsqGFBQ&usqp=CAU",
 ];
 
-export { category, tags, novels, topMonth, topWeek, allTime, imgURL }
+const detail = {
+	id: 1,
+	title: "Truyện đời tôi",
+	imgURL: "none",
+	status: 1,
+	views: 12345,
+	followers: 350,
+	description: "\nÁ Liên là kiếp trước của A Yên sau đó cô bị chồng mình giết chết là (Cao Vương) và trong kiếp này là Khải." +
+		"\n\nNhưng cô lại nghi ngờ Minh là kẻ giết mình trong kiếp trước cũng là thuộc hạ của thần chết, và cũng chính là người có mối tơ duyên cùng các ân oán hận thù với cô trong kiếp này ." +
+		"\n\nĐịnh mệnh đã đưa Á Liên gặp được thần chết vì mê muội nhanh sắc tuyệt trần của cô nên ông ta đã cho cô một lời hẹn ước." +
+		"\n\nNếu nàng muốn trở lại làm người thì kiếp sau 16 tuổi ta sẽ ra mắt nàng, 20 tuổi ta sẽ lấy nàng" +
+		"\n\nÁ Liên đồng ý và đầu thai thành A Yên ." +
+		"\n\nMời các bạn tiếp tục đọc! ",
+	rating: 3,
+	authors: [{
+		id: 1,
+		name: "John Nguyen"
+	}],
+	genres: [1, 2, 3],
+	tags: [1, 3, 5],
+	languages: [{
+		id: 1,
+		name: "Tiếng Việt"
+	}],
+	age: [{
+		id: 1,
+		name: "Mọi lứa tuổi"
+	}],
+	reviews: [{
+		id: 1,
+		userID: 2,
+	},
+	{
+		id: 2,
+		userID: 3,
+	},
+	{
+		id: 3,
+		userID: 4,
+	},
+	{
+		id: 4,
+		userID: 5,
+	}],
+	chapters: [{
+		id: 1,
+		ordinal: 1,
+		views: 4000,
+		dateAdded: "2020/12/15",
+		lastModified: "2020/12/15"
+	},
+	{
+		id: 2,
+		ordinal: 2,
+		views: 3500,
+		dateAdded: "2020/12/16",
+		lastModified: "2020/12/16"
+	},
+	{
+		id: 3,
+		ordinal: 3,
+		views: 2500,
+		dateAdded: "2020/12/20",
+		lastModified: "2020/12/20"
+	},
+	{
+		id: 4,
+		ordinal: 4,
+		views: 2000,
+		dateAdded: "2020/12/23",
+		lastModified: "2020/12/23"
+	},
+	{
+		id: 5,
+		ordinal: 5,
+		views: 345,
+		dateAdded: "2020/12/24",
+		lastModified: "2020/12/24"
+	}],
+	comments: [{
+		id: 1,
+		userID: 2,
+		name: "Jay Minh",
+		dateAdded: "2020/12/20",
+		likeCount: 10,
+		dislikeCount: 0,
+		text: "Text labels need to be distinct from other elements. If the text label isn’t capitalized, it should use a different color, style, or layout from other text."
+	},
+	{
+		id: 2,
+		userID: 3,
+		name: "Phan Minh",
+		dateAdded: "2020/12/19",
+		likeCount: 1,
+		dislikeCount: 1,
+		text: "They rushed out the door, grabbing anything and everything they could think of they might need. There was no time to double-check to make sure they weren't leaving something important behind. Everything was thrown into the car and they sped off. Thirty minutes later they were safe and that was when it dawned on them that they had forgotten the most important thing of all."
+	},
+	{
+		id: 3,
+		userID: 4,
+		name: "Coder",
+		dateAdded: "2020/12/18",
+		likeCount: 0,
+		dislikeCount: 0,
+		text: "He picked up the burnt end of the branch and made a mark on the stone. Day 52 if the marks on the stone were accurate. He couldn't be sure. Day and nights had begun to blend together creating confusion, but he knew it was a long time. Much too long."
+	},
+	{
+		id: 4,
+		userID: 5,
+		name: "Nguyễn Văn Cừ Khôi",
+		dateAdded: "2020/12/10",
+		likeCount: 30,
+		dislikeCount: 2,
+		text: "Stranded. Yes, she was now the first person ever to land on Venus, but that was of little consequence. Her name would be read by millions in school as the first to land here, but that celebrity would never actually be seen by her. She looked at the control panel and knew there was nothing that would ever get it back into working order. She was the first and it was not clear this would also be her last."
+	},
+	{
+		id: 5,
+		userID: 6,
+		name: "Ngô Đình Đám",
+		dateAdded: "2020/12/09",
+		likeCount: 8,
+		dislikeCount: 0,
+		text: "She didn't like the food. She never did. She made the usual complaints and started the tantrum he knew was coming. But this time was different. Instead of trying to placate her and her unreasonable demands, he just stared at her and watched her meltdown without saying a word."
+	},
+	{
+		id: 6,
+		userID: 7,
+		name: "Lý Mạc Sầu Lẻ Bóng",
+		dateAdded: "2020/12/03",
+		likeCount: 20,
+		dislikeCount: 13,
+		text: "He had three simple rules by which he lived. The first was to never eat blue food. There was nothing in nature that was edible that was blue. People often asked about blueberries, but everyone knows those are actually purple. He understood it was one of the stranger rules to live by, but it had served him well thus far in the 50+ years of his life."
+	},
+	{
+		id: 7,
+		userID: 8,
+		name: "Hacker",
+		dateAdded: "2020/11/30",
+		likeCount: 2,
+		dislikeCount: 10,
+		text: "He wondered if he should disclose the truth to his friends. It would be a risky move. Yes, the truth would make things a lot easier if they all stayed on the same page, but the truth might fracture the group leaving everything in even more of a mess than it was not telling the truth. It was time to decide which way to go."
+	}]
+}
+
+let detailTest = {
+	id: 1000,
+	title: "Truyện đời tôi",
+	imgURL: "none",
+	status: 1,
+	views: 0,
+	followers: 0,
+	description: "",
+	rating: 0,
+	authors: [{
+		id: 1,
+		name: "John Nguyen"
+	}],
+	genres: [1, 2, 3],
+	tags: [1, 2, 3],
+	languages: [{
+		id: 1,
+		name: "Tiếng Việt"
+	}],
+	age: [{
+		id: 1,
+		name: "Mọi lứa tuổi"
+	}],
+	reviews: [],
+	chapters: [{
+		id: 1,
+		ordinal: 1,
+		views: 0,
+		dateAdded: "2020/12/23",
+		lastModified: "2020/12/23"
+	}],
+	comments: []
+}
+export { category, tags, novels, topMonth, topWeek, allTime, imgURL, detail, detailTest }

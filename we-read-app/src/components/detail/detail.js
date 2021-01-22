@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import ReactDOM from 'react-dom';
 import { useHistory, useParams, Link } from "react-router-dom";
 import {
   Container,
@@ -11,6 +12,7 @@ import {
   TextField,
   IconButton
 } from '@material-ui/core';
+import Rating from '@material-ui/lab/Rating';
 import Pagination from '@material-ui/lab/Pagination';
 import QuestionAnswerIcon from '@material-ui/icons/QuestionAnswer';
 import BookmarkIcon from '@material-ui/icons/Bookmark';
@@ -19,7 +21,7 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import ThumbUpIcon from '@material-ui/icons/ThumbUp';
 import ThumbDownIcon from '@material-ui/icons/ThumbDown';
 import defaultImg from '../../resources/images/defaultAvatar.png';
-import { novels, topMonth, imgURL } from '../../resources/data/data'
+import { category, tags, novels, topMonth, imgURL, detail, detailTest } from '../../resources/data/data'
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -89,197 +91,30 @@ function Detail() {
   const history = useHistory();
   const ID = +useParams().fictionID;
   const [commentPage, setCommentPage] = useState(1);
-  const [fiction, setFiction] = useState({
-    id: 1,
-    title: "Truyện đời tôi",
-    imgURL: "none",
-    status: 1,
-    views: 1025,
-    followers: 350,
-    description: "\nÁ Liên là kiếp trước của A Yên sau đó cô bị chồng mình giết chết là (Cao Vương) và trong kiếp này là Khải." +
-      "\n\nNhưng cô lại nghi ngờ Minh là kẻ giết mình trong kiếp trước cũng là thuộc hạ của thần chết, và cũng chính là người có mối tơ duyên cùng các ân oán hận thù với cô trong kiếp này." +
-      "\n\nĐịnh mệnh đã đưa Á Liên gặp được thần chết vì mê muội nhanh sắc tuyệt trần của cô nên ông ta đã cho cô một lời hẹn ước." +
-      "\n\nNếu nàng muốn trở lại làm người thì kiếp sau 16 tuổi ta sẽ ra mắt nàng, 20 tuổi ta sẽ lấy nàng" +
-      "\n\nÁ Liên đồng ý và đầu thai thành A Yên." +
-      "\n\nMời các bạn tiếp tục đọc! ",
-    rating: 3.5,
-    authors: [{
-      id: 1,
-      name: "John Nguyen"
-    }],
-    genres: [{
-      id: 12,
-      name: "Kinh dị"
-    },
-    {
-      id: 13,
-      name: "Tâm lý"
-    },
-    {
-      id: 8,
-      name: "Ngôn tình"
-    },
-    {
-      id: 1,
-      name: "Bí ẩn"
-    }],
-    tags: [{
-      id: 1,
-      name: "Nam chính"
-    },
-    {
-      id: 3,
-      name: "Ma thuật"
-    },
-    {
-      id: 5,
-      name: "Chiến tranh"
-    }],
-    languages: [{
-      id: 1,
-      name: "Tiếng Việt"
-    }],
-    reviews: [{
-      id: 1,
-      userID: 2,
-    },
-    {
-      id: 2,
-      userID: 3,
-    },
-    {
-      id: 3,
-      userID: 4,
-    },
-    {
-      id: 4,
-      userID: 5,
-    }],
-    chapters: [{
-      id: 1,
-      ordinal: 1,
-      views: 4000,
-      dateAdded: "2020/12/15",
-      lastModified: "2020/12/15"
-    },
-    {
-      id: 2,
-      ordinal: 2,
-      views: 3500,
-      dateAdded: "2020/12/16",
-      lastModified: "2020/12/16"
-    },
-    {
-      id: 3,
-      ordinal: 3,
-      views: 2500,
-      dateAdded: "2020/12/20",
-      lastModified: "2020/12/20"
-    },
-    {
-      id: 4,
-      ordinal: 4,
-      views: 2000,
-      dateAdded: "2020/12/23",
-      lastModified: "2020/12/23"
-    },
-    {
-      id: 5,
-      ordinal: 5,
-      views: 345,
-      dateAdded: "2020/12/24",
-      lastModified: "2020/12/24"
-    }],
-    comments: [{
-      id: 1,
-      userID: 2,
-      name: "Jay Minh",
-      dateAdded: "2020/12/20",
-      likeCount: 10,
-      dislikeCount: 0,
-      text: "Text labels need to be distinct from other elements. If the text label isn’t capitalized, it should use a different color, style, or layout from other text."
-    },
-    {
-      id: 2,
-      userID: 3,
-      name: "Phan Minh",
-      dateAdded: "2020/12/19",
-      likeCount: 1,
-      dislikeCount: 1,
-      text: "They rushed out the door, grabbing anything and everything they could think of they might need. There was no time to double-check to make sure they weren't leaving something important behind. Everything was thrown into the car and they sped off. Thirty minutes later they were safe and that was when it dawned on them that they had forgotten the most important thing of all."
-    },
-    {
-      id: 3,
-      userID: 4,
-      name: "Coder",
-      dateAdded: "2020/12/18",
-      likeCount: 0,
-      dislikeCount: 0,
-      text: "He picked up the burnt end of the branch and made a mark on the stone. Day 52 if the marks on the stone were accurate. He couldn't be sure. Day and nights had begun to blend together creating confusion, but he knew it was a long time. Much too long."
-    },
-    {
-      id: 4,
-      userID: 5,
-      name: "Nguyễn Văn Cừ Khôi",
-      dateAdded: "2020/12/10",
-      likeCount: 30,
-      dislikeCount: 2,
-      text: "Stranded. Yes, she was now the first person ever to land on Venus, but that was of little consequence. Her name would be read by millions in school as the first to land here, but that celebrity would never actually be seen by her. She looked at the control panel and knew there was nothing that would ever get it back into working order. She was the first and it was not clear this would also be her last."
-    },
-    {
-      id: 5,
-      userID: 6,
-      name: "Ngô Đình Đám",
-      dateAdded: "2020/12/09",
-      likeCount: 8,
-      dislikeCount: 0,
-      text: "She didn't like the food. She never did. She made the usual complaints and started the tantrum he knew was coming. But this time was different. Instead of trying to placate her and her unreasonable demands, he just stared at her and watched her meltdown without saying a word."
-    },
-    {
-      id: 6,
-      userID: 7,
-      name: "Lý Mạc Sầu Lẻ Bóng",
-      dateAdded: "2020/12/03",
-      likeCount: 20,
-      dislikeCount: 13,
-      text: "He had three simple rules by which he lived. The first was to never eat blue food. There was nothing in nature that was edible that was blue. People often asked about blueberries, but everyone knows those are actually purple. He understood it was one of the stranger rules to live by, but it had served him well thus far in the 50+ years of his life."
-    },
-    {
-      id: 7,
-      userID: 8,
-      name: "Hacker",
-      dateAdded: "2020/11/30",
-      likeCount: 2,
-      dislikeCount: 10,
-      text: "He wondered if he should disclose the truth to his friends. It would be a risky move. Yes, the truth would make things a lot easier if they all stayed on the same page, but the truth might fracture the group leaving everything in even more of a mess than it was not telling the truth. It was time to decide which way to go."
-    }]
-  });
+  const [fiction, setFiction] = useState(detail);
+  const [rating, setRating] = useState(0);
 
   useEffect(() => {
-    window.scrollTo(0, 0);
-    const fictionCopy = JSON.parse(JSON.stringify(fiction));
-    if (ID <= 25) {
-      fictionCopy.id = novels[ID - 1].id;
-      fictionCopy.title = novels[ID - 1].name;
-      fictionCopy.imgURL = imgURL[novels[ID - 1].id % imgURL.length];
-    } else {
-      fictionCopy.id = topMonth[ID - 25 - 1].id;
-      fictionCopy.title = topMonth[ID - 25 - 1].name;
-      fictionCopy.imgURL = topMonth[ID - 25 - 1].img;
-    }
-    setFiction(fictionCopy);
-  }, []);
 
-  const drawStars = (rating) => {
-    let stars = [];
-    for (let i = 0; i < rating; i++) {
-      stars.push(<StarIcon key={i} style={{ width: '40px', height: '40px', color: '#ffb400' }} />);
+    if (ID === 1000) {
+      setFiction(detailTest);
     }
-    for (let i = 0; i < 5 - rating; i++) {
-      stars.push(<StarIcon key={rating + i} style={{ width: '40px', height: '40px', color: 'gray' }} />);
+    else {
+      window.scrollTo(0, 0);
+      const fictionCopy = JSON.parse(JSON.stringify(fiction));
+      if (ID <= 25) {
+        fictionCopy.id = novels[ID - 1].id;
+        fictionCopy.title = novels[ID - 1].name;
+        fictionCopy.imgURL = imgURL[novels[ID - 1].id % imgURL.length];
+      } else {
+        fictionCopy.id = topMonth[ID - 25 - 1].id;
+        fictionCopy.title = topMonth[ID - 25 - 1].name;
+        fictionCopy.imgURL = topMonth[ID - 25 - 1].img;
+      }
+      setFiction(fictionCopy);
+      setRating(fiction.rating);
     }
-    return stars;
-  }
+  }, []);
 
   const calculateDaysAdded = (fromDate, toDate) => {
     // To calculate the time difference of two dates 
@@ -362,7 +197,7 @@ function Detail() {
   }
 
   const handleMoveToReadingPage = () => {
-    history.push(`/Reading/${ID}`);
+    history.push(`/Reading/${ID}/1`);
   }
 
   const handleSearchGenre = (genreID) => {
@@ -382,10 +217,18 @@ function Detail() {
             />
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
               <div>
-                {drawStars(fiction.rating)}
+                <Rating name="size-large" value={rating} precision={0.5} size="large"
+                  onChange={(event, newValue) => {
+                    if (newValue) {
+                      setRating(newValue);
+                    }
+                    else {
+                      setRating(0);
+                    }
+                  }} />
               </div>
               <Typography style={{ fontSize: fontSize.label, marginLeft: '10px' }}>
-                {fiction.rating + "/5"}
+                {rating + "/5"}
               </Typography>
             </div>
             <Typography style={{ textAlign: 'center', fontSize: fontSize.label }}>
@@ -413,35 +256,54 @@ function Detail() {
               <Typography style={{ fontSize: fontSize.label, marginRight: '3px' }}>
                 Thể loại:
               </Typography>
-              {fiction.genres.map(genre =>
-                <Button key={genre.id} className={classes.button} style={{
-                  height: '36px', width: '150px', color: 'white',
-                  backgroundColor: '#2196f3', marginRight: '10px', fontSize: fontSize.button
-                }}
-                  onClick={() => handleSearchGenre(genre.id)}
-                >
-                  {genre.name}
-                </Button>
-              )}
+              {fiction.genres.map(genre => {
+                const cat = category.filter(cat => cat.id === genre);
+                if (cat.length !== 0) {
+                  return (
+                    <Button key={cat[0].id} className={classes.button}
+                      onClick={() => handleSearchGenre(genre.id)}
+                      style={{
+                        height: '36px', width: '150px', color: 'white',
+                        backgroundColor: '#2196f3', marginRight: '10px', fontSize: fontSize.button
+                      }}
+                    >
+                      {cat[0].name}
+                    </Button>)
+                }
+              })}
             </div>
             <Divider className={classes.divider} style={{ marginTop: '5px', marginBottom: '5px' }}></Divider>
             <div style={{ display: 'flex', flexDirection: 'row' }}>
               <Typography style={{ fontSize: fontSize.label, marginRight: '23px' }}>
                 Tag(s):
               </Typography>
-              {fiction.tags.map(tag =>
-                <Button key={tag.id} className={classes.button} style={{
-                  height: '36px', width: '150px', color: 'white',
-                  backgroundColor: '#2196f3', marginRight: '10px', fontSize: fontSize.button
-                }}
-                  onClick={() => handleSearchTag(tag.id)}
-
-                >
-                  {tag.name}
-                </Button>
-              )}
+              {fiction.tags.map(tag => {
+                const tempTag = tags.filter(i => i.id === tag);
+                if (tempTag.length !== 0) {
+                  return (
+                    <Button key={tempTag[0].id} className={classes.button} style={{
+                      height: '36px', width: '150px', color: 'white',
+                      backgroundColor: '#2196f3', marginRight: '10px', fontSize: fontSize.button
+                    }}
+                      onClick={() => handleSearchTag(tag.id)}
+                    >
+                      {tempTag[0].name}
+                    </Button>)
+                }
+              })}
             </div>
             <Divider className={classes.divider} style={{ marginTop: '5px' }}></Divider>
+            <div style={{ display: 'flex', flexDirection: 'row' }}>
+              <Typography style={{ fontSize: fontSize.label, display: 'flex' }}>
+                Độ tuổi:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              </Typography>
+              {fiction.age.map(age =>
+                <Typography component={'span'} key={age.id} style={{ fontSize: fontSize.label }}>
+                  {age.name}&nbsp;
+                  </Typography>
+              )}
+            </div>
+            <Divider className={classes.divider}></Divider>
             <div style={{ display: 'flex', flexDirection: 'row' }}>
               <Typography style={{ fontSize: fontSize.label, display: 'flex' }}>
                 Ngôn ngữ:&nbsp;
@@ -468,10 +330,11 @@ function Detail() {
             </div>
             <Divider className={classes.divider} style={{ marginBottom: '10px' }}></Divider>
             <div style={{ textAlign: 'center' }}>
-              <Button variant="contained" color="secondary" className={classes.readNowButton} style={{
-                width: '300px', height: '60px', fontSize: '24px', fontWeight: 'bold', marginRight: '24px'
-              }}
+              <Button variant="contained" color="secondary" className={classes.readNowButton}
                 onClick={handleMoveToReadingPage}
+                style={{
+                  width: '300px', height: '60px', fontSize: '24px', fontWeight: 'bold', marginRight: '24px'
+                }}
               >
                 Đọc ngay
               </Button>
@@ -499,9 +362,13 @@ function Detail() {
         <div className={classes.container} style={{ textAlign: 'left' }}>
           <Typography style={{ fontSize: fontSize.header }}>Nội dung</Typography>
           <Divider className={classes.divider}></Divider>
-          <Typography style={{ fontSize: fontSize.label, whiteSpace: 'pre-line', textAlign: 'justify', fontSize: '18px' }}>
-            {fiction.description}
-          </Typography>
+          {ID !== 1000 ?
+            <Typography style={{ fontSize: fontSize.label, whiteSpace: 'pre-line', textAlign: 'justify', fontSize: '18px' }}>
+              {fiction.description}
+            </Typography>
+            : <div style={{ fontSize: fontSize.label, textAlign: 'justify', fontSize: '18px' }}
+              dangerouslySetInnerHTML={{ __html: fiction.description }} />
+          }
         </div>
         <div className={classes.container} style={{ textAlign: 'left' }}>
           <Typography style={{ fontSize: fontSize.header }}>
@@ -540,7 +407,7 @@ function Detail() {
           <br></br>
         </div>
       </Container>
-    </React.Fragment>
+    </React.Fragment >
   );
 }
 
