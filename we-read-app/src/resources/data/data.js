@@ -192,8 +192,8 @@ const novels = [
 	}, {
 		id: 11,
 		name: "Hẹn ước cõi âm",
-		catId: [1, 2],
-		tagId: [1],
+		catId: [1, 2, 3],
+		tagId: [1, 3, 5],
 		updatedAt: 10,
 		rating: 3.5,
 		year: 2020,
@@ -519,7 +519,7 @@ const detail = {
 		"\n\nNếu nàng muốn trở lại làm người thì kiếp sau 16 tuổi ta sẽ ra mắt nàng, 20 tuổi ta sẽ lấy nàng" +
 		"\n\nÁ Liên đồng ý và đầu thai thành A Yên ." +
 		"\n\nMời các bạn tiếp tục đọc! ",
-	rating: 3,
+	rating: 3.5,
 	authors: [{
 		id: 1,
 		name: "John Nguyen"
@@ -592,7 +592,7 @@ const detail = {
 		dateAdded: "2020/12/20",
 		likeCount: 10,
 		dislikeCount: 0,
-		text: "Text labels need to be distinct from other elements. If the text label isn’t capitalized, it should use a different color, style, or layout from other text."
+		text: "Truyện chán quá, bạn đừng bao giờ viết nữa"
 	},
 	{
 		id: 2,
@@ -646,7 +646,7 @@ const detail = {
 		dateAdded: "2020/11/30",
 		likeCount: 2,
 		dislikeCount: 10,
-		text: "He wondered if he should disclose the truth to his friends. It would be a risky move. Yes, the truth would make things a lot easier if they all stayed on the same page, but the truth might fracture the group leaving everything in even more of a mess than it was not telling the truth. It was time to decide which way to go."
+		text: "Truyện hay lắm. Cố gắng phát huy nhé bạn"
 	}]
 }
 
@@ -678,8 +678,8 @@ let detailTest = {
 		id: 1,
 		ordinal: 1,
 		views: 0,
-		dateAdded: "2020/12/23",
-		lastModified: "2020/12/23"
+		dateAdded: "2021/01/23",
+		lastModified: "2021/01/23"
 	}],
 	titleChapter: "",
 	data: "",

@@ -65,7 +65,7 @@ const ReadingPanel = (props) => {
     <React.Fragment>
       <Container className={classes.root} maxWidth={false}>
         <div className={classes.title}>
-          Chapter {props.chapterID}
+          Chương {props.chapterID}
         </div>
         {props.ID !== 1000 ?
           <React.Fragment>

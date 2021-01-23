@@ -120,7 +120,7 @@ const InfoPanel = ({ theme, ID }) => {
               </Button>
             </Tooltip>
             <Tooltip title="Lưu vào yêu thích" aria-label="Lưu vào yêu thích">
-              <Button className={classes.button} onClick={() => { histoty.push(`/Detail/${ID}`); }}>
+              <Button className={classes.button}>
                 <BookmarkIcon style={{ width: '30px', height: '30px' }}></BookmarkIcon>
               </Button>
             </Tooltip>

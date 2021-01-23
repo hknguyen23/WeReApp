@@ -107,6 +107,8 @@ function Detail() {
         fictionCopy.imgURL = imgURL[novels[ID - 1].id % imgURL.length];
         fictionCopy.rating = novels[ID - 1].rating;
         fictionCopy.views = novels[ID - 1].view;
+        fictionCopy.genres = novels[ID - 1].catId;        
+        fictionCopy.tags = novels[ID - 1].tagId;
       } else {
         fictionCopy.id = topMonth[ID - 25 - 1].id;
         fictionCopy.title = topMonth[ID - 25 - 1].name;
@@ -257,7 +259,7 @@ function Detail() {
             </div>
             <Divider className={classes.divider} style={{ marginBottom: '5px' }}></Divider>
             <div style={{ display: 'flex', flexDirection: 'row' }}>
-              <Typography style={{ fontSize: fontSize.label, marginRight: '3px' }}>
+              <Typography style={{ fontSize: fontSize.label, marginRight: '5px' }}>
                 Thể loại:
               </Typography>
               {fiction.genres.map(genre => {
@@ -265,7 +267,7 @@ function Detail() {
                 if (cat.length !== 0) {
                   return (
                     <Button key={cat[0].id} className={classes.button}
-                      onClick={() => handleSearchGenre(genre.id)}
+                      onClick={() => handleSearchGenre(cat[0].id)}
                       style={{
                         height: '36px', width: '150px', color: 'white',
                         backgroundColor: '#2196f3', marginRight: '10px', fontSize: fontSize.button
@@ -278,7 +280,7 @@ function Detail() {
             </div>
             <Divider className={classes.divider} style={{ marginTop: '5px', marginBottom: '5px' }}></Divider>
             <div style={{ display: 'flex', flexDirection: 'row' }}>
-              <Typography style={{ fontSize: fontSize.label, marginRight: '23px' }}>
+              <Typography style={{ fontSize: fontSize.label, marginRight: '24px' }}>
                 Tag(s):
               </Typography>
               {fiction.tags.map(tag => {

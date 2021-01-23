@@ -364,7 +364,8 @@ function Uploading() {
         name: values.age
       }]
       detailTest.description = draftToHtml(convertToRaw(values.longDes.getCurrentContent()));
-      detailTest.data = draftToHtml(convertToRaw(values.data.getCurrentContent()))
+      detailTest.data = draftToHtml(convertToRaw(values.data.getCurrentContent()));
+      detailTest.imgURL = "none";
       await delay(500);
       histoty.push("/Detail/1000");
     }
@@ -573,7 +574,6 @@ function Uploading() {
                   <FormHelperText className={classes.FormHelperText}> </FormHelperText>
 
                 </Grid>
-
               </Grid>
             </CardContent>
 
